@@ -51,7 +51,7 @@ class ParentElement(Protocol):
 class HtmlElement(PydanticBaseModel):
     """The base class for all chunks of html."""
 
-    cls: list[str] | None = None
+    cls: list[str] | str | None = None
     id: str | None = None
     lang: str | None = None
     dir: str | None = None
