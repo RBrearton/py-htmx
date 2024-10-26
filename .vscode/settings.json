@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["htmx", "nicegui", "pycon", "pydantic"]
+  "cSpell.words": ["htmx", "nicegui", "pycon", "pydantic"],
+  "editor.rulers": [88]
 }
