@@ -1,4 +1,11 @@
 {
-  "cSpell.words": ["htmx", "nicegui", "pycon", "pydantic"],
+  "cSpell.words": [
+    "daisyui",
+    "htmx",
+    "nicegui",
+    "pycon",
+    "pydantic",
+    "tailwindcss"
+  ],
   "editor.rulers": [88]
 }
