@@ -1,14 +1,19 @@
 {
   "cSpell.words": [
+    "accesskey",
+    "contenteditable",
     "daisyui",
+    "endregion",
     "fastapi",
     "htmx",
     "nicegui",
     "pycon",
     "pydantic",
+    "tabindex",
     "tailwindcss",
     "uvicorn"
   ],
   "editor.rulers": [88],
-  "liveServer.settings.port": 5501
+  "liveServer.settings.port": 5501,
+  "python.analysis.typeCheckingMode": "basic"
 }
