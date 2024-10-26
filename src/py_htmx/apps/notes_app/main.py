@@ -2,9 +2,7 @@
 
 import uvicorn
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
-
-from py_htmx.models import HtmlDocument
+from fastapi.responses import FileResponse, HTMLResponse
 
 from .main_page import main_page_html_document
 
@@ -19,10 +17,17 @@ async def get_css() -> FileResponse:
     return FileResponse("dist.css")
 
 
+@app.get("/favicon.ico")
+async def get_favicon() -> FileResponse:
+    """Return the favicon."""
+    return FileResponse("note_icon.png")
+
+
 @app.get("/")
-async def get_index() -> HtmlDocument:
+async def get_index() -> HTMLResponse:
     """Return the index HTML file."""
-    return main_page_html_document
+    print(main_page_html_document.model_dump_html())
+    return HTMLResponse(main_page_html_document.model_dump_html())
 
 
 def main() -> None:
