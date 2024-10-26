@@ -1,0 +1,7 @@
+*.pyc
+tailwind.config.js
+package.json
+package-lock.json
+dist.css
+node_modules
+styles.css
