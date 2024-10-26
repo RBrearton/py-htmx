@@ -4,6 +4,10 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
+from py_htmx.models import HtmlDocument
+
+from .main_page import main_page_html_document
+
 app = FastAPI(
     title="Physics teaching notes",
 )
@@ -16,9 +20,9 @@ async def get_css() -> FileResponse:
 
 
 @app.get("/")
-async def get_index() -> FileResponse:
+async def get_index() -> HtmlDocument:
     """Return the index HTML file."""
-    return FileResponse("index.html")
+    return main_page_html_document
 
 
 def main() -> None:
