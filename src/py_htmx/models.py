@@ -306,9 +306,9 @@ class Label(HtmlElement):
     """The label element."""
 
     _tag = "label"
-    text: str
+    text: str = ""
     children: Sequence[HtmlElement] = Field(default_factory=list)
-    label_for: str | None = Field(alias="for")
+    label_for: str | None = None
 
     def _attributes_str(self) -> str:
         parent_str = super()._attributes_str()
