@@ -194,10 +194,21 @@ class Head(HtmlElement):
             Meta(name="viewport", content="width=device-width, initial-scale=1"),
         ]
 
+    @staticmethod
+    def _default_links() -> list[Link]:
+        """Define the default of the link attribute.
+
+        If users don't set this, they'll still get their css and favicon set up.
+        """
+        return [
+            Link(rel="stylesheet", href="dist.css"),
+            Link(rel="icon", href="favicon.ico"),
+        ]
+
     _tag = "head"
     title: Title
-    meta: list[Meta] = Field(default_factory=list)
-    link: list[Link] = Field(default_factory=list)
+    meta: list[Meta] = Field(default_factory=_default_meta)
+    link: list[Link] = Field(default_factory=_default_links)
 
     children: Sequence[HtmlElement] = []
 
