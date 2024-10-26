@@ -25,8 +25,9 @@ But I figured it'd be faster for me to generate the html myself than figure out 
 I designed this to be used with the [DaisyUI](https://daisyui.com/) tailwindcss plugin.
 You'll need to do some setup to get it working.
 In the future, I hope to automate this.
+For now, _if you have any problems, please make a [github issue](https://github.com/RBrearton/py-htmx/issues)_.
 
-Install [npm](https://www.npmjs.com/get-npm)
+Install npm.
 
 Go to your project.
 
