@@ -126,7 +126,16 @@ class Meta(HtmlElement):
     """The meta element."""
 
     _tag = "meta"
-    charset: str | None = None
+    charset: (
+        Literal[
+            "UTF-8",
+            "ISO-8859-1",
+            "ASCII",
+            "UTF-16",
+            "ANSI",
+        ]
+        | None
+    ) = None
     name: str | None = None
     content: str | None = None
     http_equiv: str | None = None
