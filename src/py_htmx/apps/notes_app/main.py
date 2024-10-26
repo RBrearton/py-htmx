@@ -10,7 +10,7 @@ app = FastAPI(
 
 
 @app.get("/dist.css")
-async def get_dist_css() -> FileResponse:
+async def get_css() -> FileResponse:
     """Return the CSS file."""
     return FileResponse("dist.css")
 
@@ -23,4 +23,14 @@ async def get_index() -> FileResponse:
 
 def main() -> None:
     """Run the FastAPI server."""
-    uvicorn.run(app, host="0.0.0.0", port=6969, reload=True)  # noqa: S104
+    # We need the ugly import string to make auto-reload work.
+    uvicorn.run(
+        "py_htmx.apps.notes_app.main:app",
+        host="127.0.0.1",
+        port=6969,
+        reload=True,
+    )
+
+
+if __name__ == "__main__":
+    main()
