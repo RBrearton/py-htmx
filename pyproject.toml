@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
-    { name = "Richard Brearton", email = "richard.brearton@racingbulls.com" }
+    { name = "Richard Brearton", email = "richard.brearton@racingbulls.com" },
 ]
 requires-python = ">=3.13"
 dependencies = []
@@ -12,3 +12,13 @@ dependencies = []
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.setuptools.dynamic]
+version = { attr = "notes.__version__" }
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["PLR0913", "SIM117", "COM812", "T201"]
