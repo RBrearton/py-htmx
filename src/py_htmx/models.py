@@ -340,4 +340,21 @@ class Nav(HtmlElement):
     children: Sequence[HtmlElement] = Field(default_factory=list)
 
 
+class HtmlDocument(HtmlElement):
+    """The html document element."""
+
+    _tag = "html"
+    head: Head
+    body: Body
+
+    # We'll populate this in the model validator.
+    children: Sequence[HtmlElement] = []
+
+    @model_validator(mode="after")
+    def _populate_children(self) -> Self:
+        """Populate the children of the document."""
+        self.children = [self.head, self.body]
+        return self
+
+
 # endregion
