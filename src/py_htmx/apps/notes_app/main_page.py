@@ -2,7 +2,11 @@
 
 import py_htmx.models as ui
 
-from .common import html_header
+from .common import html_header, nav_bar
 
-body = ui.Body()
+body = ui.Body(
+    children=[
+        nav_bar,
+    ]
+)
 main_page_html_document = ui.HtmlDocument(head=html_header, body=body)
