@@ -6,7 +6,8 @@
     "nicegui",
     "pycon",
     "pydantic",
-    "tailwindcss"
+    "tailwindcss",
+    "uvicorn"
   ],
   "editor.rulers": [88]
 }
