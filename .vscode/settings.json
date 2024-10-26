@@ -9,5 +9,6 @@
     "tailwindcss",
     "uvicorn"
   ],
-  "editor.rulers": [88]
+  "editor.rulers": [88],
+  "liveServer.settings.port": 5501
 }

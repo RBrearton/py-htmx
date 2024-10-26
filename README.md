@@ -61,12 +61,16 @@ Update the tailwind.config.js file to include the daisyui plugin.
 
 ```javascript
 // tailwind.config.js
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./*.html"], // or adjust based on where your HTML files will be
+  content: ["**/*.html"], // Adjust this to match where your HTML files are located
   theme: {
     extend: {},
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["light", "dark"],
+  },
 };
 ```
 
