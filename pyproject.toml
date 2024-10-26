@@ -23,3 +23,6 @@ ignore = ["PLR0913", "SIM117", "COM812", "T201"]
 
 [dependency-groups]
 dev = ["fastapi>=0.115.3", "uvicorn>=0.32.0"]
+
+[project.scripts]
+notes = "py_htmx.apps.notes_app.main:main"
