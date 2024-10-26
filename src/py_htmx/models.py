@@ -21,6 +21,8 @@ def _format_attribute(key: str, value: str | bool | list[str]) -> str:
     # If execution reaches here, we've got standard keys.
     if isinstance(value, bool):
         return key if value else ""
+    if isinstance(value, list):
+        value = " ".join(value)
     return f'{key}="{value}"'
 
 
@@ -49,7 +51,7 @@ class ParentElement(Protocol):
 class HtmlElement(PydanticBaseModel):
     """The base class for all chunks of html."""
 
-    cls: str | list[str] | None = None
+    cls: list[str] | None = None
     id: str | None = None
     lang: str | None = None
     dir: str | None = None
