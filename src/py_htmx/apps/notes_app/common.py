@@ -47,3 +47,56 @@ nav_bar = ui.Div(
 )
 
 # endregion
+# region Left drawer
+
+left_drawer = ui.Div(
+    cls="drawer lg:drawer-open",
+    children=[
+        ui.Input(
+            id="my-drawer-2",
+            type="checkbox",
+            cls="drawer-toggle",
+        ),
+        ui.Div(
+            cls="drawer-content flex flex-col items-center justify-center",
+            children=[
+                ui.Label(
+                    label_for="my-drawer-2",
+                    cls="btn btn-primary drawer-button lg:hidden",
+                    text="Open drawer",
+                )
+            ],
+        ),
+        ui.Div(
+            cls="drawer-side",
+            children=[
+                ui.Label(
+                    label_for="my-drawer-2",
+                    cls="drawer-overlay",
+                    aria_label="close sidebar",
+                )
+            ],
+        ),
+        ui.List(
+            cls="menu bg-base-200 text-base-content min-h-full w-80 p-4",
+            children=[
+                ui.ListItem(
+                    children=[
+                        ui.Anchor(
+                            text="Sidebar item 1",
+                        )
+                    ]
+                ),
+                ui.ListItem(
+                    children=[
+                        ui.Anchor(
+                            text="Sidebar item 2",
+                        )
+                    ]
+                ),
+            ],
+        ),
+    ],
+)
+
+# endregion
