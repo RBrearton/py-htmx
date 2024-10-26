@@ -65,7 +65,7 @@ class HtmlElement(PydanticBaseModel):
     aria_label: str | None = None
 
     # We set the tag in the subclasses.
-    _tag: str
+    _tag: str = "SET_BY_SUBCLASS"
 
     @property
     def tag(self) -> str:
