@@ -177,15 +177,35 @@ class Title(HtmlElement):
     """The title element."""
 
     _tag = "title"
+    text: str
 
 
 class Head(HtmlElement):
     """The head element."""
 
+    @staticmethod
+    def _default_meta() -> list[Meta]:
+        """Define the default of the meta attribute.
+
+        If users don't set this, they'll get some basic meta tags.
+        """
+        return [
+            Meta(charset="UTF-8"),
+            Meta(name="viewport", content="width=device-width, initial-scale=1"),
+        ]
+
     _tag = "head"
-    children: Sequence[HtmlElement] = Field(default_factory=list)
+    title: Title
     meta: list[Meta] = Field(default_factory=list)
     link: list[Link] = Field(default_factory=list)
+
+    children: Sequence[HtmlElement] = []
+
+    @model_validator(mode="after")
+    def _populate_children(self) -> Self:
+        """Populate the children of the head."""
+        self.children = [self.title, *self.meta, *self.link]
+        return self
 
 
 class Body(HtmlElement):
