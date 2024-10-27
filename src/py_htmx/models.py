@@ -471,4 +471,11 @@ class Svg(HtmlElement):
         return self
 
 
+class Article(HtmlElement):
+    """The article element."""
+
+    _tag = "article"
+    children: Sequence[HtmlElement] = Field(default_factory=list)
+
+
 # endregion
