@@ -415,8 +415,8 @@ class Path(HtmlElement):
     d: str
     stroke_linecap: Literal["butt", "round", "square"] | None = None
     stroke_linejoin: Literal["miter", "round", "bevel"] | None = None
-    fill_rule: Literal["nonzero", "evenodd"]
-    clip_rule: Literal["nonzero", "evenodd"]
+    fill_rule: Literal["nonzero", "evenodd"] | None = None
+    clip_rule: Literal["nonzero", "evenodd"] | None = None
 
     def _attributes_str(self) -> str:
         parent_str = super()._attributes_str()
