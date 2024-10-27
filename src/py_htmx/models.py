@@ -210,13 +210,21 @@ class Head(HtmlElement):
     title: Title
     meta: list[Meta] = Field(default_factory=_default_meta)
     link: list[Link] = Field(default_factory=_default_links)
+    style: str | None = Field(
+        None,
+        description="The entire style tag, including the <style> and </style> tags.",
+    )
 
     children: Sequence[HtmlElement] = []
+
+    def _content_str(self) -> str:
+        style = self.style or ""
+        return super()._content_str() + style
 
     @model_validator(mode="after")
     def _populate_children(self) -> Self:
         """Populate the children of the head."""
-        self.children = [self.title, *self.meta, *self.link]
+        self.children = [*self.children, self.title, *self.meta, *self.link]
         return self
 
 
