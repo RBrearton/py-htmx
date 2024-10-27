@@ -213,7 +213,7 @@ class Head(HtmlElement):
     meta: list[Meta] = Field(default_factory=_default_meta)
     link: list[Link] = Field(default_factory=_default_links)
     style: str | None = Field(
-        None,
+        default=None,
         description="The entire style tag, including the <style> and </style> tags.",
     )
 
