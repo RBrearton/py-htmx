@@ -47,6 +47,7 @@ Install tailwindcss and daisyui.
 
 ```bash
 npm install -D tailwindcss daisyui
+npm install -D @tailwindcss/typography
 ```
 
 Generate a tailwindcss config file.
