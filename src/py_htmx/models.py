@@ -447,6 +447,9 @@ class Svg(HtmlElement):
     height: str | None = None
     stroke: str | None = "CurrentColor"
     stroke_width: str | None = "2"
+    stroke_linecap: str | None = "round"
+    stroke_linejoin: str | None = "round"
+
     fill: str | None = "CurrentColor"
 
     def _attributes_str(self) -> str:
@@ -459,6 +462,8 @@ class Svg(HtmlElement):
             "fill": self.fill,
             "viewBox": self.view_box,
             "stroke-width": self.stroke,
+            "stroke-linecap": self.stroke_linecap,
+            "stroke-linejoin": self.stroke_linejoin,
         }
         return parent_str + " ".join(
             _format_attribute(key, value) for key, value in attributes.items() if value
