@@ -478,4 +478,30 @@ class Article(HtmlElement):
     children: Sequence[HtmlElement] = Field(default_factory=list)
 
 
+class Circle(HtmlElement):
+    """The circle element."""
+
+    _tag = "circle"
+    cx: str
+    cy: str
+    r: str
+    fill: str | None = "CurrentColor"
+    stroke: str | None = "CurrentColor"
+    stroke_width: str | None = "2"
+
+    def _attributes_str(self) -> str:
+        parent_str = super()._attributes_str()
+        attributes = {
+            "cx": self.cx,
+            "cy": self.cy,
+            "r": self.r,
+            "fill": self.fill,
+            "stroke": self.stroke,
+            "stroke-width": self.stroke_width,
+        }
+        return parent_str + " ".join(
+            _format_attribute(key, value) for key, value in attributes.items() if value
+        )
+
+
 # endregion
