@@ -1,6 +1,9 @@
 """Define the html component instances used in the notes app."""
 
+import py_htmx.components as c
 import py_htmx.models as ui
+
+from . import endpoint_names as endpoints
 
 site_title = "Physics teaching notes"
 style_header = """
@@ -135,5 +138,11 @@ search = ui.Input(
 )
 
 # endregion
+# region Nav bar
 
+physics_button = c.nav_bar_button("Physics", endpoints.physics_page)
+comp_sci_button = c.nav_bar_button("Computer science", endpoints.comp_sci_page)
+nav_bar_center = c.nav_bar_center(physics_button, comp_sci_button)
+
+# endregion
 body = ui.Body(cls="flex flex-col min-h-screen")
