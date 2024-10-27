@@ -3,8 +3,27 @@
 import py_htmx.models as ui
 
 site_title = "Physics teaching notes"
+style_header = """
+<style>
+:root {
+--main-content-max-width: 1000px;
+}
+.drawer-side {
+height: auto;
+}
+.w-drawer-side {
+width: calc((100vw - var(--main-content-max-width)) / 2);
+}
+</style>
+"""
 html_header = ui.Head(
     title=ui.Title(text=site_title),
+    children=[
+        ui.HtmlElement(
+            data_theme="cupcake",
+        )
+    ],
+    style=style_header,
 )
 
 
@@ -13,7 +32,7 @@ html_header = ui.Head(
 home_button = ui.Div(
     cls="flex-1",
     children=[
-        ui.Anchor(text=site_title, cls=["btn btn-ghost text-xl"]),
+        ui.Anchor(text=site_title, cls="btn btn-ghost text-xl"),
     ],
 )
 
@@ -31,19 +50,13 @@ search_component = ui.Div(
 options_component = ui.Div()
 search_and_options = ui.Div(
     cls="flex-none gap-2",
-    children=[
-        search_component,
-        options_component,
-    ],
+    children=[search_component, options_component],
 )
 
 # Now build the nav bar.
 nav_bar = ui.Div(
     cls="navbar bg-base-100",
-    children=[
-        home_button,
-        search_and_options,
-    ],
+    children=[home_button, search_and_options],
 )
 
 # endregion
@@ -52,11 +65,7 @@ nav_bar = ui.Div(
 left_drawer = ui.Div(
     cls="drawer lg:drawer-open",
     children=[
-        ui.Input(
-            id="my-drawer-2",
-            type="checkbox",
-            cls="drawer-toggle",
-        ),
+        ui.Input(id="my-drawer-2", type="checkbox", cls="drawer-toggle"),
         ui.Div(
             cls="drawer-content flex flex-col items-center justify-center",
             children=[
@@ -80,20 +89,8 @@ left_drawer = ui.Div(
         ui.List(
             cls="menu bg-base-200 text-base-content min-h-full w-80 p-4",
             children=[
-                ui.ListItem(
-                    children=[
-                        ui.Anchor(
-                            text="Sidebar item 1",
-                        )
-                    ]
-                ),
-                ui.ListItem(
-                    children=[
-                        ui.Anchor(
-                            text="Sidebar item 2",
-                        )
-                    ]
-                ),
+                ui.ListItem(children=[ui.Anchor(text="Sidebar item 1")]),
+                ui.ListItem(children=[ui.Anchor(text="Sidebar item 2")]),
             ],
         ),
     ],
