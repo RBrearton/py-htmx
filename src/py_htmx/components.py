@@ -7,7 +7,7 @@ the box.
 
 from . import models as ui
 
-RecursiveList = list[tuple[str, str] | "RecursiveList"]  # noqa: TCH010
+RecursiveList = list["tuple[str, str] | RecursiveList"]
 
 # region Nav
 
