@@ -1,5 +1,4 @@
 *.pyc
-tailwind.config.js
 package.json
 package-lock.json
 dist.css
