@@ -406,4 +406,58 @@ class HtmlDocument(HtmlElement):
         return self
 
 
+class Path(HtmlElement):
+    """The path element. These are used inside svg elements."""
+
+    _tag = "path"
+    d: str
+    stroke_linecap: Literal["butt", "round", "square"] | None = None
+    stroke_linejoin: Literal["miter", "round", "bevel"] | None = None
+    fill_rule: Literal["nonzero", "evenodd"]
+    clip_rule: Literal["nonzero", "evenodd"]
+
+    def _attributes_str(self) -> str:
+        parent_str = super()._attributes_str()
+
+        # We need to do some special handling for the fill attribute, which can be
+        # "none" (and we'd like to represent that as python's None).
+        attributes = {
+            "d": self.d,
+            "stroke-linecap": self.stroke_linecap,
+            "stroke-linejoin": self.stroke_linejoin,
+            "fill-rule": self.fill_rule,
+            "clip-rule": self.clip_rule,
+        }
+        return parent_str + " ".join(
+            _format_attribute(key, value) for key, value in attributes.items() if value
+        )
+
+
+class Svg(HtmlElement):
+    """The svg element."""
+
+    _tag = "svg"
+    view_box: str
+    children: Sequence[HtmlElement] = Field(default_factory=list)
+    xmlns: str | None = "http://www.w3.org/2000/svg"
+    width: str | None = None
+    height: str | None = None
+    stroke: str | None = "CurrentColor"
+    fill: str | None = "CurrentColor"
+
+    def _attributes_str(self) -> str:
+        parent_str = super()._attributes_str()
+        attributes = {
+            "xmlns": self.xmlns,
+            "width": self.width,
+            "height": self.height,
+            "stroke": self.stroke,
+            "fill": self.fill,
+            "viewBox": self.view_box,
+        }
+        return parent_str + " ".join(
+            _format_attribute(key, value) for key, value in attributes.items() if value
+        )
+
+
 # endregion
