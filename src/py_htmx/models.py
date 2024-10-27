@@ -34,7 +34,7 @@ def _format_attribute(key: str, value: str | bool | list[str]) -> str:
 class TextElement(Protocol):
     """A protocol for elements that contain text."""
 
-    text: str
+    text: str | None
 
 
 @runtime_checkable
@@ -107,7 +107,7 @@ class HtmlElement(PydanticBaseModel):
         """
         content_str = ""
         # If we're a text element, grab the text.
-        if isinstance(self, TextElement):
+        if isinstance(self, TextElement) and self.text:
             content_str += self.text
 
         # If we're a parent element, grab the children's html.
@@ -357,7 +357,7 @@ class Anchor(HtmlElement):
 
     _tag = "a"
     href: str | None = None
-    text: str
+    text: str | None = None
     children: Sequence[HtmlElement] = Field(default_factory=list)
 
     def _attributes_str(self) -> str:
