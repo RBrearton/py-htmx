@@ -16,13 +16,11 @@ width: calc((100vw - var(--main-content-max-width)) / 2);
 }
 </style>
 """
+light_theme = "cupcake"
+dark_theme = "notes_dark"
 html_header = ui.Head(
     title=ui.Title(text=site_title),
-    children=[
-        ui.HtmlElement(
-            data_theme="cupcake",
-        )
-    ],
+    children=[ui.HtmlElement(data_theme=light_theme)],
     style=style_header,
 )
 
