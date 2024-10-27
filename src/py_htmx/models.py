@@ -439,6 +439,7 @@ class Svg(HtmlElement):
     """The svg element."""
 
     _tag = "svg"
+    path: Path
     view_box: str
     children: Sequence[HtmlElement] = Field(default_factory=list)
     xmlns: str | None = "http://www.w3.org/2000/svg"
@@ -462,6 +463,12 @@ class Svg(HtmlElement):
         return parent_str + " ".join(
             _format_attribute(key, value) for key, value in attributes.items() if value
         )
+
+    @model_validator(mode="after")
+    def _populate_children(self) -> Self:
+        """Make sure the path is in the children."""
+        self.children = [*self.children, self.path]
+        return self
 
 
 # endregion
