@@ -99,3 +99,9 @@ def contents_menu(list_elements: RecursiveList, title: str | None = None) -> ui.
 
 
 # endregion
+
+
+def nav_bar_title(title: str) -> ui.Article:
+    """Create a div with the title of the navbar."""
+    heading = ui.Heading(level=4, text=title)
+    return ui.Article(cls="prose px-5", children=[heading])
