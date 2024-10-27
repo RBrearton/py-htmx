@@ -64,8 +64,9 @@ class HtmlElement(PydanticBaseModel):
     translate: str | None = None
     aria_label: str | None = None
 
-    # We set the tag in the subclasses.
-    _tag: str = "SET_BY_SUBCLASS"
+    # We override the tag in the subclasses. Making an HtmlElement directly gives us the
+    # "html" tag, which is a handy default.
+    _tag: str = "html"
 
     @property
     def tag(self) -> str:
