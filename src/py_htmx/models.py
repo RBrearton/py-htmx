@@ -63,6 +63,7 @@ class HtmlElement(PydanticBaseModel):
     content_editable: bool | None = None
     translate: str | None = None
     aria_label: str | None = None
+    data_theme: str | None = None
 
     # We override the tag in the subclasses. Making an HtmlElement directly gives us the
     # "html" tag, which is a handy default.
@@ -88,6 +89,7 @@ class HtmlElement(PydanticBaseModel):
             "contenteditable": self.content_editable,
             "translate": self.translate,
             "aria-label": self.aria_label,
+            "data-theme": self.data_theme,
         }
         return " ".join(
             _format_attribute(key, value) for key, value in attributes.items() if value
