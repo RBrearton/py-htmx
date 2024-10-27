@@ -349,6 +349,7 @@ class ListItem(HtmlElement):
     """The list item element."""
 
     _tag = "li"
+    text: str | None = None
     children: Sequence[HtmlElement] = Field(default_factory=list)
 
 
