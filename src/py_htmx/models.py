@@ -74,6 +74,22 @@ class HtmlElement(PydanticBaseModel):
         """Get the tag name."""
         return self._tag
 
+    def get(self, *, id: str) -> "HtmlElement | None":  # noqa: A002
+        """Get an element by its id."""
+        # Check if we're the element.
+        if self.id == id:
+            return self
+
+        # If we're a parent element, check our children.
+        if isinstance(self, ParentElement):
+            for child in self.children:
+                found = child.get(id=id)
+                if found:
+                    return found
+
+        # If execution reaches here, we couldn't find the element.
+        return None
+
     def _attributes_str(self) -> str:
         """Make the string containing all the attributes."""
         attributes = {
