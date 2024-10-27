@@ -534,4 +534,12 @@ class Main(HtmlElement):
     children: Sequence[HtmlElement] = Field(default_factory=list)
 
 
+class Paragraph(HtmlElement):
+    """The paragraph element."""
+
+    _tag = "p"
+    text: str
+    children: Sequence[HtmlElement] = Field(default_factory=list)
+
+
 # endregion
