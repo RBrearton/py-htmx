@@ -527,4 +527,11 @@ class Circle(HtmlElement):
         )
 
 
+class Main(HtmlElement):
+    """The main element."""
+
+    _tag = "main"
+    children: Sequence[HtmlElement] = Field(default_factory=list)
+
+
 # endregion
