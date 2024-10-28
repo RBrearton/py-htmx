@@ -146,7 +146,9 @@ def make_page(
     # The start/end are much more awkward, but we have some helper css defined in the
     # header.
     _title = c.nav_bar_title(site_title)
-    _nav_bar_start_content = ui.Div(cls="w-80 flex-row", children=[main_icon, _title])
+    _nav_bar_start_content = ui.Div(
+        cls="w-80 flex flex-row", children=[main_icon, _title]
+    )
     _nav_bar_start_width_booster = ui.Div(
         cls="w-drawer-side flex justify-end", children=[_nav_bar_start_content]
     )
