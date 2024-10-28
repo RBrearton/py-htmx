@@ -61,6 +61,7 @@ def make_page(
         stroke="currentColor",
         stroke_width="2",
         path=_main_icon_path,
+        cls="size-6 ml-5",
     )
 
     _github_path = ui.Path(
