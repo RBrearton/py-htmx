@@ -4,7 +4,10 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import FileResponse, HTMLResponse
 
-from .main_page import main_page_html_document
+from py_htmx import components as c
+from py_htmx import models as ui
+
+from .common import make_page
 
 app = FastAPI(
     title="Physics teaching notes",
@@ -26,8 +29,30 @@ async def get_favicon() -> FileResponse:
 @app.get("/")
 async def get_index() -> HTMLResponse:
     """Return the index HTML file."""
-    print(main_page_html_document.model_dump_html())
-    return HTMLResponse(main_page_html_document.model_dump_html())
+    response = HTMLResponse(
+        content=make_page(
+            ui.Article(
+                cls="prose",
+                children=[
+                    ui.Heading(level=1, text="Physics teaching notes"),
+                    ui.Paragraph(
+                        text=(
+                            "Here are my notes on some physics topics. Check back "
+                            "later for updates."
+                        )
+                    ),
+                ],
+            ),
+            left_drawer_content=c.contents_menu(
+                [("left_drawer_1", "#"), ("left_drawer_2", "#")], "Left title"
+            ),
+            right_drawer_content=c.contents_menu(
+                [("right_drawer_1", "#"), ("right_drawer_2", "#")], "Right title"
+            ),
+        ).model_dump_html()
+    )
+    print(response)
+    return response
 
 
 def main() -> None:
