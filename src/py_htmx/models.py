@@ -552,4 +552,12 @@ class Paragraph(HtmlElement):
     children: Sequence[HtmlElement] = Field(default_factory=list)
 
 
+class Summary(HtmlElement):
+    """The summary element."""
+
+    _tag = "summary"
+    text: str
+    children: Sequence[HtmlElement] = Field(default_factory=list)
+
+
 # endregion
