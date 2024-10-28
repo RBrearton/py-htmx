@@ -437,6 +437,7 @@ class Path(HtmlElement):
     """The path element. These are used inside svg elements."""
 
     _tag = "path"
+    _is_self_closing = True
     d: str
     stroke_linecap: Literal["butt", "round", "square"] | None = None
     stroke_linejoin: Literal["miter", "round", "bevel"] | None = None
