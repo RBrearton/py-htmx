@@ -514,6 +514,7 @@ class Circle(HtmlElement):
     """The circle element."""
 
     _tag = "circle"
+    _is_self_closing = True
     cx: str
     cy: str
     r: str
