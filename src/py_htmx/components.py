@@ -7,7 +7,7 @@ the box.
 
 from . import models as ui
 
-RecursiveList = list["tuple[str, str] | RecursiveList"]
+RecursiveList = list["tuple[str, str | RecursiveList]"]
 
 # region Nav
 
@@ -15,7 +15,7 @@ RecursiveList = list["tuple[str, str] | RecursiveList"]
 def nav_bar_button(text: str, href: str) -> ui.Anchor:
     """Create a nav bar button with text and an icon."""
     header = ui.Heading(level=4, text=text)
-    article = ui.Article(children=[header])
+    article = ui.Article(children=[header], cls="prose")
     return ui.Anchor(href=href, cls="btn btn-ghost", children=[article])
 
 
@@ -45,9 +45,9 @@ def nav_bar_end(*elements: ui.HtmlElement) -> ui.Div:
 
 def nav_bar(
     nav_bar_start: ui.Div, nav_bar_center: ui.Div, nav_bar_end: ui.Div
-) -> ui.Nav:
+) -> ui.Div:
     """Create a nav bar with a start, center and end."""
-    return ui.Nav(
+    return ui.Div(
         cls="navbar bg-primary text-primary-content shadow flex-shrink-0",
         children=[nav_bar_start, nav_bar_center, nav_bar_end],
     )
@@ -63,17 +63,35 @@ def _list_item(text: str, href: str) -> ui.ListItem:
     return ui.ListItem(children=[anchor])
 
 
+def _list_expansion_item(text: str) -> tuple[ui.ListItem, ui.List]:
+    """Create a list item that expands to reveal a sublist/submenu.
+
+    This returns a tuple. The first element of the tuple is the list item in the
+    parent list that will expand to show the sublist. The second element is a reference
+    to the new sublist itself.
+    """
+    summary = ui.Summary(text=text)
+    new_sublist = ui.List()
+    details = ui.Details(children=[summary, new_sublist])
+    return ui.ListItem(children=[details]), new_sublist
+
+
 def _build_contents_menu(list_elements: RecursiveList, list_so_far: ui.List) -> ui.List:
     """Recursively build the contents menu."""
     for element in list_elements:
-        # If it's a tuple, get the text, href pair and create a list item from them.
-        if isinstance(element, tuple):
-            list_so_far.children = [*list_so_far.children, _list_item(*element)]
+        item_text = element[0]
+        value = element[1]
+
+        # If the value is a string, we've been given a href.
+        if isinstance(value, str):
+            list_so_far.children = [*list_so_far.children, _list_item(item_text, value)]
         else:
-            # If it's a RecursiveList, create a new list and build it.
-            new_list = ui.List(children=[])
-            built_list = _build_contents_menu(element, new_list)
-            list_so_far.children = [*list_so_far.children, built_list]
+            # If it's a RecursiveList, we need to make a new submenu.
+            list_item, new_sublist = _list_expansion_item(item_text)
+
+            # Populate the new sublist with the contents of the RecursiveList.
+            new_sublist = _build_contents_menu(value, new_sublist)
+            list_so_far.children = [*list_so_far.children, list_item]
 
     # Return the completed list
     return list_so_far
