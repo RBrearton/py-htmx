@@ -55,6 +55,17 @@ async def get_index() -> HTMLResponse:
     return response
 
 
+@app.exception_handler(404)
+async def custom_404_handler(request: Request, exc: HTTPException) -> HTMLResponse:
+    """Handle 404 errors."""
+    del request
+    del exc
+    return HTMLResponse(
+        content="I didn't write a 404 page yet. Consider yourself double 404'd. ",
+        status_code=404,
+    )
+
+
 def main() -> None:
     """Run the FastAPI server."""
     # We need the ugly import string to make auto-reload work.
