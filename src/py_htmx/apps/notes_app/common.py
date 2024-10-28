@@ -24,19 +24,24 @@ def make_page(
     ```
     """
     site_title = "Notes"
-    style_header = """
-    <style>
+    style_header = """<style>
+    /* Change this to set the max width of the main content section. */
     :root {
-    --main-content-max-width: 1000px;
+      --main-content-max-width: 1000px;
     }
+    /*
+      By default, drawers have the height of the page. This messes with the footer on
+      small pages, pushing it off the bottom of the screen. We fix this by setting the
+      height of the drawer to auto, and using min-h-screen on the body.
+      */
     .drawer-side {
-    height: auto;
+      height: auto;
     }
+    /* This calculates how wide content in the drawer sides needs to be. */
     .w-drawer-side {
-    width: calc((100vw - var(--main-content-max-width)) / 2);
+      width: calc((100vw - var(--main-content-max-width)) / 2);
     }
-    </style>
-    """
+  </style>""".replace("\n", "")
     light_theme_name = "cupcake"
     dark_theme_name = "notes_dark"
     html_header = ui.Head(
