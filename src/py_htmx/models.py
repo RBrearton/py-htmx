@@ -68,6 +68,7 @@ class HtmlElement(PydanticBaseModel):
     # We override the tag in the subclasses. Making an HtmlElement directly gives us the
     # "html" tag, which is a handy default.
     _tag: str = "html"
+    _is_self_closing: bool = False
 
     @property
     def tag(self) -> str:
@@ -138,6 +139,10 @@ class HtmlElement(PydanticBaseModel):
         initial_tag = (
             f"{self.tag} {attributes_string}" if attributes_string else f"{self.tag}"
         )
+
+        # Now, format depending on whether we're self-closing or not.
+        if self._is_self_closing:
+            return f"<{initial_tag} />"
         return f"<{initial_tag}>{self._content_str()}</{self.tag}>"
 
 
@@ -145,6 +150,7 @@ class Meta(HtmlElement):
     """The meta element."""
 
     _tag = "meta"
+    _is_self_closing = True
     charset: (
         Literal[
             "UTF-8",
@@ -176,6 +182,7 @@ class Link(HtmlElement):
     """The link element."""
 
     _tag = "link"
+    _is_self_closing = True
     rel: str | None = None
     href: str | None = None
     type: str | None = None
@@ -287,6 +294,7 @@ class Input(HtmlElement):
     """The input element."""
 
     _tag = "input"
+    _is_self_closing = True
     type: Literal[
         "text",
         "password",
