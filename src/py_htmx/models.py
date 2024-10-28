@@ -560,4 +560,19 @@ class Summary(HtmlElement):
     children: Sequence[HtmlElement] = Field(default_factory=list)
 
 
+class Details(HtmlElement):
+    """The details element."""
+
+    _tag = "details"
+    children: Sequence[HtmlElement] = Field(default_factory=list)
+    summary: Summary | None = None
+
+    @model_validator(mode="after")
+    def _populate_children(self) -> Self:
+        """Make sure the summary is in the children."""
+        if self.summary:
+            self.children = [*self.children, self.summary]
+        return self
+
+
 # endregion
