@@ -1,4 +1,16 @@
 """Define the endpoint names for the notes app."""
 
-physics_page = "/physics"
-comp_sci_page = "/computer_science"
+# Root paths.
+physics = "/physics"
+comp_sci = "/computer_science"
+css_file = "/dist.css"
+favicon = "/favicon.ico"
+
+# Physics problem sheets.
+b2 = f"{physics}/b2"
+b2_ps1 = f"{b2}/ps1"
+b2_ps2 = f"{b2}/ps2"
+
+b6 = f"{physics}/b6"
+b6_ps1 = f"{b6}/ps1"
+b6_ps2 = f"{b6}/ps2"
