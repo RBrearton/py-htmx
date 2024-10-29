@@ -1,12 +1,29 @@
 """The models used to generate htmx responses."""
 
-from collections.abc import Sequence
+from collections.abc import Callable, Sequence
 from typing import Literal, Protocol, Self, runtime_checkable
 
+import markdown2 as md
 from pydantic import BaseModel as PydanticBaseModel
 from pydantic import Field, model_validator
 
 # region Utils
+
+# These are all of the extras that we opt into by default. To see all the available
+# options, read the wiki: https://github.com/trentm/python-markdown2/wiki
+default_extras = [
+    "latex",
+    "admonitions",
+    "fenced-code-blocks",
+    "tables",
+    "footnotes",
+    "code-friendly",
+    "cuddled-lists",
+    "metadata",
+    "task_list",
+    "strike",
+    "header-ids",
+]
 
 
 def _format_attribute(key: str, value: str | bool | list[str]) -> str:
@@ -573,6 +590,38 @@ class Details(HtmlElement):
         if self.summary:
             self.children = [*self.children, self.summary]
         return self
+
+
+# endregion
+# region Markdown
+
+
+def render_markdown(
+    markdown: str,
+    extras: list[str] | None = None,
+    post_processor: Callable[[str], str] | None = None,
+) -> str:
+    """Render the markdown string to HTML.
+
+    Args:
+        markdown: The markdown string to render.
+        extras: A list of markdown2 extras to enable. By default, all the major extras
+            are enabled, so latex can be rendered, code blocks will work, etc.
+        post_processor: A function that takes the rendered HTML and returns the final
+            HTML. This can be used to add classes or other attributes to the HTML.
+    """
+    # Set the default extras, if required.
+    if extras is None:
+        extras = default_extras
+
+    # Render the markdown to HTML.
+    html = md.markdown(markdown, extras=extras)
+
+    # Run post processing, if required.
+    if post_processor is not None:
+        html = post_processor(html)
+
+    return html
 
 
 # endregion
