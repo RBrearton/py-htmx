@@ -236,3 +236,26 @@ def make_page(
         children=[nav_bar, left_drawer_root, footer],
     )
     return ui.HtmlDocument(head=html_header, body=body)
+
+
+def physics_left_drawer() -> ui.List:
+    """Build the contents of the left drawer for the physics section."""
+    return c.contents_menu(
+        [
+            (
+                "B2: Symmetry and relativity",
+                [
+                    ("PS1", f"{endpoints.b2_ps1}"),
+                    ("PS2", f"{endpoints.b2_ps2}"),
+                ],
+            ),
+            (
+                "B6: Condensed matter physics",
+                [
+                    ("PS1", f"{endpoints.b6_ps1}"),
+                    ("PS2", f"{endpoints.b6_ps2}"),
+                ],
+            ),
+        ],
+        "Problem sheets",
+    )
