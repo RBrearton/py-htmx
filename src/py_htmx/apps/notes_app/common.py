@@ -238,7 +238,7 @@ def make_page(
     return ui.HtmlDocument(head=html_header, body=body)
 
 
-def physics_left_drawer() -> ui.List:
+def make_physics_left_drawer() -> ui.List:
     """Build the contents of the left drawer for the physics section."""
     return c.contents_menu(
         [
