@@ -249,8 +249,8 @@ class Head(HtmlElement):
         If users don't set this, they'll still get their css and favicon set up.
         """
         return [
-            Link(rel="stylesheet", href="dist.css"),
-            Link(rel="icon", href="favicon.ico"),
+            Link(rel="stylesheet", href="/dist.css"),
+            Link(rel="icon", href="/favicon.ico"),
         ]
 
     _tag = "head"
