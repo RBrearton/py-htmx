@@ -6,8 +6,10 @@ readme = "README.md"
 authors = [{ name = "Richard Brearton", email = "richard.brearton@gmail.com" }]
 requires-python = ">=3.13"
 dependencies = [
+    "beautifulsoup4>=4.12.3",
     "latex2mathml>=3.77.0",
     "markdown2>=2.5.1",
+    "pydantic-settings>=2.6.0",
     "pydantic>=2.9.2",
     "pygments>=2.18.0",
 ]
@@ -24,14 +26,10 @@ line-length = 88
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = ["PLR0913", "SIM117", "COM812", "T201"]
+ignore = ["PLR0913", "SIM117", "COM812", "T201", "D413"]
 
 [dependency-groups]
-dev = [
-    "fastapi>=0.115.3",
-    "ipykernel>=6.29.5",
-    "uvicorn>=0.32.0",
-]
+dev = ["fastapi>=0.115.3", "ipykernel>=6.29.5", "uvicorn>=0.32.0"]
 
 [project.scripts]
 notes = "py_htmx.apps.notes_app.main:main"
