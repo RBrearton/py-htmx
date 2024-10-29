@@ -6,7 +6,7 @@ from pydantic import DirectoryPath
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-class Settings(BaseSettings):
+class Config(BaseSettings):
     """Settings for the notes app.
 
     Instantiating this class loads the settings from environment variables. If
@@ -17,3 +17,6 @@ class Settings(BaseSettings):
     markdown_files_dir: DirectoryPath = Path("pages")
 
     model_config = SettingsConfigDict(env_prefix="my_prefix_")
+
+
+config = Config()
