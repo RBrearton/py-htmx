@@ -70,6 +70,13 @@ async def get_b6_ps1() -> HTMLResponse:
     return HTMLResponse(content=main_page.model_dump_html())
 
 
+@app.get(endpoints.physics)
+async def get_physics() -> HTMLResponse:
+    """Return the physics section."""
+    # Currently, this is the same as the index page.
+    return await get_index()
+
+
 @app.get("/")
 async def get_index() -> HTMLResponse:
     """Return the index HTML file."""
