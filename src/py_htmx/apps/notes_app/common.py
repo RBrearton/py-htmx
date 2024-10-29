@@ -26,7 +26,7 @@ def make_page(
     site_title = "Notes"
     style_header = """<style>
     :root {
-      --main-content-max-width: 1000px;
+      --main-content-max-width: 850px;
     }
     .drawer-side {
       height: auto;
