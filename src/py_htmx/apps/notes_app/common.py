@@ -28,7 +28,7 @@ def make_page(
 <script src="https://cdn.tailwindcss.com"></script>
     <style>
     :root {
-      --main-content-max-width: 850px;
+      --main-content-max-width: 900px;
     }
     .drawer-side {
       height: auto;
