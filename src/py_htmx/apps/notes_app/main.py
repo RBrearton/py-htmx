@@ -61,7 +61,9 @@ async def get_b6_ps1() -> HTMLResponse:
 
     # Create the main page.
     main_page = make_page(
-        main_content=ui.Article(cls="prose", raw_inner_html=rendered_markdown),
+        main_content=ui.Article(
+            cls="prose !max-w-none", raw_inner_html=rendered_markdown
+        ),
         left_drawer_content=make_physics_left_drawer(),
         right_drawer_content=right_menu,
     )
