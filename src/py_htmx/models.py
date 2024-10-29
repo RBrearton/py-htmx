@@ -81,6 +81,7 @@ class HtmlElement(PydanticBaseModel):
     translate: str | None = None
     aria_label: str | None = None
     data_theme: str | None = None
+    raw_inner_html: str | None = None
 
     # We override the tag in the subclasses. Making an HtmlElement directly gives us the
     # "html" tag, which is a handy default.
@@ -147,6 +148,10 @@ class HtmlElement(PydanticBaseModel):
         # If we're a parent element, grab the children's html.
         if isinstance(self, ParentElement):
             content_str += "".join(child.model_dump_html() for child in self.children)
+
+        # If we have raw inner html, add that.
+        if self.raw_inner_html:
+            content_str += self.raw_inner_html
 
         return content_str
 
