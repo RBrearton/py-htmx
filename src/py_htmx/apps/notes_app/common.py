@@ -139,8 +139,8 @@ def make_page(
     # region Nav bar
 
     # The center of the nav bar is simple.
-    physics_button = c.nav_bar_button("Physics", endpoints.physics_page)
-    comp_sci_button = c.nav_bar_button("Computer science", endpoints.comp_sci_page)
+    physics_button = c.nav_bar_button("Physics", endpoints.physics)
+    comp_sci_button = c.nav_bar_button("Computer science", endpoints.comp_sci)
     nav_bar_center = c.nav_bar_center(physics_button, comp_sci_button)
 
     # The start/end are much more awkward, but we have some helper css defined in the
