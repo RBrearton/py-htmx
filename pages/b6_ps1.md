@@ -1,4 +1,8 @@
-## Q1: Einstein solid
+<!--  -->
+
+# Problem set 1
+
+### Q1: Einstein solid
 
 We're asked to consider a single simple harmonic oscillator, given by $H = \frac{p^2}{2m} + \frac{1}{2}kx^2$
 
