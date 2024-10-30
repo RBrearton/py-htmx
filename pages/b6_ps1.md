@@ -10,6 +10,14 @@ We're asked to consider a single simple harmonic oscillator, given by $H = \frac
 
 We're asked to calculate the classical partition function $Z=\int \frac{d^3p}{(2\pi\hbar)^3} \int d^3x e^{-\beta H(\vec{p}, \vec{x})}$
 
+<div class="collapse collapse-arrow bg-green-100 my-4 border-2 border-green-400 transition-none box-border">
+  <input type="checkbox" />
+  <div class="collapse-title text-lg font-medium">Show working</div>
+  <div class="collapse-content bg-base-100">
+    <p>hello</p>
+  </div>
+</div>
+
 .. NOTE:: Show working
 
     It's easy however you tackle it, but I decided to solve the 1D partition function, then cube it.
