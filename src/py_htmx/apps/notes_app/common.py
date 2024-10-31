@@ -24,8 +24,7 @@ def make_page(
     ```
     """
     site_title = "Notes"
-    style_header = """<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />
-<script src="https://cdn.tailwindcss.com"></script>
+    style_header = """<link href="/dist.css" rel="stylesheet" type="text/css" />
     <style>
     :root {
       --main-content-max-width: 900px;
@@ -36,8 +35,8 @@ def make_page(
     .w-drawer-side {
       width: calc((100vw - var(--main-content-max-width)) / 2);
     }
-  </style>""".replace("\n", "")  # noqa: E501
-    light_theme_name = "cupcake"
+  </style>""".replace("\n", "")
+    light_theme_name = "notes_light"
     dark_theme_name = "notes_dark"
     html_header = ui.Head(
         title=ui.Title(text=site_title),
