@@ -24,8 +24,8 @@ default_extras = [
 def render_markdown(
     markdown: str,
     extras: list[str] | None = None,
-    pre_processor: Callable[[str], str] | None = None,
-    post_processor: Callable[[str], str] | None = None,
+    pre_processors: list[Callable[[str], str]] | None = None,
+    post_processors: list[Callable[[str], str]] | None = None,
 ) -> str:
     """Render the markdown string to HTML.
 
@@ -33,26 +33,29 @@ def render_markdown(
         markdown: The markdown string to render.
         extras: A list of markdown2 extras to enable. By default, all the major extras
             are enabled, so latex can be rendered, code blocks will work, etc.
-        pre_processor: A function that takes the markdown string and returns another
+        pre_processors: Functions that take the markdown string and return another
             markdown string. This can be used to do things like inject html before the
             first pass of the python markdown2 renderer.
-        post_processor: A function that takes the rendered HTML and returns the final
-            HTML. This can be used to add classes or other attributes to the HTML.
+        post_processors: Functions that take the rendered HTML and return post-processed
+            HTML. This can be used to add classes or other attributes to the HTML, for
+            example.
     """
     # Set the default extras, if required.
     if extras is None:
         extras = default_extras
 
     # Run pre processing, if required.
-    if pre_processor is not None:
-        markdown = pre_processor(markdown)
+    if pre_processors:
+        for pre_processor in pre_processors:
+            markdown = pre_processor(markdown)
 
     # Render the markdown to HTML.
     html = md.markdown(markdown, extras=extras)
 
     # Run post processing, if required.
-    if post_processor is not None:
-        html = post_processor(html)
+    if post_processors:
+        for post_processor in post_processors:
+            html = post_processor(html)
 
     return html
 
