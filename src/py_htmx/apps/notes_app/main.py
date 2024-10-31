@@ -18,9 +18,16 @@ app = FastAPI(
 )
 
 
-def raw_markdown(file_name: str) -> str:
-    """Read the markdown file at the given path."""
-    return (config.markdown_files_dir / file_name).read_text()
+def render_markdown(file_name: str) -> str:
+    """Read the markdown file with the given name, and render it to an html string."""
+    markdown_txt = (config.markdown_files_dir / file_name).read_text()
+
+    # Render the markdown file as an html string.
+    return md.render_markdown(
+        markdown_txt,
+        pre_processors=[md.render_admonitions],
+        post_processors=[md.post_process_math],
+    )
 
 
 @app.get(endpoints.css_file)
@@ -41,15 +48,8 @@ async def get_b6_ps1() -> HTMLResponse:
 
     This renders the b6_ps1.md markdown file.
     """
-    # Get the appropriate markdown file.
-    markdown_txt = raw_markdown("b6_ps1.md")
-
-    # Render the markdown file as an html string.
-    rendered_markdown = md.render_markdown(
-        markdown_txt,
-        pre_processors=[md.render_admonitions],
-        post_processors=[md.post_process_math],
-    )
+    # Get the appropriate markdown file, and render it to an html string.
+    rendered_markdown = render_markdown("b6_ps1.md")
 
     # Find all of the headings in the rendered markdown.
     soup = BeautifulSoup(rendered_markdown, "html.parser")
