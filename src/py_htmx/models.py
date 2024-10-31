@@ -604,6 +604,7 @@ class Details(HtmlElement):
 def render_markdown(
     markdown: str,
     extras: list[str] | None = None,
+    pre_processor: Callable[[str], str] | None = None,
     post_processor: Callable[[str], str] | None = None,
 ) -> str:
     """Render the markdown string to HTML.
@@ -612,12 +613,19 @@ def render_markdown(
         markdown: The markdown string to render.
         extras: A list of markdown2 extras to enable. By default, all the major extras
             are enabled, so latex can be rendered, code blocks will work, etc.
+        pre_processor: A function that takes the markdown string and returns another
+            markdown string. This can be used to do things like inject html before the
+            first pass of the python markdown2 renderer.
         post_processor: A function that takes the rendered HTML and returns the final
             HTML. This can be used to add classes or other attributes to the HTML.
     """
     # Set the default extras, if required.
     if extras is None:
         extras = default_extras
+
+    # Run pre processing, if required.
+    if pre_processor is not None:
+        markdown = pre_processor(markdown)
 
     # Render the markdown to HTML.
     html = md.markdown(markdown, extras=extras)
