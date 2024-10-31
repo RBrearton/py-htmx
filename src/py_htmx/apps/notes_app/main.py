@@ -1,13 +1,12 @@
 """Defines the FastAPI routes. Running will run the FastAPI server."""
 
-from functools import lru_cache
-
 import uvicorn
 from bs4 import BeautifulSoup
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, HTMLResponse
 
 from py_htmx import components as c
+from py_htmx import markdown as md
 from py_htmx import models as ui
 
 from . import endpoint_names as endpoints
@@ -19,7 +18,6 @@ app = FastAPI(
 )
 
 
-@lru_cache
 def raw_markdown(file_name: str) -> str:
     """Read the markdown file at the given path."""
     return (config.markdown_files_dir / file_name).read_text()
@@ -47,7 +45,9 @@ async def get_b6_ps1() -> HTMLResponse:
     markdown_txt = raw_markdown("b6_ps1.md")
 
     # Render the markdown file as an html string.
-    rendered_markdown = ui.render_markdown(markdown_txt)
+    rendered_markdown = md.render_markdown(
+        markdown_txt, pre_processors=[md.render_admonitions]
+    )
 
     # Find all of the headings in the rendered markdown.
     soup = BeautifulSoup(rendered_markdown, "html.parser")
@@ -67,6 +67,7 @@ async def get_b6_ps1() -> HTMLResponse:
         left_drawer_content=make_physics_left_drawer(),
         right_drawer_content=right_menu,
     )
+    print(main_page.model_dump_html())
     return HTMLResponse(content=main_page.model_dump_html())
 
 
