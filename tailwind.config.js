@@ -5,19 +5,28 @@ module.exports = {
     extend: {},
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  theme: {
+    extend: {
+      colors: {
+        "info-border": "oklch(var(--info-border) / <alpha-value>)",
+      },
+    },
+  },
   daisyui: {
     themes: [
       {
         notes_light: {
           ...require("daisyui/src/theming/themes")["cupcake"],
-          info: "#29B6F6",
+          info: "#B3E5FC",
           success: "#9CCC65",
+          "--info-border": "73.37% 0.145 234.62",
         },
       },
       {
         notes_dark: {
           ...require("daisyui/src/theming/themes")["dim"],
           primary: "teal",
+          "--info-border": "73.37% 0.145 234.62",
         },
       },
     ],
