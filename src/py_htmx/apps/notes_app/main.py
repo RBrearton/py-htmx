@@ -46,7 +46,9 @@ async def get_b6_ps1() -> HTMLResponse:
 
     # Render the markdown file as an html string.
     rendered_markdown = md.render_markdown(
-        markdown_txt, pre_processors=[md.render_admonitions]
+        markdown_txt,
+        pre_processors=[md.render_admonitions],
+        post_processors=[md.post_process_math],
     )
 
     # Find all of the headings in the rendered markdown.
