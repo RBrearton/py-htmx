@@ -1,5 +1,7 @@
 """Defines the FastAPI routes. Running will run the FastAPI server."""
 
+from typing import TYPE_CHECKING
+
 import uvicorn
 from bs4 import BeautifulSoup
 from fastapi import FastAPI, HTTPException, Request
@@ -8,14 +10,33 @@ from fastapi.responses import FileResponse, HTMLResponse
 from py_htmx import components as c
 from py_htmx import markdown as md
 from py_htmx import models as ui
+from py_htmx.apps.notes_app import endpoint_names as endpoints
+from py_htmx.apps.notes_app.common import make_page, make_physics_left_drawer
+from py_htmx.apps.notes_app.config import config
 
-from . import endpoint_names as endpoints
-from .common import make_page, make_physics_left_drawer
-from .config import config
+if TYPE_CHECKING:
+    from bs4.element import Tag
 
 app = FastAPI(
     title="Physics teaching notes",
 )
+
+
+class _H3(ui.PydanticBaseModel):
+    text: str
+    link: str
+    parent: "_H2"
+
+
+class _H2(ui.PydanticBaseModel):
+    text: str
+    link: str
+    children: list["_H3"]
+
+
+class _RightMenuModel(ui.PydanticBaseModel):
+    h1: str
+    h2: list["_H2"]
 
 
 def render_markdown(file_name: str) -> str:
@@ -56,9 +77,30 @@ async def get_b6_ps1() -> HTMLResponse:
     headings = soup.find_all(["h2", "h3"])
 
     # Create a list of (heading_txt, heading_id) tuples that we can turn into a menu.
-    links: list[tuple[str, str | c.RecursiveList]] = [
-        (heading.text, heading["id"]) for heading in headings
-    ]
+    right_menu = _RightMenuModel(h1="Contents", h2=[])
+    for heading in headings:
+        heading: Tag
+        if heading.name == "h2":
+            # Build a new h2 object.
+            right_menu.h2.append(
+                _H2(text=heading.text, link=f"#{heading['id']}", children=[])
+            )
+        elif heading.name == "h3":
+            # Find the parent h2 object.
+            parent_h2 = right_menu.h2[-1]
+            parent_h2.children.append(
+                _H3(text=heading.text, link=f"#{heading['id']}", parent=parent_h2)
+            )
+
+    # Create the right menu.
+    links = []
+    for h2 in right_menu.h2:
+        h3s = [(h3.text, h3.link) for h3 in h2.children]
+        if h3s:
+            links.append((h2.text, h3s))
+        else:
+            links.append((h2.text, h2.link))
+
     right_menu = c.contents_menu(links, "Contents")
 
     # Create the main page.
