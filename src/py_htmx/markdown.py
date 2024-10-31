@@ -74,7 +74,7 @@ def render_admonitions(markdown: str) -> str:
             # Get the admonition type and title.
             _, admonition_type, title = line.split(" ", 2)
             output_lines.append(
-                f'<div class="collapse collapse-arrow bg-{admonition_type} my-4 border-3 border-{admonition_type} transition-none"><input type="checkbox" /><div class="collapse-title text-lg text-{admonition_type}-content font-medium">{title}</div><div class="collapse-content bg-base-100"><p>'  # noqa: E501
+                f'<div class="collapse collapse-arrow bg-{admonition_type} bg-opacity-20 my-4 border-2 border-{admonition_type} transition-none"><input type="checkbox" /><div class="collapse-title font-semibold text-primary-content">{title}</div><div class="collapse-content bg-base-200"><p>'  # noqa: E501
             )
         elif line == "END_ADMONITION":
             output_lines.append("</p></div></div>")
@@ -82,3 +82,12 @@ def render_admonitions(markdown: str) -> str:
             output_lines.append(line)
 
     return "\n".join(output_lines)
+
+
+def post_process_math(html: str) -> str:
+    """Increase the spacing around block math elements, and math font size.
+
+    This is a post-processor, and won't work before the latex is rendered to MathML.
+    """
+    html = html.replace("<math", '<math style="font-size: 1.2em;"')
+    return html.replace('display="block"', 'display="block" class="my-6"')
