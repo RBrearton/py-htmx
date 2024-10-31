@@ -10,6 +10,8 @@ module.exports = {
       {
         notes_light: {
           ...require("daisyui/src/theming/themes")["cupcake"],
+          info: "#29B6F6",
+          success: "#9CCC65",
         },
       },
       {
