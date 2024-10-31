@@ -58,7 +58,10 @@ def render_markdown(
 
 
 def render_admonitions(markdown: str) -> str:
-    """Inject html to render admonitions wherever indicated in the markdown."""
+    """Inject html to render admonitions wherever indicated in the markdown.
+
+    This is a pre-processor.
+    """
     # Admonitions start with a "START_ADMONITION <admonition_type> <optional_title>"
     # line and end with an "END_ADMONITION" line.
     # We'll replace these with the appropriate html.
