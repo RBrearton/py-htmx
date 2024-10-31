@@ -14,7 +14,7 @@ RecursiveList = list["tuple[str, str | RecursiveList]"]
 
 def nav_bar_button(text: str, href: str) -> ui.Anchor:
     """Create a nav bar button with text and an icon."""
-    header = ui.Heading(level=4, text=text)
+    header = ui.Heading(level=4, text=text, cls="text-primary-content")
     article = ui.Article(children=[header], cls="prose")
     return ui.Anchor(href=href, cls="btn btn-ghost", children=[article])
 
@@ -121,5 +121,5 @@ def contents_menu(list_elements: RecursiveList, title: str | None = None) -> ui.
 
 def nav_bar_title(title: str) -> ui.Article:
     """Create a div with the title of the navbar."""
-    heading = ui.Heading(level=4, text=title)
+    heading = ui.Heading(level=4, text=title, cls="text-primary-content")
     return ui.Article(cls="prose px-5", children=[heading])
