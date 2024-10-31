@@ -53,7 +53,7 @@ async def get_b6_ps1() -> HTMLResponse:
 
     # Find all of the headings in the rendered markdown.
     soup = BeautifulSoup(rendered_markdown, "html.parser")
-    headings = soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6"])
+    headings = soup.find_all(["h2", "h3"])
 
     # Create a list of (heading_txt, heading_id) tuples that we can turn into a menu.
     links: list[tuple[str, str | c.RecursiveList]] = [
@@ -69,7 +69,6 @@ async def get_b6_ps1() -> HTMLResponse:
         left_drawer_content=make_physics_left_drawer(),
         right_drawer_content=right_menu,
     )
-    print(main_page.model_dump_html())
     return HTMLResponse(content=main_page.model_dump_html())
 
 
@@ -101,9 +100,7 @@ async def get_index() -> HTMLResponse:
             [("right_drawer_1", "#"), ("right_drawer_2", "#")], "Right title"
         ),
     )
-    response = HTMLResponse(content=main_page.model_dump_html())
-    print(main_page.model_dump_html())
-    return response
+    return HTMLResponse(content=main_page.model_dump_html())
 
 
 @app.exception_handler(404)
