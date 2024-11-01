@@ -29,9 +29,6 @@ def make_page(
     :root {
       --main-content-max-width: 900px;
     }
-    .drawer-side {
-      height: auto;
-    }
     .w-drawer-side {
       width: calc((100vw - var(--main-content-max-width)) / 2);
     }
