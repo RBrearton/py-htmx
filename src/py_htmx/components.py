@@ -48,7 +48,7 @@ def nav_bar(
 ) -> ui.Div:
     """Create a nav bar with a start, center and end."""
     return ui.Div(
-        cls="navbar bg-primary text-primary-content shadow flex-shrink-0",
+        cls="navbar bg-primary text-primary-content shadow",
         children=[nav_bar_start, nav_bar_center, nav_bar_end],
     )
 
