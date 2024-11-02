@@ -21,26 +21,17 @@ def nav_bar_button(text: str, href: str) -> ui.Anchor:
 
 def nav_bar_center(*elements: ui.HtmlElement) -> ui.Div:
     """Create a nav center containing the elements passed as an argument."""
-    return ui.Div(
-        cls="navbar-center flex flex-row items-center justify-center",
-        children=list(elements),
-    )
+    return ui.Div(cls="navbar-center", children=list(elements))
 
 
 def nav_bar_start(*elements: ui.HtmlElement) -> ui.Div:
     """Create a nav start containing the elements passed as an argument."""
-    return ui.Div(
-        cls="navbar-start flex justify-start",
-        children=list(elements),
-    )
+    return ui.Div(cls="navbar-start", children=list(elements))
 
 
 def nav_bar_end(*elements: ui.HtmlElement) -> ui.Div:
     """Create a nav end containing the elements passed as an argument."""
-    return ui.Div(
-        cls="navbar-end flex justify-end",
-        children=list(elements),
-    )
+    return ui.Div(cls="navbar-end", children=list(elements))
 
 
 def nav_bar(
@@ -48,7 +39,7 @@ def nav_bar(
 ) -> ui.Div:
     """Create a nav bar with a start, center and end."""
     return ui.Div(
-        cls="navbar bg-primary text-primary-content shadow",
+        cls=("navbar bg-primary text-primary-content shadow"),
         children=[nav_bar_start, nav_bar_center, nav_bar_end],
     )
 
@@ -109,10 +100,7 @@ def contents_menu(list_elements: RecursiveList, title: str | None = None) -> ui.
     """
     children = [] if title is None else [list_title(title)]
 
-    root_list = ui.List(
-        cls="menu rounded-box w-80",
-        children=children,
-    )
+    root_list = ui.List(cls="menu rounded-box w-80 px-5", children=children)
     return _build_contents_menu(list_elements, root_list)
 
 
