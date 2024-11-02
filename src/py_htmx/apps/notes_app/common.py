@@ -192,6 +192,7 @@ def make_page(
         cls="drawer lg:drawer-open py-10",
         children=[_left_drawer_toggle_input, _left_drawer_side, _left_drawer_content],
     )
+
     # endregion
     # region Footer
 
@@ -208,12 +209,12 @@ def make_page(
 
     # Finally, we put everything together.
     body = ui.Body(
-        children=[nav_bar, left_drawer_root, footer],
+        children=[session_token_getter(), nav_bar, left_drawer_root, footer],
     )
     return ui.HtmlDocument(head=html_header, body=body)
 
 
-def make_physics_left_drawer() -> ui.List:
+def physics_left_drawer() -> ui.List:
     """Build the contents of the left drawer for the physics section."""
     return c.contents_menu(
         [
@@ -233,4 +234,23 @@ def make_physics_left_drawer() -> ui.List:
             ),
         ],
         "Problem sheets",
+    )
+
+
+def session_token_getter() -> ui.Div:
+    """Build the session token getter."""
+    return ui.Div(
+        hx_get=endpoints.session_token,
+        hx_target="this",
+        hx_swap="outerHTML",
+        hidden=True,
+    )
+
+
+def session_token_div(token: str) -> ui.Div:
+    """Build the session token div."""
+    return ui.Div(
+        id=ids.session_token_div_id,
+        hidden=True,
+        text=token,
     )
