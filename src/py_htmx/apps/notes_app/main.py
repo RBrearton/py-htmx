@@ -106,7 +106,7 @@ async def get_b6_ps1() -> HTMLResponse:
     # Create the main page.
     main_page = make_page(
         main_content=ui.Article(
-            cls="prose !max-w-none", raw_inner_html=rendered_markdown
+            cls="prose !max-w-[850px]", raw_inner_html=rendered_markdown
         ),
         left_drawer_content=make_physics_left_drawer(),
         right_drawer_content=right_menu,
@@ -143,6 +143,7 @@ async def get_index() -> HTMLResponse:
         ),
     )
     return HTMLResponse(content=main_page.model_dump_html())
+    # return FileResponse("index.html")
 
 
 @app.exception_handler(404)
