@@ -5,6 +5,7 @@ physics = "/physics"
 comp_sci = "/computer_science"
 css_file = "/dist.css"
 favicon = "/favicon.ico"
+session_token = "/session_token"  # noqa: S105
 
 # Physics problem sheets.
 b2 = f"{physics}/b2"
