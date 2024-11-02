@@ -66,6 +66,61 @@ class HtmlElement(PydanticBaseModel):
     data_theme: str | None = None
     raw_inner_html: str | None = None
 
+    # htmx attributes.
+    hx_get: str | None = None
+    hx_post: str | None = None
+    hx_put: str | None = None
+    hx_patch: str | None = None
+    hx_delete: str | None = None
+    hx_swap: (
+        Literal[
+            "outerHTML",
+            "innerHTML",
+            "afterbegin",
+            "beforebegin",
+            "beforeend",
+            "afterend",
+            "delete",
+            "none",
+        ]
+        | None
+    ) = None
+    hx_trigger: str | None = None
+    hx_boost: str | None = None
+    hx_select: str | None = None
+    hx_target: str | None = None
+    hx_history_push: bool | None = None
+    hx_history_replace: bool | None = None
+    hx_swap_oob: bool | None = None
+    hx_include: bool | None = None
+    hx_exclude: bool | None = None
+    hx_verb: str | None = None
+    hx_confirm: str | None = None
+    hx_confirm_class: str | None = None
+    hx_confirm_id: str | None = None
+    hx_confirm_prompt: str | None = None
+    hx_confirm_unload: bool | None = None
+    hx_encoding: str | None = None
+    hx_target_attr: str | None = None
+    hx_indicate: str | None = None
+    hx_loading: str | None = None
+    hx_sse: str | None = None
+    hx_push_url: bool | None = None
+    hx_swap_history: bool | None = None
+    hx_disable: bool | None = None
+    hx_heartbeat: int | None = None
+    hx_poll: int | None = None
+    hx_fallback: str | None = None
+    hx_fallback_duration: int | None = None
+    hx_fallback_reconnect: bool | None = None
+    hx_auto_refresh: int | None = None
+    hx_auto_refresh_offline: int | None = None
+    hx_target_duration: int | None = None
+    hx_cleanup: bool | None = None
+    hx_validation: str | None = None
+    hx_ignore: bool | None = None
+    hx_immediate: bool | None = None
+
     # We override the tag in the subclasses. Making an HtmlElement directly gives us the
     # "html" tag, which is a handy default.
     _tag: str = "html"
@@ -269,6 +324,7 @@ class Div(HtmlElement):
     """The div element."""
 
     _tag = "div"
+    text: str | None = None
     children: Sequence[HtmlElement] = Field(default_factory=list)
 
 
