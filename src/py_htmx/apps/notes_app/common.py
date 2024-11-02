@@ -24,21 +24,11 @@ def make_page(
     ```
     """
     site_title = "Notes"
-    style_header = """<link href="/dist.css" rel="stylesheet" type="text/css" />
-    <style>
-    :root {
-      --main-content-max-width: 900px;
-    }
-    .w-drawer-side {
-      width: calc((100vw - var(--main-content-max-width)) / 2);
-    }
-  </style>""".replace("\n", "")
     light_theme_name = "notes_light"
     dark_theme_name = "notes_dark"
     html_header = ui.Head(
         title=ui.Title(text=site_title),
         children=[ui.HtmlElement(data_theme=light_theme_name)],
-        style=style_header,
     )
 
     # region Icons
@@ -112,7 +102,7 @@ def make_page(
     # region Theme
 
     theme_selector = ui.Label(
-        cls="flex cursor-pointer gap-2 px-5",
+        cls="flex flex-row cursor-pointer gap-2 px-5",
         children=[
             sun_icon,
             ui.Input(
@@ -144,23 +134,18 @@ def make_page(
     # The start/end are much more awkward, but we have some helper css defined in the
     # header.
     _title = c.nav_bar_title(site_title)
-    _nav_bar_start_content = ui.Div(
-        cls="w-80 flex flex-row", children=[main_icon, _title]
-    )
-    _nav_bar_start_width_booster = ui.Div(
-        cls="w-drawer-side flex justify-end", children=[_nav_bar_start_content]
-    )
-    nav_bar_start = c.nav_bar_start(_nav_bar_start_width_booster)
+    _nav_bar_start_content = ui.Div(cls="flex flex-row", children=[main_icon, _title])
+    nav_bar_start = c.nav_bar_start(_nav_bar_start_content)
 
     github_link = ui.Anchor(
         href="https://github.com/rbrearton/py-htmx", cls="px-5", children=[github_icon]
     )
     _nav_bar_end_content = ui.Div(
-        cls="w-80 flex flex-row justify-end items-center",
+        cls="flex flex-row items-center",
         children=[theme_selector, search, github_link],
     )
     _nav_bar_end_width_booster = ui.Div(
-        cls="w-drawer-side", children=[_nav_bar_end_content]
+        children=[_nav_bar_end_content],
     )
     nav_bar_end = c.nav_bar_end(_nav_bar_end_width_booster)
 
@@ -171,23 +156,18 @@ def make_page(
     # region Main
 
     _main_content_container = ui.Main(
-        cls="drawer-content p-10", children=[main_content]
+        cls="drawer-content p-10 flex flex-row justify-center", children=[main_content]
     )
 
     # endregion
     # region Right drawer
 
-    _right_drawer_width_booster = ui.Div(
-        cls="w-drawer-side", children=[right_drawer_content]
-    )
-    _right_drawer_side = ui.Div(
-        cls="drawer-side", children=[_right_drawer_width_booster]
-    )
+    _right_drawer_side = ui.Div(cls="drawer-side", children=[right_drawer_content])
     _right_drawer_toggle_input = ui.Input(
         id=ids.right_drawer_toggle_id, type="checkbox", cls="drawer-toggle"
     )
     _right_drawer_root = ui.Div(
-        cls="drawer drawer-end lg:drawer-open",
+        cls="drawer drawer-end xl:drawer-open",
         children=[
             _right_drawer_toggle_input,
             _main_content_container,
@@ -198,11 +178,9 @@ def make_page(
     # endregion
     # region Left drawer
 
-    # We put a justify-end on the left drawer content to make it right-aligned.
-    _left_drawer_width_booster = ui.Div(
-        cls="w-drawer-side flex justify-end", children=[left_drawer_content]
+    _left_drawer_side = ui.Div(
+        cls="drawer-side flex-shrink-0", children=[left_drawer_content]
     )
-    _left_drawer_side = ui.Div(cls="drawer-side", children=[_left_drawer_width_booster])
     _left_drawer_toggle_input = ui.Input(
         id=ids.left_drawer_toggle_id, type="checkbox", cls="drawer-toggle"
     )
@@ -211,14 +189,14 @@ def make_page(
         children=[_right_drawer_root],
     )
     left_drawer_root = ui.Div(
-        cls="drawer md:drawer-open py-10 flex-grow",
-        children=[_left_drawer_toggle_input, _left_drawer_content, _left_drawer_side],
+        cls="drawer lg:drawer-open py-10",
+        children=[_left_drawer_toggle_input, _left_drawer_side, _left_drawer_content],
     )
     # endregion
     # region Footer
 
     footer = ui.Footer(
-        cls="footer p-4 bg-base-300 text-base-content flex-shrink-0",
+        cls="footer p-4 bg-base-300",
         children=[
             ui.Label(
                 text="&copy; 2024 Dr. Richard Brearton",
@@ -230,7 +208,6 @@ def make_page(
 
     # Finally, we put everything together.
     body = ui.Body(
-        cls="flex flex-col min-h-screen",
         children=[nav_bar, left_drawer_root, footer],
     )
     return ui.HtmlDocument(head=html_header, body=body)
