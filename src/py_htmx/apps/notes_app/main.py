@@ -39,41 +39,23 @@ class _RightMenuModel(ui.PydanticBaseModel):
     h2: list["_H2"]
 
 
-def render_markdown(file_name: str) -> str:
-    """Read the markdown file with the given name, and render it to an html string."""
+def render_markdown(file_name: str) -> tuple[str, ui.List]:
+    """Read the markdown file with the given name, and render it to an html string.
+
+    This function returns a tuple of the rendered markdown string and the right menu.
+    """
     markdown_txt = (config.markdown_files_dir / file_name).read_text()
 
     # Render the markdown file as an html string.
-    return md.render_markdown(
+    markdown_string = md.render_markdown(
         markdown_txt,
         pre_processors=[md.render_admonitions],
         post_processors=[md.post_process_math],
     )
 
-
-@app.get(endpoints.css_file)
-async def get_css() -> FileResponse:
-    """Return the CSS file."""
-    return FileResponse("dist.css")
-
-
-@app.get(endpoints.favicon)
-async def get_favicon() -> FileResponse:
-    """Return the favicon."""
-    return FileResponse("note_icon.png")
-
-
-@app.get(endpoints.b6_ps1)
-async def get_b6_ps1() -> HTMLResponse:
-    """Return the page for B6 problem set 1.
-
-    This renders the b6_ps1.md markdown file.
-    """
-    # Get the appropriate markdown file, and render it to an html string.
-    rendered_markdown = render_markdown("b6_ps1.md")
-
+    # Now figure out the contents menu.
     # Find all of the headings in the rendered markdown.
-    soup = BeautifulSoup(rendered_markdown, "html.parser")
+    soup = BeautifulSoup(markdown_string, "html.parser")
     headings = soup.find_all(["h2", "h3"])
 
     # Create a list of (heading_txt, heading_id) tuples that we can turn into a menu.
@@ -103,6 +85,30 @@ async def get_b6_ps1() -> HTMLResponse:
 
     right_menu = c.contents_menu(links, "Contents")
 
+    return markdown_string, right_menu
+
+
+@app.get(endpoints.css_file)
+async def get_css() -> FileResponse:
+    """Return the CSS file."""
+    return FileResponse("dist.css")
+
+
+@app.get(endpoints.favicon)
+async def get_favicon() -> FileResponse:
+    """Return the favicon."""
+    return FileResponse("note_icon.png")
+
+
+@app.get(endpoints.b6_ps1)
+async def get_b6_ps1() -> HTMLResponse:
+    """Return the page for B6 problem set 1.
+
+    This renders the b6_ps1.md markdown file.
+    """
+    # Get the appropriate markdown file, and the menu.
+    rendered_markdown, right_menu = render_markdown("b6_ps1.md")
+
     # Create the main page.
     main_page = make_page(
         main_content=ui.Article(
@@ -124,23 +130,16 @@ async def get_physics() -> HTMLResponse:
 @app.get("/")
 async def get_index() -> HTMLResponse:
     """Return the index HTML file."""
+    # Get the rendered markdown file,
+    rendered_markdown, right_menu = render_markdown("index.md")
+
+    # Create the main page.
     main_page = make_page(
-        ui.Article(
-            cls="prose",
-            children=[
-                ui.Heading(level=1, text="Physics teaching notes"),
-                ui.Paragraph(
-                    text=(
-                        "Here are my notes on some physics topics. Check back "
-                        "later for updates."
-                    )
-                ),
-            ],
+        main_content=ui.Article(
+            cls="prose !max-w-[850px]", raw_inner_html=rendered_markdown
         ),
         left_drawer_content=physics_left_drawer(),
-        right_drawer_content=c.contents_menu(
-            [("right_drawer_1", "#"), ("right_drawer_2", "#")], "Right title"
-        ),
+        right_drawer_content=right_menu,
     )
     return HTMLResponse(content=main_page.model_dump_html())
 
