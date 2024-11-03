@@ -26,9 +26,33 @@ def make_page(
     site_title = "Notes"
     light_theme_name = "notes_light"
     dark_theme_name = "notes_dark"
+    header_html = f"""<script>
+    // On page load, check if theme was saved, and apply it
+    document.addEventListener('DOMContentLoaded', function () {{
+      const savedTheme = localStorage.getItem('theme') || '{light_theme_name}';
+      const themeToggle = document.querySelector('.theme-controller');
+
+      // Set the theme attribute on the HTML element.
+      document.documentElement.setAttribute('data-theme', savedTheme);
+
+      // Set the toggle checkbox based on saved theme
+      themeToggle.checked = (savedTheme === '{dark_theme_name}');
+    }});
+
+    // Save theme to localStorage when toggled
+    function toggleTheme() {{
+      const themeToggle = document.querySelector('.theme-controller');
+      const theme = themeToggle.checked ? '{dark_theme_name}' : '{light_theme_name}';
+
+      // Apply the theme and save it
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    }}
+  </script>"""
     html_header = ui.Head(
         title=ui.Title(text=site_title),
         children=[ui.HtmlElement(data_theme=light_theme_name)],
+        raw_inner_html=header_html,
     )
 
     # region Icons
@@ -109,6 +133,7 @@ def make_page(
                 type="checkbox",
                 value=dark_theme_name,
                 cls="toggle theme-controller",
+                on_click="toggleTheme()",
             ),
             moon_icon,
         ],
@@ -209,7 +234,7 @@ def make_page(
 
     # Finally, we put everything together.
     body = ui.Body(
-        children=[session_token_getter(), nav_bar, left_drawer_root, footer],
+        children=[nav_bar, left_drawer_root, footer],
     )
     return ui.HtmlDocument(head=html_header, body=body)
 
@@ -234,23 +259,4 @@ def physics_left_drawer() -> ui.List:
             ),
         ],
         "Problem sheets",
-    )
-
-
-def session_token_getter() -> ui.Div:
-    """Build the session token getter."""
-    return ui.Div(
-        hx_get=endpoints.session_token,
-        hx_target="this",
-        hx_swap="outerHTML",
-        hidden=True,
-    )
-
-
-def session_token_div(token: str) -> ui.Div:
-    """Build the session token div."""
-    return ui.Div(
-        id=ids.session_token_div_id,
-        hidden=True,
-        text=token,
     )
