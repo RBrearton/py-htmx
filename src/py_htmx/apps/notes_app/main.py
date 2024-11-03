@@ -1,7 +1,6 @@
 """Defines the FastAPI routes. Running will run the FastAPI server."""
 
 from typing import TYPE_CHECKING
-from uuid import uuid4
 
 import uvicorn
 from bs4 import BeautifulSoup
@@ -12,11 +11,7 @@ from py_htmx import components as c
 from py_htmx import markdown as md
 from py_htmx import models as ui
 from py_htmx.apps.notes_app import endpoint_names as endpoints
-from py_htmx.apps.notes_app.common import (
-    make_page,
-    physics_left_drawer,
-    session_token_div,
-)
+from py_htmx.apps.notes_app.common import make_page, physics_left_drawer
 from py_htmx.apps.notes_app.config import config
 
 if TYPE_CHECKING:
@@ -54,13 +49,6 @@ def render_markdown(file_name: str) -> str:
         pre_processors=[md.render_admonitions],
         post_processors=[md.post_process_math],
     )
-
-
-@app.get(endpoints.session_token)
-async def get_session_token() -> HTMLResponse:
-    """Return a session token html blob."""
-    token = str(uuid4())
-    return HTMLResponse(content=session_token_div(token).model_dump_html())
 
 
 @app.get(endpoints.css_file)
