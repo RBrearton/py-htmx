@@ -2,113 +2,121 @@
 
 # Problem set 1
 
-### Q1: Einstein solid
+## Q1: Einstein solid
 
 We're asked to consider a single simple harmonic oscillator, given by $H = \frac{p^2}{2m} + \frac{1}{2}kx^2$
 
 ### Classical partition function
 
-We're asked to calculate the classical partition function $Z=\int \frac{d^3p}{(2\pi\hbar)^3} \int d^3x e^{-\beta H(\vec{p}, \vec{x})}$
+We're asked to calculate the classical partition function $Z=\int \frac{d^3p}{(2\pi\hbar)^3} \int d^3x e^{-\beta H(\vec{p}, \vec{x})}$.
 
-<div class="collapse collapse-arrow bg-green-100 my-4 border-2 border-green-400 transition-none box-border">
-  <input type="checkbox" />
-  <div class="collapse-title text-lg font-medium">Show working</div>
-  <div class="collapse-content bg-base-100">
-    <p>hello</p>
-  </div>
-</div>
+START_ADMONITION info Show working
 
-.. NOTE:: Show working
+It's easy however you tackle it, but I decided to solve the 1D partition function, then cube it.
+It's instructive to note that, since we're just looking at heat capacities, we can ignore the prefactor of $\frac{1}{2\pi\hbar}$ in the momentum integral.
+We have:
 
-    It's easy however you tackle it, but I decided to solve the 1D partition function, then cube it.
-    It's instructive to note that, since we're just looking at heat capacities, we can ignore the prefactor of $\frac{1}{2\pi\hbar}$ in the momentum integral.
-    We have:
-    $$
-    Z_\mathrm{1D} = \iint  e^{-\beta \left(\frac{p^2}{2m} + \frac{1}{2}kx^2\right)} dx dp
-    $$
+$$
+Z_\mathrm{1D} = \iint  e^{-\beta \left(\frac{p^2}{2m} + \frac{1}{2}kx^2\right)} dx dp
+$$
 
-    We can then use the standard Gaussian integral:
-    $$
-    \int e^{-ax^2} dx = \sqrt{\frac{\pi}{a}}
-    $$
+We can then use the standard Gaussian integral:
 
-    to get:
+$$
+\int e^{-ax^2} dx = \sqrt{\frac{\pi}{a}}
+$$
 
-    $$
-    Z_\mathrm{1D} = \sqrt{\frac{\pi}{\beta/2m}} \sqrt{\frac{\pi}{k\beta/2}}
-    $$
+to get:
 
-    Now writing this in terms of $\omega = \sqrt{k/m}$, we get:
+$$
+Z_\mathrm{1D} = \sqrt{\frac{\pi}{\beta/2m}} \sqrt{\frac{\pi}{k\beta/2}}
+$$
 
-    $$
-    Z_\mathrm{1D} = \frac{2\pi}{\beta\omega}
-    $$
+Now writing this in terms of $\omega = \sqrt{k/m}$, we get:
 
-    We can then cube this to get the 3D partition function.
+$$
+Z_\mathrm{1D} = \frac{2\pi}{\beta\omega}
+$$
 
-???+ success "Answer"
+We can then cube this to get the 3D partition function.
 
-    $Z_\mathrm{3D} = \left(\frac{2\pi}{\beta\omega}\right)^3$
+END_ADMONITION
 
-    Or, if we would've kept the prefactor in the momentum integral:
+START_ADMONITION success Answer
 
-    $Z_\mathrm{3D} = \left(\frac{1}{\beta\hbar\omega}\right)^{3}$
+$$Z_\mathrm{3D} = \left(\frac{2\pi}{\beta\omega}\right)^3$$
+
+Or, if we would've kept the prefactor in the momentum integral:
+
+$$Z_\mathrm{3D} = \left(\frac{1}{\beta\hbar\omega}\right)^{3}$$
+
+END_ADMONITION
 
 ### Heat capacity from the classical partition function
 
 Now we're asked to calculate the heat capacity from the classical partition function that we just calculated.
 
-???+ abstract "Show working"
+START_ADMONITION info Show working
 
-    Another easy calculation. Start by calculating the internal energy $U$:
+Another easy calculation. Start by calculating the internal energy $U$:
 
-    $$
-    U = -\frac{\partial}{\partial \beta} \ln Z = -\frac{\partial}{\partial \beta} \ln \left(\frac{2\pi}{\beta\omega}\right)^3 = 3k_BT
-    $$
+$$
+U = -\frac{\partial}{\partial \beta} \ln Z = -\frac{\partial}{\partial \beta} \ln \left(\frac{2\pi}{\beta\omega}\right)^3 = 3k_BT
+$$
 
-    Then the heat capacity is:
+Then the heat capacity is:
 
-    $$
-    C = \frac{\partial U}{\partial T} = 3k_B
-    $$
+$$
+C = \frac{\partial U}{\partial T} = 3k_B
+$$
 
-???+ success "Answer"
+END_ADMONITION
 
-    $C = 3k_B$
+START_ADMONITION success Answer
 
-???+ note "Note"
+$C = 3k_B$
+
+END_ADMONITION
+
+START_ADMONITION note Note
 
     This means that, for a 3D system containing N oscillators, we have $C = 3R$, which is the Dulong-Petit law.
+
+END_ADMONITION
 
 ### Quantum partition function
 
 We're asked to now calculate the quantum partition function $Z = \sum_n e^{-\beta E_n}$
 
-???+ abstract "Show working"
+START_ADMONITION info Show working
 
-    We can use the fact that the energy levels are $E_n = \hbar \omega (n + 1/2)$, so we have:
+We can use the fact that the energy levels are $E_n = \hbar \omega (n + 1/2)$, so we have:
 
-    $$
-    Z = \sum_n e^{-\beta \hbar \omega (n + 1/2)} = e^{-\beta \hbar \omega / 2} \sum_n e^{-\beta \hbar \omega n}
-    $$
+$$
+Z = \sum_n e^{-\beta \hbar \omega (n + 1/2)} = e^{-\beta \hbar \omega / 2} \sum_n e^{-\beta \hbar \omega n}
+$$
 
-    The sum is a geometric series, so we can write it as:
+The sum is a geometric series, so we can write it as:
 
-    $$
-    Z = e^{-\beta \hbar \omega / 2} \frac{1}{1 - e^{-\beta \hbar \omega}}
-    $$
+$$
+Z = e^{-\beta \hbar \omega / 2} \frac{1}{1 - e^{-\beta \hbar \omega}}
+$$
 
-    We can then simplify this to:
+We can then simplify this to:
 
-    $$
-    Z = \frac{e^{-\beta \hbar \omega / 2}}{1 - e^{-\beta \hbar \omega}} = \left(2\sinh(\beta \hbar \omega / 2)\right)^{-1}
-    $$
+$$
+Z = \frac{e^{-\beta \hbar \omega / 2}}{1 - e^{-\beta \hbar \omega}} = \left(2\sinh(\beta \hbar \omega / 2)\right)^{-1}
+$$
 
-???+ success "Answer"
+END_ADMONITION
+
+START_ADMONITION success Answer
 
     $Z = \left(2\sinh(\beta \hbar \omega / 2)\right)^{-1}$
 
-???+ note "Note"
+END_ADMONITION
+
+START_ADMONITION note Note
 
     The internal energy, once we calculate it, looks reminiscent of Bose-Einstein statistics.
 
@@ -123,9 +131,11 @@ We're asked to now calculate the quantum partition function $Z = \sum_n e^{-\bet
 
     1. If there's a deeper physical connection, please let me know!
 
+END_ADMONITION
+
 Next we're asked to find an expression for the heat capacity of the quantum harmonic oscillator.
 
-???+ abstract "Show working"
+START_ADMONITION info Show working
 
     We can start by calculating the internal energy, as we did above:
 
@@ -149,17 +159,20 @@ Next we're asked to find an expression for the heat capacity of the quantum harm
     To get the 3D case, we would need to cube the partition function, which would give us an extra factor of 3 in the heat capacity.
     Similarly, to generalize for $N$ oscillators, we'd end up raising the partition function to the power of $N$, which would give us an extra factor of $N$ in the heat capacity.
 
-???+ success "Answer"
+END_ADMONITION
+START_ADMONITION success Answer
 
     $$
     C = 3 N k_B (\beta \hbar \omega)^2 \frac{e^{\beta \hbar \omega}}{(e^{\beta \hbar \omega} - 1)^2}
     $$
 
+END_ADMONITION
+
 ## Q2: Debye model
 
 We're asked to state the assumptions of the Debye model.
 
-???+ success "Answer"
+START_ADMONITION success Answer
 
     Linear dispersion relation: $\omega = v_s k$
 
@@ -173,9 +186,11 @@ We're asked to state the assumptions of the Debye model.
 
     1. We'll learn more about band structure shortly. The idea is that the dispersion relation isn't really linear except for small $k$. The Debye model is a good approximation for small $k$, but as it breaks down for large $k$, we need this fudge to make the theory agree with the law of Dulong and Petit.
 
+END_ADMONITION
+
 Next we're asked to calculate the heat capacity of the Debye model.
 
-???+ abstract "Show working"
+START_ADMONITION info Show working
 
     We can start by writing down the total internal energy of the system:(1)
     { .annotate }
@@ -205,15 +220,17 @@ Next we're asked to calculate the heat capacity of the Debye model.
 
     1. Absolute energies don't matter, only energy differences, so don't worry about the zero-point energy term!
 
-???+ success "Answer"
+END_ADMONITION
+START_ADMONITION success Answer
 
     $$
     C = \frac{\partial E}{\partial T} = 3 \frac{1}{k_B T^2} \left(\frac{L}{2\pi}\right)^3 \int_0^{\omega_D} 4\pi \left(\frac{\omega}{v_s}\right)^2 (\hbar \omega)^2 \frac{e^{\beta \hbar \omega}}{(e^{\beta \hbar \omega} - 1)^2} d\omega
     $$
 
+END_ADMONITION
 Then we're asked to think about the high and low temperature limits of the heat capacity.
 
-???+ abstract "Show working"
+START_ADMONITION info Show working
 
     In the low temperature limit, our integrand falls off rapidly as a function of $\omega$.
     This is because our temperature is too low to excite the higher energy modes.
@@ -228,7 +245,8 @@ Then we're asked to think about the high and low temperature limits of the heat 
 
     In the high temperature limit, we can Taylor expand some exponentials to get the law of Dulong-Petit.
 
-???+ success "Answer"
+END_ADMONITION
+START_ADMONITION success Answer
 
     The low temperature heat capacity is:
     $C = \frac{12}{5} N k_B \pi^4 \left(\frac{T}{\Theta_D}\right)^3$
@@ -236,9 +254,10 @@ Then we're asked to think about the high and low temperature limits of the heat 
     The high temperature heat capacity is:
     $C = 3 R$
 
+END_ADMONITION
 Finally, we're asked to interpret some data.
 
-???+ success "Answer"
+START_ADMONITION success Answer
 
     | T(K) | $C_V$ (J/K/mol) | $\Theta_D$ (K) |
     | ---- | --------------- | -------------- |
@@ -267,7 +286,7 @@ We're first asked to derive the conductivity in the presence of an electric fiel
 
     As you might expect, it is correct about as often as it's incorrect.
 
-???+ abstract "Show working"
+START_ADMONITION info Show working
 
     Start by Taylor expanding the momentum at a time $t + dt$, assuming that there's a probability of scattering $1/\tau$.
 
@@ -302,13 +321,13 @@ We're first asked to derive the conductivity in the presence of an electric fiel
 
     This is the Drude model's conductivity, as the conductivity is defined as $\vec{J} = \sigma \vec{E}$.
 
-???+ success "Answer"
+START_ADMONITION success Answer
 
     $\sigma = \frac{ne^2\tau}{m}$
 
 Then we're asked to find the resistivity matrix in the presence of electric and magnetic fields.
 
-???+ abstract "Show working"
+START_ADMONITION info Show working
 
     We can start by writing down the equation of motion for the electron in the presence of both fields:
 
@@ -331,7 +350,7 @@ Then we're asked to find the resistivity matrix in the presence of electric and 
 
     Now using the definition of the resistivity as $\vec{E} = \rho \vec{J}$, we find that it's a matrix.
 
-???+ success "Answer"
+START_ADMONITION success Answer
 
     $$
     \rho_{xx} = \rho_{yy} = \rho_{zz} = \frac{m}{ne^2\tau}
@@ -348,7 +367,7 @@ Then we're asked to find the resistivity matrix in the presence of electric and 
 Now we're tasked to find the conductivity matrix, which we can do by just inverting the resistivity matrix.
 It's block diagonal, so it's easy, if algebraic.
 
-???+ success "Answer"
+START_ADMONITION success Answer
 
     TODO: type this.
 
@@ -356,7 +375,7 @@ Now we're asked to define the Hall resistivity, which is the positive off-diagon
 
 Then we're asked to plug in the numbers for Na. We're told the density is $1 \mathrm{g}/\mathrm{cm}^3$, atomic mass $M = 23u$.
 
-???+ abstract "Show working"
+START_ADMONITION info Show working
 
     Start by getting the density of atoms in SI, which is.
 
@@ -381,7 +400,7 @@ Then we're asked to plug in the numbers for Na. We're told the density is $1 \ma
 
     Then we have enough numbers to get to the answer!
 
-???+ success "Answer"
+START_ADMONITION success Answer
 
     $V_H = 4.8 \times 10^{-8} \mathrm{V}$
 
@@ -403,7 +422,7 @@ Then we're asked to plug in the numbers for Na. We're told the density is $1 \ma
 
 We're also asked to comment on the properties of metals that Drude theory doesn't explain well.
 
-???+ success "Answer"
+START_ADMONITION success Answer
 
     The answer to this is pretty much everything.
     It's a qualitative theory.
