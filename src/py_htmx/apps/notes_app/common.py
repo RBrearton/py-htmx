@@ -27,7 +27,7 @@ def make_page(
     light_theme_name = "notes_light"
     dark_theme_name = "notes_dark"
     header_html = f"""<script>
-    // On page load, check if theme was saved, and apply it
+    // On page load, check if theme was saved, and apply it.
     document.addEventListener('DOMContentLoaded', function () {{
       const savedTheme = localStorage.getItem('theme') || '{light_theme_name}';
       const themeToggle = document.querySelector('.theme-controller');
@@ -39,12 +39,12 @@ def make_page(
       themeToggle.checked = (savedTheme === '{dark_theme_name}');
     }});
 
-    // Save theme to localStorage when toggled
+    // Save theme to localStorage when toggled.
     function toggleTheme() {{
       const themeToggle = document.querySelector('.theme-controller');
       const theme = themeToggle.checked ? '{dark_theme_name}' : '{light_theme_name}';
 
-      // Apply the theme and save it
+      // Apply the theme and save it.
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
     }}
