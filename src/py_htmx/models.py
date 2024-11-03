@@ -380,6 +380,7 @@ class Input(HtmlElement):
         "search",
     ]
     value: str | None = None
+    on_click: str | None = None
     placeholder: str | None = None
     required: bool | None = None
     checked: bool | None = None
@@ -391,6 +392,7 @@ class Input(HtmlElement):
             "value": self.value,
             "placeholder": self.placeholder,
             "required": self.required,
+            "onclick": self.on_click,
             "checked": self.checked,
         }
         return parent_str + " ".join(
