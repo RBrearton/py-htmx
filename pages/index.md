@@ -5,7 +5,7 @@
 ## Physics
 
 For each B2 and B6 problem set we do this term, I intend to upload a full set of solutions with accompanying notes.
-I'm likely to skip B2 PS1 and B6 PS1, because this website wasn't ready when we worked through those.
+I'm likely to skip B2 PS1 and B6 PS1, because I was still building this site when we worked through those.
 
 I'm going to aim to have these notes up immediately after the tutorials.
 
