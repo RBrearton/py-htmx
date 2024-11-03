@@ -14,7 +14,7 @@ $$
 R(\theta, \hat{u}) = I + (1 - \cos \theta) (\hat{u} \cdot J)^2 +  \hat{u} \cdot J \sin {\theta}
 $$
 
-where:
+and
 
 $$
 \hat{u} \cdot J = \begin{pmatrix} 0 & -u_z & u_y \\ u_z & 0 & -u_x \\ -u_y & u_x & 0 \end{pmatrix}
@@ -52,10 +52,10 @@ END_ADMONITION
 
 <blockquote>
 
-Consider a frame $S$ with origin $O$, and a frame $S'$ with origin $O'$ moving with velocity $\vec{x} = v \hat{n}$ as measured in $S$.
+Consider a frame $S$ with origin $O$, and a frame $S'$ with origin $O'$ moving with velocity $\vec{v} = v \hat{n}$ as measured in $S$.
 At time $t = 0$ (as measured in $S$), the origins coincide.
 
-The transformation matrix is given by $Lambda = e^{-\vec{\zeta}\cdot \vec{K}}$ where $\vec{\zeta} = \zeta \hat{n} $ is the boost vector and $\vec{K}$ is the generator of boosts:
+The transformation matrix is given by $\Lambda = e^{-\vec{\zeta}\cdot \vec{K}}$ where $\vec{\zeta} = \zeta \hat{n} $ is the boost vector and $\vec{K}$ is the generator of boosts:
 
 $$
 K = \begin{pmatrix} 0 & K_x & K_y & K_z \\ K_x & 0 & 0 & 0 \\ K_y & 0 & 0 & 0 \\ K_z & 0 & 0 & 0 \end{pmatrix}
