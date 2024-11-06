@@ -341,3 +341,47 @@ L_{00} L_{j0} - \sum_{k=1}^{3} L_{0k} L_{jk} = 0
 $$
 
 END_ADMONITION
+
+<blockquote>
+
+Let $O$ and $O'$ be the origins of $S$ and $S'$, respectively.
+Let $\vec{v}$ represent the velocity of $O'$ as measured in $S$.
+Let $O$ and $O'$ coincide at $t = 0$.
+Show that $\beta_i = -L_{0i}/L_{00}$.
+Show that $L_{00} = \gamma$.
+
+</blockquote>
+
+As Lorentz transformations are members of the Lorentz group $\mathrm{SO}(1, 3)$, this is somewhat trivial.
+
+START_ADMONITION info Show working
+
+The vectors for the spacetime coordinates of $O'$ are given by
+
+$$
+X = \begin{pmatrix} c t \\ v_x t \\ v_y t \\ v_z t \end{pmatrix}, ~~~ X' = \begin{pmatrix} c t' \\ \vec{0} \end{pmatrix}.
+$$
+
+While we could work through $X' = L X$, it's actually way quicker to look at $X = L^{-1} X'$, which we can write out in full as
+
+$$
+\begin{pmatrix} c t \\ v_x t \\ v_y t \\ v_z t \end{pmatrix} = \begin{pmatrix} L_{00} & -L_{10} & -L_{20} & -L_{30} \\ -L_{01} & L_{11} & L_{21} & L_{31} \\ -L_{02} & L_{12} & L_{22} & L_{32} \\ -L_{03} & L_{13} & L_{23} & L_{33} \end{pmatrix} \begin{pmatrix} c t' \\ 0 \\ 0 \\ 0 \end{pmatrix}.
+$$
+
+From this we read off that $ct = L_{00} c t'$, and that $v_i t = -L_{0i} c t'$.
+This gives us the result that $\beta_i = -L_{0i}/L_{00}$.
+
+To show that $L_{00} = \gamma$, we can use the fact that
+
+$$
+\beta^2 = \beta_x^2 + \beta_y^2 + \beta_z^2 = \frac{L_{01}^2 + L_{02}^2 + L_{03}^2}{L_{00}^2} = \frac{L_{00}^2 - 1}{L_{00}^2},
+$$
+
+where we used the result from the previous question that $L_{00}^2 - L_{01}^2 - L_{02}^2 - L_{03}^2 = 1$.
+Now we just need to rearrange to find
+
+$$
+L_{00} = \frac{1}{\sqrt{1 - \beta^2}} = \gamma.
+$$
+
+END_ADMONITION
