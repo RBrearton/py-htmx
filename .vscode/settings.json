@@ -27,6 +27,7 @@
     "pydantic",
     "tabindex",
     "tailwindcss",
+    "unitarity",
     "uvicorn"
   ],
   "editor.rulers": [88],

@@ -447,3 +447,301 @@ Argue that $R$ represents a rotation.
 The previous part of the problem showed that $R$ leaves time invariant.
 As it's in $\mathrm{SO}(1, 3)$, it must also leave $-(c \delta t)^2 + (\delta \vec{x})^2$ invariant.
 Therefore, as it doesn't affect time, it must also leave $|\delta \vec{x}|$ invariant, and hence it must be a rotation.
+
+## Q4: SU(2)
+
+<blockquote>
+
+SU(2) is the group of unitary 2x2 complex matrices with determinant 1.
+Show that the group has 3 generators.
+
+</blockquote>
+
+This is a very standard/easy to google result.
+
+START_ADMONITION info Show working
+
+A general element of SU(2) is
+
+$$
+M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}
+$$
+
+where the complex numbers aren't independent because the determinant must be 1, and the unitarity condition gives $M^\dagger M = I$.
+The inverse of the matrix is
+
+$$
+M^{-1} = \frac{1}{\det M} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix} = \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}.
+$$
+
+Unitarity gives $d = a^*$, $c = -b^*$.
+This narrows down the number of independent real parameters to 4.
+The determinant condition gives $|a|^2 + |b|^2 = 1$, which is one constraint, dropping the number of independent parameters to 3.
+
+This means that any element of SU(2) can be constructed from 3 independent parameters, so the group has 3 generators.
+
+END_ADMONITION
+
+<blockquote>
+
+Let $J_i$ be the generators of SU(2).
+$M$ in $\mathrm{SU}(2)$ can be written as $M = I + i z_k J_k$ to first order in some small complex parameters $z_k$.
+Show that $K_i = z_i J_i$ are Hermitian.
+Express the components of $K_i$ in terms of real numbers, showing that $M = I - i(a_k \sigma_k)$ where the $\sigma_k$ are the Pauli matrices.
+
+</blockquote>
+
+Begin, as suggested, with $z_2 = z_3 = 0$.
+Then, generalize to the full case.
+
+START_ADMONITION info Show working
+
+We start with
+
+$$
+M = I + i K_1.
+$$
+
+Taking the Hermitian conjugate gives
+
+$$
+M^\dagger = I - i K_1^\dagger.
+$$
+
+Requiring that the matrix is Hermitian gives
+
+$$
+(I - i K_1^\dagger)(I + i K_1) = I.
+$$
+
+To first order in $z_1$, this implies that $K_1^\dagger = K_1$, so $K_1$ is Hermitian.
+
+Now, trying to figure out the elements of $K_1$, we have
+
+$$
+K_1 = \begin{pmatrix} a & b \\ c & d \end{pmatrix}, ~~~ K_1^\dagger = \begin{pmatrix} a^* & c^* \\ b^* & d^* \end{pmatrix}.
+$$
+
+Since $K_1$ is hermitian, $a$ and $d$ must be real, and $b = -c^*$.
+Expanding the determinant of $M$ to first order gives $1 + i(a + d) = 1$, so $a = -d$.
+Writing everything out in terms of real numbers gives
+
+$$
+K_1 = a_1 \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} + a_2 \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} + a_3 \begin{pmatrix} 0 & i \\ i & 0 \end{pmatrix}.
+$$
+
+The same results will hold for $K_2$ and $K_3$, but we can see that the real basis vectors are the Pauli matrices, so that
+
+$$
+M = I - i(a_k \sigma_k).
+$$
+
+Note that, more generally, any matrix in SU(2) can be written as
+
+$$
+M = e^{i a_k \sigma_k}
+$$
+
+where $a_k$ arbitrary real numbers.
+
+END_ADMONITION
+
+<blockquote>
+
+Show that any $2 \times 2$ Hermitian matrix $S$ can be written as $ct I + x_k \sigma_k$.
+Calculate the determinant of $S$.
+Consider a $2 \times 2$ matrix $L$ such that $\det(L) = 1$, and define the transformation $S' = L S L^\dagger$.
+Show that $S'$ is also Hermitian.
+Argue that it can be interpreted as representing a new spacetime position vector $X'$ which is a Lorentz transformation of the original spacetime position vector $X = (ct, x, y, z)^\intercal$.
+
+</blockquote>
+
+Quite a few small steps to get through here, but none are too conceptually demanding.
+
+START_ADMONITION info Show working
+
+As $S$ is Hermitian, it can be written as
+
+$$
+S = \begin{pmatrix} \alpha & \beta - i\gamma \\ \beta + i\gamma & \delta \end{pmatrix}.
+$$
+
+which is of the desired form. Writing that explicitly:
+
+$$
+S = \begin{pmatrix} ct + z & x - iy \\ x + iy & ct - z \end{pmatrix}.
+$$
+
+The determinant of $S$ is
+
+$$
+\det S = (ct + z)(ct - z) - (x - iy)(x + iy) = c^2 t^2 - z^2 - x^2 - y^2.
+$$
+
+Now think about $S' = L S L^\dagger$.
+We want to prove that $S'$ is Hermitian.
+Remember that $(AB)^\dagger = B^\dagger A^\dagger$?
+Of course you do.
+
+$$
+S'^\dagger = (L S L^\dagger)^\dagger = (L^\dagger)^\dagger S^\dagger L^\dagger = L S L^\dagger = S'.
+$$
+
+Because $S'$ is hermitian, it can also be written in the form
+
+$$
+S' = \begin{pmatrix} c't + z' & x' - iy' \\ x' + iy' & c't - z' \end{pmatrix}.
+$$
+
+with determinant
+
+$$
+\det S' = c'^2 t^2 - z'^2 - x'^2 - y'^2.
+$$
+
+We can go one step further though, because we're told that $\det (L) = 1$.
+This means that $\det(S') = \det(L) \det(S) \det(L^\dagger) = \det(S)$, where I used the fact (that you of course remember) that $\det(A B) = \det(A) \det(B)$.
+This means that
+
+$$
+c'^2 t^2 - z'^2 - x'^2 - y'^2 = c^2 t^2 - z^2 - x^2 - y^2,
+$$
+
+which is a defining property of Lorentz transformations.
+
+END_ADMONITION
+
+<blockquote>
+
+Assume that $L$ is of the form
+
+$$
+L = \begin{pmatrix} a & 0 \\ 0 & b \end{pmatrix},
+$$
+
+where $a$ and $b$ are real.
+Argue that $LSL^\dagger$ represents a boost along the $z$-axis.
+Demonstrate that $L = (\cosh q) I + (\sinh q) \sigma_3$, where $q$ is the rapidity.
+
+</blockquote>
+
+God these are getting boring.
+More brainless algebra.
+
+START_ADMONITION info Show working
+
+$$
+S' = LSL^\dagger = \begin{pmatrix} a^2 (ct + z) & x - iy \\ x + iy & b^2 (ct - z) \end{pmatrix}.
+$$
+
+This is a boost along the $z$-axis, as the off-diagonal elements are the same as the original matrix.
+Disentangling $z$ and $ct$ gives
+
+$$
+ct' = \frac{a^2 + b^2}{2}ct + \frac{a^2 - b^2}{2}z, ~~~ z' = \frac{a^2 - b^2}{2}ct + \frac{a^2 + b^2}{2}z.
+$$
+
+Using our knowledge of relativity
+
+$$
+ct' = \gamma (ct - \beta z), ~~~ z' = \gamma (z - \beta ct),
+$$
+
+we can match coefficients to find that
+
+$$
+\gamma = \frac{a^2 + b^2}{2}, ~~~ -\beta\gamma = \frac{a^2 - b^2}{2}.
+$$
+
+To squeeze the rapidity into things, we can use the $det(L) = 1$ condition to find that $ab = 1$ and therefore if $a = e^{q/2}$ then $b = e^{-q/2}$.
+This allows us to represent $L$ as
+
+$$
+L = \begin{pmatrix} e^{q/2} & 0 \\ 0 & e^{-q/2} \end{pmatrix} = (\cosh q) I + (\sinh q) \sigma_3.
+$$
+
+as required.
+
+END_ADMONITION
+
+<blockquote>
+
+Now let's think about pure rotations.
+The time coordinate must remain unchanged, so think about $S = x_k \sigma_k$.
+Show that $\mathrm{tr}(S') = \mathrm{tr}(S) = 0$ implies that $L$ is unitary.
+This means $L$ can be written as
+
+$$
+L = e^{i a_k \sigma_k}.
+$$
+
+where the $a_k$ are real.
+Consider $a_1 = a_2 = 0$ and $a_3 = \theta$.
+Show that
+
+$$
+L(0, 0, \theta) = e^{i \theta \sigma_3} = \begin{pmatrix} e^{-i \theta} & 0 \\ 0 & e^{i \theta} \end{pmatrix}.
+$$
+
+Which rotation does $L(0, 0, \theta) S L^\dagger(0, 0, \theta)$ represent?
+Is there another element of SU(2) that represents the same rotation?
+
+</blockquote>
+
+Wow that's a lot of questions.
+
+START_ADMONITION info Show working
+
+Since rotations don't mix space and time coordinates, $S = x_k \sigma_k$ is transformed into $S' = x_k' \sigma_k$.
+As the Pauli matrices are traceless, the trace of $S$ and $S'$ must be zero.
+Using $\mathrm{tr} (AB) = \mathrm{tr} (BA)$, we have
+
+$$
+\mathrm{tr} (S') = \mathrm{tr} (LSL^\dagger) = \mathrm{tr} (L^\dagger L S) = \mathrm{tr} (S) = 0.
+$$
+
+Let $a_{ij}$ denote the components of $L^\dagger L$. We have:
+
+$$
+\mathrm{tr} \left( L^\dagger L S \right) = (a_{00} - a_{11}) x + (a_{01} + a_{10}) x + i (a_{01} - a_{10}) y.
+$$
+
+For this to be zero for all values of $x$, $y$, and $z$, we require $a_{01} = a_{10} = 0$ and $a_{00} = a_{11}$.
+This means $L^\dagger L = a_{00} I$. Also, since $\det(L) = 1$, we have $a_{00} = 1$, which gives $L^\dagger L = I$.
+Similarly, considering $\mathrm{tr}(S) = \mathrm{tr} \left( L^{-1} S' \left( L^{\dagger} \right)^{-1} \right) = \mathrm{tr} \left( \left( L^{\dagger} \right)^{-1} L^{-1} S' \right) = 0$, we
+find that $\left( L^\dagger \right)^{-1} L^{-1} = \left( L L^\dagger \right)^{-1} = I$, implying $L L^\dagger = I$. Hence, $L$ is unitary.
+
+As shown in part (b), this means that:
+
+$$
+L = e^{-i (a_1 \sigma_1 + a_2 \sigma_2 + a_3 \sigma_3)},
+$$
+
+where the $a_i$ are real.
+
+For the case $a_1 = a_2 = 0$ and $a_3 = \theta$, we have:
+
+$$
+L(0, 0, \theta) = e^{-i \theta \sigma_3} = \sum_{k=0}^{+\infty} \frac{(-i \theta \sigma_3)^k}{k!}.
+$$
+
+Since $\sigma_3^2 = I$, we have $\sigma_3^{2k} = I$ and $\sigma_3^{2k+1} = \sigma_3$ for all $k$. This yields:
+
+$$
+L = I \sum_{k=0}^{+\infty} \frac{(-1)^k \theta^{2k}}{(2k)!} - i \sigma_3 \sum_{k=0}^{+\infty} \frac{(-1)^k \theta^{2k+1}}{(2k+1)!} = I \cos \theta - i \sigma_3 \sin \theta.
+$$
+
+In matrix form, this becomes:
+
+$$
+L(0, 0, \theta) = \begin{pmatrix} \cos \theta - i \sin \theta & 0 \\ 0 & \cos \theta + i \sin \theta \end{pmatrix} = \begin{pmatrix} e^{-i \theta} & 0 \\ 0 & e^{i \theta} \end{pmatrix}.
+$$
+
+Now, calculating $S' = L S L^{\dagger}$ gives the transformed components $z' = z$, $x' = x \cos (2 \theta) - y \sin (2 \theta)$ and $y' = x \sin (2 \theta) + y \cos (2 \theta) $. This represents a rotation
+by an angle $2 \theta$ around the $z$-axis. Therefore, there is a correspondence $L (0, 0, \theta) \to R (0, 0, 2 \theta)$, where $R$ is a rotation matrix in $\mathrm{SO}(3)$.
+
+Note that $-L = L(0, 0, \theta + \pi)$ corresponds to the same rotation in $\mathrm{SO}(3)$, since $R(0, 0, 2 (\theta + \pi)) = R(0, 0, 2 \theta)$. This is consistent with $L S L^{\dagger} = (-L) S (-L)^{\dagger}$.
+Therefore, there is a two-to-one correspondence between $\mathrm{SU}(2)$ and $\mathrm{SO}(3)$.
+For this reason, $\mathrm{SU}(2)$ is called the double cover of $\mathrm{SO}(3)$.
+
+END_ADMONITION
