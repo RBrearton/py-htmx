@@ -103,6 +103,176 @@ $$
 
 END_ADMONITION
 
+Right, now we can move onto the main part of the question.
+This looks a lot like a matrix Taylor expansion.
+We should probably just be able to Taylor expand the exponential, and use the result we just derived.
+
+START_ADMONITION info Show working
+
+Using the Taylor expansion of the exponential, we have
+
+$$
+\Lambda = e^{-\zeta \hat{n} \cdot \vec{K}} = I - \zeta \hat{n} \cdot \vec{K} + \frac{1}{2!} \zeta^2 \left( \hat{n} \cdot \vec{K} \right)^2 - \frac{1}{3!} \zeta^3 \left( \hat{n} \cdot \vec{K} \right)^3 + \ldots
+$$
+
+Ok, so it's pretty clear that there will be two terms that we care about: a $\hat{n} \cdot \vec{K}$ term and a $\left( \hat{n} \cdot \vec{K} \right)^2$ term, as any higher powers of $\hat{n} \cdot \vec{K}$ simplify into one of these two.
+Let's apply that, and write down the full Taylor series using these two separate sums:
+
+$$
+\Lambda = I + \sum_{n=1}^{\infty} \frac{(-\zeta)^{2n-1}}{(2n-1)!} \left( \hat{n} \cdot \vec{K} \right) + \sum_{n=1}^{\infty} \frac{(-\zeta)^{2n}}{(2n)!} \left( \hat{n} \cdot \vec{K} \right)^2.
+$$
+
+... and we have arrived!
+The final trick to spot is easy (with it being a show that question) but we're missing the first term in the Taylor expansion of $\cosh$, which is what gives us the $(\cosh \zeta - 1)$ term, so we finally have:
+
+$$
+\Lambda = I - (\sinh \zeta) \hat{n} \cdot \vec{K} + (\cosh \zeta - 1) \left( \hat{n} \cdot \vec{K} \right)^2.
+$$
+
+as required.
+
+END_ADMONITION
+
+<blockquote>
+
+Given that the trajectory of $O'$ is $\vec{r} = \vec{v}t$ in frame $S$ and $\vec{r}' = 0$ in frame $S'$, where $\vec{r}$ and $\vec{r}'$ are the spatial position vectors, show that $\tanh \zeta = \beta$, where $\beta \equiv \frac{v}{c}$. Using this result, express $\Lambda$ in terms of $\gamma = \left(1 - \beta^2\right)^{-1/2}$ and the components of $\beta$.
+
+</blockquote>
+
+Bleh. I was hoping I wouldn't have to typeset this!
+
+This is just a matter of writing out the matrix form of $\Lambda$ that we just derived, as we were told that this is the transformation matrix for a Lorentz boost.
+From there it should just be matrix multiplication.
+
+START_ADMONITION info Show working
+
+Right, so remembering that
+
+$$
+\hat{n} \cdot \vec{K} = \begin{pmatrix} 0 & n_x & n_y & n_z \\ n_x & 0 & 0 & 0 \\ n_y & 0 & 0 & 0 \\ n_z & 0 & 0 & 0 \end{pmatrix},
+$$
+
+and
+
+$$
+\left(\hat{n} \cdot \vec{K}\right)^2 = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & n_x^2 & n_x n_y & n_x n_z \\ 0 & n_x n_y & n_y^2 & n_y n_z \\ 0 & n_x n_z & n_y n_z & n_z^2 \end{pmatrix},
+$$
+
+<!-- TODO: THIS IS THE PERFECT PLACE FOR A HOVER REFERENCE -->
+
+we can write out the matrix form of $\Lambda$:
+
+$$
+\Lambda = \begin{pmatrix} \cosh \zeta & -n_x \sinh \zeta & -n_y \sinh \zeta & -n_z \sinh \zeta \\ -n_x \sinh \zeta & 1 + n_x^2 \left( \cosh \zeta - 1 \right) & n_x n_y \left( \cosh \zeta - 1 \right) & n_x n_z \left( \cosh \zeta - 1 \right) \\ -n_y \sinh \zeta & n_x n_y \left( \cosh \zeta - 1 \right) & 1 + n_y^2 \left( \cosh \zeta - 1 \right) & n_y n_z \left( \cosh \zeta - 1 \right) \\ -n_z \sinh \zeta & n_x n_z \left( \cosh \zeta - 1 \right) & n_y n_z \left( \cosh \zeta - 1 \right) & 1 + n_z^2 \left( \cosh \zeta - 1 \right) \end{pmatrix}.
+$$
+
+The Lorentz transformation is $ \vec{x}' = \Lambda \vec{x}$, so full explicit matrix multiplication gives the following expressions for the spatial components of the transformed vector:
+
+$$
+x' = - n_x \sinh (\zeta ) c t + \left( 1 + n_x^2 \left( \cosh \zeta  - 1 \right) \right) x + n_x n_y \left( \cosh \zeta  - 1 \right) y + n_x n_z \left( \cosh \zeta  - 1 \right) z,
+$$
+
+...and similar expressions for $y'$ and $z'$.
+Now we just need to sub in.
+From the problem, we have that $x' = 0$ when $x = n_x v t$. <!-- ANOTHER HOVER: this comes from definition of n being parallel to the boost. -->
+This gives us
+
+$$
+-(\sinh \zeta) c t + (\cosh \zeta - 1) v t = 0,
+$$
+
+which simplifies to
+
+$$
+\tanh \zeta = \frac{v}{c} = \beta.
+$$
+
+END_ADMONITION
+
+That wasn't too bad.
+Now we just need to express $\Lambda$ in terms of $\gamma$ and the components of $\beta$, which is easier to write than it is to type...
+
+START_ADMONITION info Show working
+
+It's just a copy-paste exercise really.
+We straightforwardly have
+
+$$
+n_x = \frac{\beta_x}{\beta}, ~~~ n_y = \frac{\beta_y}{\beta}, ~~~ n_z = \frac{\beta_z}{\beta}.
+$$
+
+We can figure out the $\cosh \zeta$ and $\sinh \zeta$ terms from the definitions of $\beta$ and $\gamma$
+
+$$
+\tanh \zeta = \frac{\sqrt{\cosh^2{\zeta} - 1}}{\cosh \zeta} = \beta,
+$$
+
+which, rearranging, gives
+
+$$
+\cosh \zeta = \frac{1}{\sqrt{1 - \beta^2}} = \gamma, ~~~ \sinh \zeta = \frac{\beta}{\sqrt{1 - \beta^2}} = \beta \gamma.
+$$
+
+Doing the cut-and-paste of terms gives
+
+$$
+\Lambda = \begin{pmatrix} \gamma & -\beta_x \gamma & -\beta_y \gamma & -\beta_z \gamma \\ -\beta_x \gamma & 1 + \beta_x^2 (\gamma - 1) / \beta^2  & \beta_x \beta_y (\gamma - 1) / \beta^2 & \beta_x \beta_z (\gamma - 1) / \beta^2 \\ -\beta_y \gamma & \beta_x \beta_y (\gamma - 1) / \beta^2 & 1 + \beta_y^2 (\gamma - 1) / \beta^2 & \beta_y \beta_z (\gamma - 1) / \beta^2 \\ -\beta_z \gamma & \beta_x \beta_z (\gamma - 1) / \beta^2 & \beta_y \beta_z (\gamma - 1) / \beta^2 & 1 + \beta_z^2 (\gamma - 1) / \beta^2 \end{pmatrix}.
+$$
+
+END_ADMONITION
+
+<blockquote>
+
+Show that an arbitrary Lorentz transformation can be derived from a rotation, a boost along a coordinate axis, and then another rotation.
+
+</blockquote>
+
+Using logic, we should be able to write any transformation as
+
+$\Lambda = R(-\theta, \hat{u}) \Lambda_x(v) R(\theta, \hat{u})$.
+
+That starts by rotating the frame so that the boost is along the $x$ axis, then boosting along the $x$ axis, and then rotating back.
+We're also reminded in the problem to use the result that we derived in question 1, so this is just a case of working through algebra.
+
+START_ADMONITION info Show working
+
+Ok, first we need to figure out the vector $\hat{u}$ that we need to rotate about, so that we can use the equation from question 1.
+We know it has to be orthogonal to both $\hat{x}$ and $\hat{n}$, so it must lie along $\hat{x} \times \hat{n}$.
+This gives
+
+$$
+\hat{u} = \hat{x} \times \hat{n} = \frac{1}{n_y^2 + n_z^2} ~ \begin{pmatrix} 0 \\ n_z \\ -n_y \end{pmatrix}.
+$$
+
+Now subbing into the expression from question 1, $R(\theta, \hat{u}) = I + (1 - \cos \theta) (\hat{u} \cdot J)^2 +  \hat{u} \cdot J \sin {\theta}$, we have
+
+$$
+R(\theta, \hat{u}) = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & n_x & n_y & n_z \\ 0 & -n_y & 1 - \frac{n_y^2}{1 + n_x} & -\frac{n_y n_z}{1 + n_x} \\ 0 & -n_z & -\frac{n_y n_z}{1 + n_x} & 1 - \frac{n_z^2}{1 + n_x} \end{pmatrix}.
+$$
+
+Similarly, when we rotate in the opposite direction, we flip the sign of the $\sin\theta$ term, so
+
+$$
+R(-\theta, \hat{u}) = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & n_x & -n_y & -n_z \\ 0 & n_y & 1 - \frac{n_y^2}{1 + n_x} & -\frac{n_y n_z}{1 + n_x} \\ 0 & n_z & -\frac{n_y n_z}{1 + n_x} & 1 - \frac{n_z^2}{1 + n_x} \end{pmatrix}.
+$$
+
+Note that I've extended the matrix to 4x4, as we're working in 4D spacetime, but the time component is trivial.
+The matrix $\Lambda_x(v)$ is given by
+
+$$
+\Lambda_x(v) = \begin{pmatrix} \gamma & -\beta \gamma & 0 & 0 \\ -\beta \gamma & \gamma & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix},
+$$
+
+Multiplying everything together gives, as expected,
+
+$$
+\Lambda = \begin{pmatrix} \gamma & -\beta \gamma n_x & -\beta \gamma n_y & -\beta \gamma n_z \\ -\beta \gamma n_x & 1 + \beta^2 (\gamma - 1) n_x^2 & \beta^2 (\gamma - 1) n_x n_y & \beta^2 (\gamma - 1) n_x n_z \\ -\beta \gamma n_y & \beta^2 (\gamma - 1) n_x n_y & 1 + \beta^2 (\gamma - 1) n_y^2 & \beta^2 (\gamma - 1) n_y n_z \\ -\beta \gamma n_z & \beta^2 (\gamma - 1) n_x n_z & \beta^2 (\gamma - 1) n_y n_z & 1 + \beta^2 (\gamma - 1) n_z^2 \end{pmatrix},
+$$
+
+which is the same as what we previously derived, as $n_x = \beta_x / \beta$ and so on.
+
+END_ADMONITION
+
 ## Q3: Decomposing a Lorentz transformation
 
 <blockquote>
