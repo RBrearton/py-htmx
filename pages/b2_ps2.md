@@ -385,3 +385,65 @@ L_{00} = \frac{1}{\sqrt{1 - \beta^2}} = \gamma.
 $$
 
 END_ADMONITION
+
+<blockquote>
+
+Let $\Lambda(\beta)$ denote the Lorentz transformation with velocity $\vec{\beta}c$.
+Let $R = L \Lambda^{-1}(\beta) = L \Lambda(-\beta)$.
+Show that $R$ belongs to $\mathrm{SO}(1, 3)$.
+Using the expression for $\Lambda(\beta)$ in terms of $\gamma$ and $\beta_i$ from the previous question, show that $R_{00} = 1$ and $R_{0i} = 0$ for $i = 1, 2, 3$.
+
+</blockquote>
+
+As $\Lambda(\beta)$ is a Lorentz transformation, it belongs to $\mathrm{SO}(1, 3)$.
+The question also tells us that $L$ belongs to $\mathrm{SO}(1, 3)$, so $R$ is a product of two elements of $\mathrm{SO}(1, 3)$, and hence belongs to $\mathrm{SO}(1, 3)$.
+
+The rest is tedious algebra, but nothing complicated.
+
+START_ADMONITION info Show working
+
+Working through it, we have $R_{00} = L_{00} \Lambda_{00}( -\beta) + L_{0k} \Lambda_{k0}(-\beta)$.
+From the previous question, we know that $\Lambda_{00}(-\beta) = \gamma$ and $\Lambda_{k0}(-\beta) = \beta_k \gamma$. <!-- HOVER REFERENCE AGAIN -->
+
+Now using that $\beta_k = -L_{0k}/L_{00}$, we have
+
+$$
+R_{00} = L_{00} \gamma + L_{0k} \beta_k \gamma = \gamma L_{00} - \gamma \frac{L_{0k}L_{0k}}{L_{00}}  = \gamma L_{00} - \gamma = 1.
+$$
+
+Where we used $L^2_{00} - L^2_{01} - L^2_{02} - L^2_{03} = 1$ from the previous part of this question.
+
+Similarly, we have
+
+$$
+R_{i0} = L_{i0} \Lambda_{00}(-\beta) + L_{ik} \Lambda_{k0}(-\beta) = L_{i0} \gamma + L_{ik} \beta_k \gamma
+$$
+
+Again we can use that $\beta_k = -L_{0k}/L_{00}$ to get
+
+$$
+R_{i0} = L_{i0} \gamma - L_{ik} \frac{L_{0k}}{L_{00}} \gamma = 0.
+$$
+
+where we used $L_{00}L_{j0} - L_{0k}L_{jk} = 0$ from the previous part of this question.
+
+This is all we need to show!
+We've already argued that $R$ belongs to $\mathrm{SO}(1, 3)$, it satisfies the equations that we derived in the first part of the question
+
+$$
+(R R^{-1})_{00} = R_{00}^2 - \sum_{i=1}^{3} R_{0i}^2 = 1
+$$
+
+which is only true if $R_{0i} = 0$.
+
+END_ADMONITION
+
+<blockquote>
+
+Argue that $R$ represents a rotation.
+
+</blockquote>
+
+The previous part of the problem showed that $R$ leaves time invariant.
+As it's in $\mathrm{SO}(1, 3)$, it must also leave $-(c \delta t)^2 + (\delta \vec{x})^2$ invariant.
+Therefore, as it doesn't affect time, it must also leave $|\delta \vec{x}|$ invariant, and hence it must be a rotation.
