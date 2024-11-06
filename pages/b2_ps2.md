@@ -139,8 +139,6 @@ Given that the trajectory of $O'$ is $\vec{r} = \vec{v}t$ in frame $S$ and $\vec
 
 </blockquote>
 
-Bleh. I was hoping I wouldn't have to typeset this!
-
 This is just a matter of writing out the matrix form of $\Lambda$ that we just derived, as we were told that this is the transformation matrix for a Lorentz boost.
 From there it should just be matrix multiplication.
 
