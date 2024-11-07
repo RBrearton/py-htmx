@@ -712,10 +712,10 @@ as we would expect.
 This allows us to represent $L$ as
 
 $$
-L = \begin{pmatrix} e^{q/2} & 0 \\ 0 & e^{-q/2} \end{pmatrix} = (\cosh q) I + (\sinh q) \sigma_3.
+L = \begin{pmatrix} e^{q/2} & 0 \\ 0 & e^{-q/2} \end{pmatrix} = I \cosh \frac{q}{2}  + \sigma_3 \sinh \frac{q}{2} \,,
 $$
 
-as required.
+as required-ish (typo in problem?)
 
 END_ADMONITION
 
