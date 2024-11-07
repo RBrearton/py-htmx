@@ -38,12 +38,28 @@ $$
 (\hat{u} \cdot J) \vec{v} = \hat{u} \times \vec{v},
 $$
 
+Fun note: since $\hat{u} \cdot J$ is a rank 2 tensor, we know $J$ is a rank 3 tensor.
+The above expression gives
+
+$$
+u_j J_{ijk} v_k = \epsilon_{ijk} u_j v_k
+$$
+
+which means that
+
+$$
+\hat{u} \cdot J = \epsilon_{ijk} u_j.
+$$
+
+Ok, back to the question!
+
 The larger $(1 - \cos \theta) (\hat{u} \cdot J)^2$ term works out to be
 
 $$
 (\hat{u} \cdot J)^2 = \begin{pmatrix} 0 & -u_z & u_y \\ u_z & 0 & -u_x \\ -u_y & u_x & 0 \end{pmatrix} \begin{pmatrix} 0 & -u_z & u_y \\ u_z & 0 & -u_x \\ -u_y & u_x & 0 \end{pmatrix} = \begin{pmatrix} -u_z^2 - u_y^2 & u_x u_y & u_x u_z \\ u_x u_y & -u_z^2 - u_x^2 & u_y u_z \\ u_x u_z & u_y u_z & -u_y^2 - u_x^2 \end{pmatrix},
 $$
 
+although we could've probably done this more easily using the $\epsilon_{ijk}$ representation of $\hat{u} \cdot J$.
 Now also using $u_x^2 + u_y^2 + u_z^2 = 1$, we can rewrite the diagonal terms to get
 
 $$
