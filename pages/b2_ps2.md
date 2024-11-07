@@ -259,7 +259,7 @@ Show that an arbitrary Lorentz transformation can be derived from a rotation, a 
 
 </blockquote>
 
-Using logic, we should be able to write any transformation as
+Using... logic, we should be able to write any transformation as
 
 $\Lambda = R(-\theta, \hat{u}) \Lambda_x(v) R(\theta, \hat{u})$.
 
@@ -702,6 +702,13 @@ $$
 $$
 
 To squeeze the rapidity into things, we can use the $det(L) = 1$ condition to find that $ab = 1$ and therefore if $a = e^{q/2}$ then $b = e^{-q/2}$.
+Subbing this in, we find that
+
+$$
+\gamma = \cosh q, ~~~ \beta\gamma = \sinh q.
+$$
+
+as we would expect.
 This allows us to represent $L$ as
 
 $$
