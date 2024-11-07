@@ -177,12 +177,12 @@ async def custom_404_handler(request: Request, exc: HTTPException) -> HTMLRespon
 
 def main() -> None:
     """Run the FastAPI server."""
-    # We need the ugly import string to make auto-reload work.
+    # We need the ugly import string to make auto-reload work, if it's enabled.
     uvicorn.run(
         "py_htmx.apps.notes_app.main:app",
-        host="127.0.0.1",
-        port=6969,
-        reload=True,
+        host=config.hostname,
+        port=config.port,
+        reload=config.auto_reload,
     )
 
 
