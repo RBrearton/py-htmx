@@ -692,9 +692,21 @@ Wow that's a lot of questions.
 
 START_ADMONITION info Show working
 
-Since rotations don't mix space and time coordinates, $S = x_k \sigma_k$ is transformed into $S' = x_k' \sigma_k$.
-As the Pauli matrices are traceless, the trace of $S$ and $S'$ must be zero.
-Using $\mathrm{tr} (AB) = \mathrm{tr} (BA)$, we have
+Since rotations don't mix space and time coordinates, instead of writing
+
+$$
+S = ct I + x_k \sigma_k,
+$$
+
+we can write
+
+$$
+S = x_k \sigma_k,
+$$
+
+which is transformed into $S' = x_k' \sigma_k$.
+
+Since the Pauli are traceless, again using $\mathrm{tr} (AB) = \mathrm{tr} (BA)$, we have
 
 $$
 \mathrm{tr} (S') = \mathrm{tr} (LSL^\dagger) = \mathrm{tr} (L^\dagger L S) = \mathrm{tr} (S) = 0.
@@ -706,11 +718,29 @@ $$
 \mathrm{tr} \left( L^\dagger L S \right) = (a_{00} - a_{11}) x + (a_{01} + a_{10}) x + i (a_{01} - a_{10}) y.
 $$
 
-For this to be zero for all values of $x$, $y$, and $z$, we require $a_{01} = a_{10} = 0$ and $a_{00} = a_{11}$.
-This means $L^\dagger L = a_{00} I$. Also, since $\det(L) = 1$, we have $a_{00} = 1$, which gives $L^\dagger L = I$.
-Similarly, considering $\mathrm{tr}(S) = \mathrm{tr} \left( L^{-1} S' \left( L^{\dagger} \right)^{-1} \right) = \mathrm{tr} \left( \left( L^{\dagger} \right)^{-1} L^{-1} S' \right) = 0$, we
-find that $\left( L^\dagger \right)^{-1} L^{-1} = \left( L L^\dagger \right)^{-1} = I$, implying $L L^\dagger = I$. Hence, $L$ is unitary.
+For this to be zero for all values of $x$, $y$, and $z$, we require
 
+$$
+a_{01} = a_{10} = 0, ~~~ a_{00} = a_{11}
+$$
+
+which means $L^\dagger L = a_{00} I$.
+
+Also, since $\det(L) = 1$, we have $a_{00} = 1$, which gives $L^\dagger L = I$.
+
+Similarly, considering
+
+$$
+\mathrm{tr}(S) = \mathrm{tr} \left( L^{-1} S' \left( L^{\dagger} \right)^{-1} \right) = \mathrm{tr} \left( \left( L^{\dagger} \right)^{-1} L^{-1} S' \right) = 0,
+$$
+
+we find that
+
+$$
+\left( L^\dagger \right)^{-1} L^{-1} = \left( L L^\dagger \right)^{-1} = I,
+$$
+
+implying $L L^\dagger = I$. Hence, $L$ is unitary.
 As shown in part (b), this means that:
 
 $$
@@ -737,8 +767,14 @@ $$
 L(0, 0, \theta) = \begin{pmatrix} \cos \theta - i \sin \theta & 0 \\ 0 & \cos \theta + i \sin \theta \end{pmatrix} = \begin{pmatrix} e^{-i \theta} & 0 \\ 0 & e^{i \theta} \end{pmatrix}.
 $$
 
-Now, calculating $S' = L S L^{\dagger}$ gives the transformed components $z' = z$, $x' = x \cos (2 \theta) - y \sin (2 \theta)$ and $y' = x \sin (2 \theta) + y \cos (2 \theta) $. This represents a rotation
-by an angle $2 \theta$ around the $z$-axis. Therefore, there is a correspondence $L (0, 0, \theta) \to R (0, 0, 2 \theta)$, where $R$ is a rotation matrix in $\mathrm{SO}(3)$.
+Now, calculating $S' = L S L^{\dagger}$ gives the transformed components
+
+$$
+z' = z, ~~~ x' = x \cos (2 \theta) - y \sin (2 \theta), ~~~ y' = x \sin (2 \theta) + y \cos (2 \theta).
+$$
+
+This represents a rotation by an angle $2 \theta$ around the $z$-axis.
+Therefore, there is a correspondence $L (0, 0, \theta) \to R (0, 0, 2 \theta)$, where $R$ is a rotation matrix in $\mathrm{SO}(3)$.
 
 Note that $-L = L(0, 0, \theta + \pi)$ corresponds to the same rotation in $\mathrm{SO}(3)$, since $R(0, 0, 2 (\theta + \pi)) = R(0, 0, 2 \theta)$. This is consistent with $L S L^{\dagger} = (-L) S (-L)^{\dagger}$.
 Therefore, there is a two-to-one correspondence between $\mathrm{SU}(2)$ and $\mathrm{SO}(3)$.
