@@ -752,13 +752,13 @@ where the $a_i$ are real.
 For the case $a_1 = a_2 = 0$ and $a_3 = \theta$, we have:
 
 $$
-L(0, 0, \theta) = e^{-i \theta \sigma_3} = \sum_{k=0}^{+\infty} \frac{(-i \theta \sigma_3)^k}{k!}.
+L(0, 0, \theta) = e^{-i \theta \sigma_3} = \sum_{k=0}^{\infty} \frac{(-i \theta \sigma_3)^k}{k!}.
 $$
 
 Since $\sigma_3^2 = I$, we have $\sigma_3^{2k} = I$ and $\sigma_3^{2k+1} = \sigma_3$ for all $k$. This yields:
 
 $$
-L = I \sum_{k=0}^{+\infty} \frac{(-1)^k \theta^{2k}}{(2k)!} - i \sigma_3 \sum_{k=0}^{+\infty} \frac{(-1)^k \theta^{2k+1}}{(2k+1)!} = I \cos \theta - i \sigma_3 \sin \theta.
+L = I \sum_{k=0}^{\infty} \frac{(-1)^k \theta^{2k}}{(2k)!} - i \sigma_3 \sum_{k=0}^{\infty} \frac{(-1)^k \theta^{2k+1}}{(2k+1)!} = I \cos \theta - i \sigma_3 \sin \theta.
 $$
 
 In matrix form, this becomes:
