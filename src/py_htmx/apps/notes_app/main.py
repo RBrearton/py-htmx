@@ -1,5 +1,6 @@
 """Defines the FastAPI routes. Running will run the FastAPI server."""
 
+from functools import lru_cache
 from typing import TYPE_CHECKING
 
 import uvicorn
@@ -39,6 +40,7 @@ class _RightMenuModel(ui.PydanticBaseModel):
     h2: list["_H2"]
 
 
+@lru_cache
 def render_markdown(file_name: str) -> tuple[str, ui.List]:
     """Read the markdown file with the given name, and render it to an html string.
 
@@ -106,6 +108,9 @@ async def get_b2_ps2() -> HTMLResponse:
 
     This renders the b2_ps2.md markdown file.
     """
+    if config.auto_reload:
+        render_markdown.cache_clear()
+
     # Get the appropriate markdown file, and the menu.
     rendered_markdown, right_menu = render_markdown("b2_ps2.md")
 
@@ -126,6 +131,9 @@ async def get_b6_ps1() -> HTMLResponse:
 
     This renders the b6_ps1.md markdown file.
     """
+    if config.auto_reload:
+        render_markdown.cache_clear()
+
     # Get the appropriate markdown file, and the menu.
     rendered_markdown, right_menu = render_markdown("b6_ps1.md")
 
@@ -150,6 +158,9 @@ async def get_physics() -> HTMLResponse:
 @app.get("/")
 async def get_index() -> HTMLResponse:
     """Return the index HTML file."""
+    if config.auto_reload:
+        render_markdown.cache_clear()
+
     # Get the rendered markdown file,
     rendered_markdown, right_menu = render_markdown("index.md")
 
