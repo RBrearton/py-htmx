@@ -78,6 +78,8 @@ END_ADMONITION
 
 ## Q2: Arbitrary direction Lorentz boost
 
+### Part a
+
 <blockquote>
 
 Consider a frame $S$ with origin $O$, and a frame $S'$ with origin $O'$ moving with velocity $\vec{v} = v \hat{n}$ as measured in $S$.
@@ -160,6 +162,8 @@ $$
 as required.
 
 END_ADMONITION
+
+### Part b
 
 <blockquote>
 
@@ -247,6 +251,8 @@ $$
 
 END_ADMONITION
 
+### Part c
+
 <blockquote>
 
 Show that an arbitrary Lorentz transformation can be derived from a rotation, a boost along a coordinate axis, and then another rotation.
@@ -300,6 +306,8 @@ which is the same as what we previously derived, as $n_x = \beta_x / \beta$ and 
 END_ADMONITION
 
 ## Q3: Decomposing a Lorentz transformation
+
+### Part a
 
 <blockquote>
 
@@ -370,6 +378,8 @@ $$
 
 END_ADMONITION
 
+### Part b
+
 <blockquote>
 
 Let $O$ and $O'$ be the origins of $S$ and $S'$, respectively.
@@ -413,6 +423,8 @@ L_{00} = \frac{1}{\sqrt{1 - \beta^2}} = \gamma.
 $$
 
 END_ADMONITION
+
+### Part c
 
 <blockquote>
 
@@ -478,6 +490,8 @@ Therefore, as it doesn't affect time, it must also leave $|\delta \vec{x}|$ inva
 
 ## Q4: SU(2)
 
+### Part a
+
 <blockquote>
 
 SU(2) is the group of unitary 2x2 complex matrices with determinant 1.
@@ -509,6 +523,8 @@ The determinant condition gives $|a|^2 + |b|^2 = 1$, which is one constraint, dr
 This means that any element of SU(2) can be constructed from 3 independent parameters, so the group has 3 generators.
 
 END_ADMONITION
+
+### Part b
 
 <blockquote>
 
@@ -573,6 +589,8 @@ $$
 where $a_k$ arbitrary real numbers.
 
 END_ADMONITION
+
+### Part c
 
 <blockquote>
 
@@ -639,6 +657,8 @@ which is a defining property of Lorentz transformations.
 
 END_ADMONITION
 
+### Part d
+
 <blockquote>
 
 Assume that $L$ is of the form
@@ -691,6 +711,8 @@ $$
 as required.
 
 END_ADMONITION
+
+### Part e
 
 <blockquote>
 
