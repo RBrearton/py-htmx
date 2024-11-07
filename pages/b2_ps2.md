@@ -48,7 +48,7 @@ $$
 which means that
 
 $$
-\hat{u} \cdot J = \epsilon_{ijk} u_j.
+\left[\hat{u} \cdot J \right]_{ik} = \epsilon_{ijk} u_j.
 $$
 
 Ok, back to the question!
