@@ -266,6 +266,8 @@ $\Lambda = R(-\theta, \hat{u}) \Lambda_x(v) R(\theta, \hat{u})$.
 That starts by rotating the frame so that the boost is along the $x$ axis, then boosting along the $x$ axis, and then rotating back.
 We're also reminded in the problem to use the result that we derived in question 1, so this is just a case of working through algebra.
 
+<!-- NOTE: DOUBLE CHECK THE MINUS SIGN HERE. COULD NEED TO REVERSE ORDER OF ROTATIONS. -->
+
 START_ADMONITION info Show working
 
 Ok, first we need to figure out the vector $\hat{u}$ that we need to rotate about, so that we can use the equation from question 1.
@@ -712,7 +714,7 @@ as we would expect.
 This allows us to represent $L$ as
 
 $$
-L = \begin{pmatrix} e^{q/2} & 0 \\ 0 & e^{-q/2} \end{pmatrix} = I \cosh \frac{q}{2}  + \sigma_3 \sinh \frac{q}{2} \,,
+L = \begin{pmatrix} e^{q/2} & 0 \\ 0 & e^{-q/2} \end{pmatrix} = I \cosh \frac{q}{2}  - \sigma_3 \sinh \frac{q}{2} \,,
 $$
 
 as required-ish (typo in problem?)
