@@ -15,8 +15,9 @@ class Config(BaseSettings):
     """
 
     markdown_files_dir: DirectoryPath = Path("pages")
-
     model_config = SettingsConfigDict(env_prefix="my_prefix_")
+    port: int = 10_000  # 10,000 is the default port for Render.
+    hostname: str = "0.0.0.0"  # noqa: S104, because I don't understand the warning...
 
 
 config = Config()
