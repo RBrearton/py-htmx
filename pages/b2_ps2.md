@@ -41,7 +41,19 @@ $$
 The larger $(1 - \cos \theta) (\hat{u} \cdot J)^2$ term works out to be
 
 $$
-(1 - \cos \theta) (\hat{u} \cdot J)^2 \vec{v} = \begin{pmatrix} - v_x + v_x \cos \theta + u_x (u \cdot \vec{v}) (1 - \cos \theta) \\ - v_y + v_y \cos \theta + u_y (u \cdot \vec{v}) (1 - \cos \theta) \\ - v_z + v_z \cos \theta + u_z (u \cdot \vec{v}) (1 - \cos \theta) \end{pmatrix}
+(\hat{u} \cdot J)^2 = \begin{pmatrix} 0 & -u_z & u_y \\ u_z & 0 & -u_x \\ -u_y & u_x & 0 \end{pmatrix} \begin{pmatrix} 0 & -u_z & u_y \\ u_z & 0 & -u_x \\ -u_y & u_x & 0 \end{pmatrix} = \begin{pmatrix} -u_z^2 - u_y^2 & u_x u_y & u_x u_z \\ u_x u_y & -u_z^2 - u_x^2 & u_y u_z \\ u_x u_z & u_y u_z & -u_y^2 - u_x^2 \end{pmatrix},
+$$
+
+Now also using $u_x^2 + u_y^2 + u_z^2 = 1$, we can rewrite the diagonal terms to get
+
+$$
+(\hat{u} \cdot J)^2 = \begin{pmatrix} -1 + u_x^2 & u_x u_y & u_x u_z \\ u_x u_y & -1 + u_y^2 & u_y u_z \\ u_x u_z & u_y u_z & -1 + u_z^2 \end{pmatrix}.
+$$
+
+Now, applying this to a vector $\vec{v}$ and pre-multiplying by $(1 - \cos \theta)$ gives
+
+$$
+(1 - \cos \theta) (\hat{u} \cdot J)^2 \vec{v} = \begin{pmatrix} - v_x + v_x \cos \theta + u_x (u \cdot \vec{v}) (1 - \cos \theta) \\ - v_y + v_y \cos \theta + u_y (u \cdot \vec{v}) (1 - \cos \theta) \\ - v_z + v_z \cos \theta + u_z (u \cdot \vec{v}) (1 - \cos \theta) \end{pmatrix},
 $$
 
 from which the result follows.
