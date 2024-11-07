@@ -438,7 +438,7 @@ Using the expression for $\Lambda(\beta)$ in terms of $\gamma$ and $\beta_i$ fro
 As $\Lambda(\beta)$ is a Lorentz transformation, it belongs to $\mathrm{SO}(1, 3)$.
 The question also tells us that $L$ belongs to $\mathrm{SO}(1, 3)$, so $R$ is a product of two elements of $\mathrm{SO}(1, 3)$, and hence belongs to $\mathrm{SO}(1, 3)$.
 
-The rest is tedious algebra, but nothing complicated.
+The rest is tricky algebra; nothing complicated, but some steps are annoying to spot.
 
 START_ADMONITION info Show working
 
