@@ -427,6 +427,14 @@ class List(HtmlElement):
     ordered: bool = False
     children: Sequence[HtmlElement] = Field(default_factory=list)
 
+    def vstack(self, other: Self) -> None:
+        """Build a new list with the children of both lists.
+
+        This method keeps all the attributes of the list on which you're calling it,
+        ignoring the attributes of the other list.
+        """
+        self.children = [*self.children, *other.children]
+
     @model_validator(mode="after")
     def _update_tag(self) -> Self:
         """Update the tag of the element."""
