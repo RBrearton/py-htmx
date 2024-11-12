@@ -65,18 +65,18 @@ def render_admonitions(markdown: str) -> str:
 
     This is a pre-processor.
     """
-    # Admonitions start with a "START_ADMONITION <admonition_type> <optional_title>"
-    # line and end with an "END_ADMONITION" line.
+    # Admonitions start with a "!START_ADMONITION <admonition_type> <optional_title>"
+    # line and end with an "!END_ADMONITION" line.
     # We'll replace these with the appropriate html.
     output_lines = []
     for line in markdown.split("\n"):
-        if line.startswith("START_ADMONITION"):
+        if line.startswith("!START_ADMONITION"):
             # Get the admonition type and title.
             _, admonition_type, title = line.split(" ", 2)
             output_lines.append(
                 f'<div class="collapse collapse-arrow bg-{admonition_type} bg-opacity-20 my-4 border-2 border-{admonition_type} transition-none"><input type="checkbox" /><div class="collapse-title font-semibold text-primary-content">{title}</div><div class="collapse-content bg-base-200"><p>'  # noqa: E501
             )
-        elif line == "END_ADMONITION":
+        elif line == "!END_ADMONITION":
             output_lines.append("</p></div></div>")
         else:
             output_lines.append(line)

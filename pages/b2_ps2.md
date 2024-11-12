@@ -28,7 +28,7 @@ $$
 
 </blockquote>
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 This is very easy, as it just requires a bit of matrix multiplication.
 
@@ -74,7 +74,7 @@ $$
 
 from which the result follows.
 
-END_ADMONITION
+!END_ADMONITION
 
 ## Q2: Arbitrary direction Lorentz boost
 
@@ -103,7 +103,7 @@ $$
 
 Let's start by showing that $\left( \hat{n} \cdot \vec{K} \right)^3 = \hat{n} \cdot \vec{K}$.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 You might find the notation $\hat{n} \cdot \vec{K}$ a bit confusing, as $\hat{n}$ is a vector in $\mathbb{R}^3$ and $\vec{K}$ is a vector of matrices.
 Simply evaluate the dot product as
@@ -131,13 +131,13 @@ $$
 \left( \hat{n} \cdot \vec{K} \right)^3 = \begin{pmatrix} 0 & n_x & n_y & n_z \\ n_x & 0 & 0 & 0 \\ n_y & 0 & 0 & 0 \\ n_z & 0 & 0 & 0 \end{pmatrix} = \hat{n} \cdot \vec{K}.
 $$
 
-END_ADMONITION
+!END_ADMONITION
 
 Right, now we can move onto the main part of the question.
 This looks a lot like a matrix Taylor expansion.
 We should probably just be able to Taylor expand the exponential, and use the result we just derived.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 Using the Taylor expansion of the exponential, we have
 
@@ -161,7 +161,7 @@ $$
 
 as required.
 
-END_ADMONITION
+!END_ADMONITION
 
 ### Part b
 
@@ -174,7 +174,7 @@ Given that the trajectory of $O'$ is $\vec{r} = \vec{v}t$ in frame $S$ and $\vec
 This is just a matter of writing out the matrix form of $\Lambda$ that we just derived, as we were told that this is the transformation matrix for a Lorentz boost.
 From there it should just be matrix multiplication.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 Right, so remembering that
 
@@ -217,12 +217,12 @@ $$
 \tanh \zeta = \frac{v}{c} = \beta.
 $$
 
-END_ADMONITION
+!END_ADMONITION
 
 That wasn't too bad.
 Now we just need to express $\Lambda$ in terms of $\gamma$ and the components of $\beta$, which is easier to write than it is to type...
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 It's just a copy-paste exercise really.
 We straightforwardly have
@@ -249,7 +249,7 @@ $$
 \Lambda = \begin{pmatrix} \gamma & -\beta_x \gamma & -\beta_y \gamma & -\beta_z \gamma \\ -\beta_x \gamma & 1 + \beta_x^2 (\gamma - 1) / \beta^2  & \beta_x \beta_y (\gamma - 1) / \beta^2 & \beta_x \beta_z (\gamma - 1) / \beta^2 \\ -\beta_y \gamma & \beta_x \beta_y (\gamma - 1) / \beta^2 & 1 + \beta_y^2 (\gamma - 1) / \beta^2 & \beta_y \beta_z (\gamma - 1) / \beta^2 \\ -\beta_z \gamma & \beta_x \beta_z (\gamma - 1) / \beta^2 & \beta_y \beta_z (\gamma - 1) / \beta^2 & 1 + \beta_z^2 (\gamma - 1) / \beta^2 \end{pmatrix}.
 $$
 
-END_ADMONITION
+!END_ADMONITION
 
 ### Part c
 
@@ -268,7 +268,7 @@ We're also reminded in the problem to use the result that we derived in question
 
 <!-- NOTE: DOUBLE CHECK THE MINUS SIGN HERE. COULD NEED TO REVERSE ORDER OF ROTATIONS. -->
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 Ok, first we need to figure out the vector $\hat{u}$ that we need to rotate about, so that we can use the equation from question 1.
 We know it has to be orthogonal to both $\hat{x}$ and $\hat{n}$, so it must lie along $\hat{x} \times \hat{n}$.
@@ -305,7 +305,7 @@ $$
 
 which is the same as what we previously derived, as $n_x = \beta_x / \beta$ and so on.
 
-END_ADMONITION
+!END_ADMONITION
 
 ## Q3: Decomposing a Lorentz transformation
 
@@ -326,7 +326,7 @@ Show that $L_{00}L_{j0} - L_{0k}L_{jk} = 0$ for $j = 1, 2, 3$.
 To solve this, we start by finding the inverse of $L$.
 Then, the identities that we're asked to show can be derived by equating the elements of $L L^{-1}$ to the elements of the identity matrix.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 Let's just start from the definition we're given and make some progress.
 
@@ -378,7 +378,7 @@ $$
 L_{00} L_{j0} - \sum_{k=1}^{3} L_{0k} L_{jk} = 0
 $$
 
-END_ADMONITION
+!END_ADMONITION
 
 ### Part b
 
@@ -394,7 +394,7 @@ Show that $L_{00} = \gamma$.
 
 As Lorentz transformations are members of the Lorentz group $\mathrm{SO}(1, 3)$, this is somewhat trivial.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 The vectors for the spacetime coordinates of $O'$ are given by
 
@@ -424,7 +424,7 @@ $$
 L_{00} = \frac{1}{\sqrt{1 - \beta^2}} = \gamma.
 $$
 
-END_ADMONITION
+!END_ADMONITION
 
 ### Part c
 
@@ -442,7 +442,7 @@ The question also tells us that $L$ belongs to $\mathrm{SO}(1, 3)$, so $R$ is a 
 
 The rest is tricky algebra; nothing complicated, but some steps are annoying to spot.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 Working through it, we have $R_{00} = L_{00} \Lambda_{00}( -\beta) + L_{0k} \Lambda_{k0}(-\beta)$.
 From the previous question, we know that $\Lambda_{00}(-\beta) = \gamma$ and $\Lambda_{k0}(-\beta) = \beta_k \gamma$. <!-- HOVER REFERENCE AGAIN -->
@@ -478,7 +478,7 @@ $$
 
 which is only true if $R_{0i} = 0$.
 
-END_ADMONITION
+!END_ADMONITION
 
 <blockquote>
 
@@ -503,7 +503,7 @@ Show that the group has 3 generators.
 
 This is a very standard/easy to google result.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 A general element of SU(2) is
 
@@ -524,7 +524,7 @@ The determinant condition gives $|a|^2 + |b|^2 = 1$, which is one constraint, dr
 
 This means that any element of SU(2) can be constructed from 3 independent parameters, so the group has 3 generators.
 
-END_ADMONITION
+!END_ADMONITION
 
 ### Part b
 
@@ -540,7 +540,7 @@ Express the components of $K_i$ in terms of real numbers, showing that $M = I - 
 Begin, as suggested, with $z_2 = z_3 = 0$.
 Then, generalize to the full case.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 We start with
 
@@ -590,7 +590,7 @@ $$
 
 where $a_k$ arbitrary real numbers.
 
-END_ADMONITION
+!END_ADMONITION
 
 ### Part c
 
@@ -606,7 +606,7 @@ Argue that it can be interpreted as representing a new spacetime position vector
 
 Quite a few small steps to get through here, but none are too conceptually demanding.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 As $S$ is Hermitian, it can be written as
 
@@ -657,7 +657,7 @@ $$
 
 which is a defining property of Lorentz transformations.
 
-END_ADMONITION
+!END_ADMONITION
 
 ### Part d
 
@@ -678,7 +678,7 @@ Demonstrate that $L = (\cosh q) I + (\sinh q) \sigma_3$, where $q$ is the rapidi
 God these are getting boring.
 More brainless algebra.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 $$
 S' = LSL^\dagger = \begin{pmatrix} a^2 (ct + z) & x - iy \\ x + iy & b^2 (ct - z) \end{pmatrix}.
@@ -719,7 +719,7 @@ $$
 
 as required-ish (typo in problem?)
 
-END_ADMONITION
+!END_ADMONITION
 
 ### Part e
 
@@ -749,7 +749,7 @@ Is there another element of SU(2) that represents the same rotation?
 
 Wow that's a lot of questions.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 Since rotations don't mix space and time coordinates, instead of writing
 
@@ -839,4 +839,4 @@ Note that $-L = L(0, 0, \theta + \pi)$ corresponds to the same rotation in $\mat
 Therefore, there is a two-to-one correspondence between $\mathrm{SU}(2)$ and $\mathrm{SO}(3)$.
 For this reason, $\mathrm{SU}(2)$ is called the double cover of $\mathrm{SO}(3)$.
 
-END_ADMONITION
+!END_ADMONITION
