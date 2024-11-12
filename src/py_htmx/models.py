@@ -65,6 +65,7 @@ class HtmlElement(PydanticBaseModel):
     aria_label: str | None = None
     data_theme: str | None = None
     raw_inner_html: str | None = None
+    role: str | None = None
 
     # htmx attributes.
     hx_get: str | None = None
@@ -163,6 +164,7 @@ class HtmlElement(PydanticBaseModel):
             "translate": self.translate,
             "aria-label": self.aria_label,
             "data-theme": self.data_theme,
+            "role": self.role,
         }
         return " ".join(
             _format_attribute(key, value) for key, value in attributes.items() if value
