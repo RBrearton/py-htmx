@@ -41,7 +41,9 @@ class _RightMenuModel(ui.PydanticBaseModel):
 
 
 @lru_cache
-def render_markdown(file_name: str) -> tuple[str, ui.List]:
+def render_markdown(
+    file_name: str, contents_menu_title: str | None = "Contents"
+) -> tuple[str, ui.List]:
     """Read the markdown file with the given name, and render it to an html string.
 
     This function returns a tuple of the rendered markdown string and the right menu.
@@ -85,7 +87,7 @@ def render_markdown(file_name: str) -> tuple[str, ui.List]:
         else:
             links.append((h2.text, h2.link))
 
-    right_menu = c.contents_menu(links, "Contents")
+    right_menu = c.contents_menu(links, contents_menu_title)
 
     return markdown_string, right_menu
 
