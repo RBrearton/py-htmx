@@ -4,6 +4,8 @@ from collections.abc import Callable
 
 import markdown2 as md
 
+from . import models as ui
+
 # These are all of the extras that we opt into by default. To see all the available
 # options, read the wiki: https://github.com/trentm/python-markdown2/wiki
 default_extras = [
@@ -82,6 +84,83 @@ def render_admonitions(markdown: str) -> str:
             output_lines.append(line)
 
     return "\n".join(output_lines)
+
+
+def render_dropdown_refs(markdown: str) -> str:
+    """Inject html to add dropdown references wherever indicated in the markdown.
+
+    We allow users to define references using latex-inspired syntax, like so:
+
+    !START_LABEL <label_name>
+    This is the content that the label refers to...
+    !END_LABEL
+
+    Then, we want to make it possible for a py-htmx user to refer to this label in a
+    bunch of different ways. One way is to make it so that, when you hover over an
+    element, a dropdown appears showing the content of the label.
+
+    Specifically, the syntax should look like:
+
+    !DROPDOWN_REF <label_name> <hover_text>
+    """
+    # Start by finding all the labels in the markdown.
+    label_lines: dict[str, list[str]] = {}
+    current_label_name: str | None = None
+    for line in markdown.split("\n"):
+        if line.startswith("!START_LABEL"):
+            _, label_name = line.split(" ", 1)
+            label_lines[label_name] = []
+            current_label_name = label_name
+        elif line.startswith("!END_LABEL"):
+            current_label_name = None
+        elif current_label_name is not None:
+            label_lines[current_label_name].append(line)
+
+    # Join the lines of each label together.
+    labels = {label_name: "\n".join(lines) for label_name, lines in label_lines.items()}
+
+    # We want the dropdown-hover content to be a card, which basically lets us hand over
+    # more of the styling to DaisyUI.
+    output_lines = []
+    for line in markdown.split("\n"):
+        if line.startswith("!START_DROPDOWN_REF"):
+            _, label_name, hover_text = line.split(" ", 2)
+            card_content = labels[label_name]
+
+            # Start by building the card div.
+            card_text = ui.Paragraph(text=card_content)
+            card_title = ui.Heading(level=3, cls="card-title", text=label_name)
+            card_body = ui.Div(cls="card-body", children=[card_title, card_text])
+            card = ui.Div(
+                tab_index=0,
+                cls="dropdown-content card card-compact z-[1] w-80 p-2 shadow",
+                children=[card_body],
+            )
+
+            # Now make the dropdown-hover.
+            hover_text = ui.Div(
+                tab_index=0, role="button", cls="text-secondary", text=hover_text
+            )
+            dropdown_hover = ui.Div(
+                cls="dropdown dropdown-hover", children=[hover_text, card]
+            )
+
+            # Render the dropdown hover to html, and put it back in the output.
+            output_lines.append(dropdown_hover.model_dump_html())
+        else:
+            output_lines.append(line)
+
+    # Rebuild the document and return it.
+    return "\n".join(output_lines)
+
+
+def post_process_remove_labels(markdown: str) -> str:
+    """Remove all !START_LABEL and !END_LABEL lines from the markdown.
+
+    This post-processor should be applied last, as other post-processors may depend on
+    these labels.
+    """
+    return markdown.replace("!START_LABEL", "").replace("!END_LABEL", "")
 
 
 def post_process_math(html: str) -> str:
