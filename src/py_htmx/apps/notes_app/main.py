@@ -53,8 +53,8 @@ def render_markdown(
     # Render the markdown file as an html string.
     markdown_string = md.render_markdown(
         markdown_txt,
-        pre_processors=[md.render_admonitions],
-        post_processors=[md.post_process_math],
+        pre_processors=[md.render_admonitions, md.render_dropdown_refs],
+        post_processors=[md.post_process_math, md.post_process_remove_labels],
     )
 
     # Now figure out the contents menu.
