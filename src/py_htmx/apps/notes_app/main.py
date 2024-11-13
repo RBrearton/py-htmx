@@ -65,6 +65,12 @@ def render_markdown(
     # Create a list of (heading_txt, heading_id) tuples that we can turn into a menu.
     right_menu = _RightMenuModel(h1="Contents", h2=[])
     for heading in headings:
+        # If this heading doesn't have an id, skip it. It mustn't be a proper heading.
+        # This happens when, for example, headings are put into cards that are revealed
+        # by clicking a button. They'll be headings, sure, but they won't have ids.
+        if "id" not in heading.attrs:
+            continue
+
         heading: Tag
         if heading.name == "h2":
             # Build a new h2 object.
