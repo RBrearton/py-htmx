@@ -197,10 +197,36 @@ $$
 
 </blockquote>
 
-The main trick in this problem is to ignore all the odd integrals, as they're all zero by symmetry.
-Then we just have a few Gaussian integrals to keep track of.
+There are two important tricks here:
 
-TODO: add algebraic details.
+1. All odd integrals are 0 by symmetry
+2. Shift all the integrals by $x_0$
+
+!START_ADMONITION info Show working
+
+Just applying the tricks above leaves us with
+
+$$
+\langle x \rangle _{\beta} = \left[\int^\infty_{-\infty} e^{\frac{\beta\kappa}{2} x^2}\left(x_0 + \frac{\beta \kappa_3}{3!} x^4 \right) dx \right]
+/
+\left[ {\int^\infty_{-\infty} e^{\frac{\beta\kappa}{2} x^2} dx}\right] \, .
+$$
+
+Now, evaluating the Gaussian integrals gives
+
+$$
+\langle x \rangle _{\beta} = x_0 + \frac{k_3 k_B T}{2 \kappa^2} + \ldots
+$$
+
+The coefficient of thermal expansion is then
+
+$$
+\alpha = \frac{1}{L} \frac{dL}{dT} = \frac{1}{x_0} \frac{k_B \kappa_3}{2 \kappa^2},
+$$
+
+as required.
+
+!END_ADMONITION
 
 ### Part c
 
@@ -212,7 +238,49 @@ In what temperature range is the above expansion valid?
 
 Ok, now it's time to make the terms and conditions surrounding out approximation a bit more precise.
 
-TODO: add details.
+!START_ADMONITION info Show working
+
+Rewriting our expression by Taylor expanding the cubic term, but not the quadratic term, is reasonable when
+
+!START_LABEL Approximation conditions
+$$
+\kappa_3 \Delta x \ll \kappa
+$$
+!END_LABEL
+
+The typical energies that we'll access are on the order of
+
+$$
+k_B T = \frac{\kappa}{2}(x - x_0)^2 - \frac{\kappa_3}{3!} (x - x_0)^3 \, .
+$$
+
+If the third term is much smaller, as we require for our funky expansion to work, we have
+
+$$
+k_B T \approx \frac{\kappa}{2}(x - x_0)^2 = \frac{\kappa}{2} (\Delta x)^2 \, .
+$$
+
+Rearranging this gives us typical displacements on the order of
+
+$$
+\Delta x \approx \sqrt{\frac{2 k_B T}{\kappa}} \, .
+$$
+
+Subbing this back into the
+!DROPDOWN_REF "Approximation conditions" "original approximation conditions"
+gives us
+
+$$
+\kappa_3^2 \frac{k_B T}{\kappa} \ll \kappa^2 \, ,
+$$
+
+and then, equivalently,
+
+$$
+k_B T \ll \frac{\kappa^3}{\kappa_3^2} \, .
+$$
+
+!END_ADMONITION
 
 ### Part d
 
