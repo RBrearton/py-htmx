@@ -75,11 +75,18 @@ def render_admonitions(markdown: str) -> str:
         if line.startswith("!START_ADMONITION"):
             # Get the admonition type and title.
             _, admonition_type, title = line.split(" ", 2)
+
+            # Note on !overflow-visible: this is needed to permit dropdown content to
+            # work inside a collapse. If we don't use this, then any dropdown that might
+            # overflow ever-so-slightly won't be rendered at all.
+            # This then leads to the horrendous issue that the collapse-content's
+            # background overflows the border, which is why we specify rounded-box on
+            # the collapse-content (to match the rounded-box on the collapse itself).
             output_lines.append(
-                f'<div class="collapse collapse-arrow bg-{admonition_type} bg-opacity-20 my-4 border-2 border-{admonition_type} transition-none"><input type="checkbox" /><div class="collapse-title font-semibold text-primary-content">{title}</div><div class="collapse-content bg-base-200"><p>'  # noqa: E501
+                f'<div class="overflow-visible collapse collapse-arrow bg-{admonition_type} bg-opacity-20 my-4 border-2 border-{admonition_type} transition-none"><input type="checkbox" /><div class="collapse-title font-semibold text-primary-content">{title}</div><div class="collapse-content bg-base-200 rounded-box">'  # noqa: E501
             )
         elif line == "!END_ADMONITION":
-            output_lines.append("</p></div></div>")
+            output_lines.append("</div></div>")
         else:
             output_lines.append(line)
 
@@ -136,20 +143,24 @@ def render_dropdown_refs(markdown: str) -> str:
 
             # Start by building the card div.
             card_text = ui.Paragraph(text=card_content)
-            card_title = ui.Heading(level=3, cls="card-title", text=label_name)
+            card_title = ui.Heading(
+                level=4, cls="card-title justify-center", text=label_name
+            )
             card_body = ui.Div(cls="card-body", children=[card_title, card_text])
             card = ui.Div(
-                tab_index=0,
-                cls="dropdown-content card card-compact z-[1] w-80 p-2 shadow",
+                cls="dropdown-content card card-compact bg-base-300 text-primary-content  shadow w-96 z-10",  # noqa: E501
                 children=[card_body],
             )
 
             # Now make the dropdown-hover.
             hover_text_div = ui.Div(
-                tab_index=0, role="button", cls="text-secondary", text=hover_text
+                tab_index=1,
+                role="button",
+                children=[ui.Code(text=hover_text)],
             )
             dropdown_hover = ui.Div(
-                cls="dropdown dropdown-hover", children=[hover_text_div, card]
+                cls="dropdown dropdown-hover",
+                children=[hover_text_div, card],
             )
 
             # Render the dropdown hover to html, and put it back in the output.
@@ -161,13 +172,19 @@ def render_dropdown_refs(markdown: str) -> str:
     return "\n".join(output_lines)
 
 
-def post_process_remove_labels(markdown: str) -> str:
+def pre_process_remove_labels(markdown: str) -> str:
     """Remove all !START_LABEL and !END_LABEL lines from the markdown.
 
-    This post-processor should be applied last, as other post-processors may depend on
+    This pre-processor should be applied last, as other pre-processors may depend on
     these labels.
     """
-    return markdown.replace("!START_LABEL", "").replace("!END_LABEL", "")
+    output_lines = []
+    for line in markdown.split("\n"):
+        if line.startswith(("!START_LABEL", "!END_LABEL")):
+            continue
+        output_lines.append(line)
+
+    return "\n".join(output_lines)
 
 
 def post_process_math(html: str) -> str:
