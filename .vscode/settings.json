@@ -28,7 +28,8 @@
     "tabindex",
     "tailwindcss",
     "unitarity",
-    "uvicorn"
+    "uvicorn",
+    "Waals"
   ],
   "editor.rulers": [88],
   "liveServer.settings.port": 5501,
