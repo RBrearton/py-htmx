@@ -18,11 +18,11 @@ To avoid _direct_ plagiarism, I won't copy the table here.
 <blockquote>
 Describe qualitatively the phenomenon of Van der Waals forces.
 Explain why the force is attractive and proportional to $1/R^7$.
-<blockquote>
+</blockquote>
 
 Van der Waals forces are the attractive forces between molecules.
 They are caused by the fluctuating electric fields of the molecules.
-Let's derive the $1/R^7$ dependence.
+We can get the $1/R^7$ dependence without thinking too hard - it's clear from dimensional analysis, so we don't need to remember exact forms of results from electrostatics.
 
 !START_ADMONITION info Show working
 
@@ -38,10 +38,117 @@ Now imagine that we have two atoms separated by a distance $R$.
 If the first atom develops, for whatever reason, a spontaneous polarization $\vec{p}_1=p_1 \hat{z}$, it will produce a field
 
 $$
-\vec{E}_1 = \frac{p_1}{4\pi\epsilon_0 R^3} \hat{z}
+E \propto \frac{p_1}{R^3}
 $$
 
 at the location of the second atom (remembering, from electrostatics, the [field of a dipole](https://en.wikipedia.org/wiki/Dipole#Field_from_an_electric_dipole)).
-The second atom will then develop a polarization $\vec{p}_2 = \chi \vec{E}_1$.
+The second atom will then develop a polarization $p_2 = \chi E$.
+Just thinking about dimensions, the potential energy of this interaction has to be proportional to $p_1 p_2 / R^3$, so that
+
+$$
+V \propto \frac{1}{R^6}.
+$$
+
+So that the force is proportional to $1/R^7$.
 
 !END_ADMONITION
+
+### Part c
+
+<blockquote>
+The ionization energy of a sodium atom is 5.14 eV.
+The electron affinity of a chlorine atom is 3.62 eV.
+The bond length of a NaCl molecule is 2.36 Å.
+Calculate the total energy released when a NaCl molecule is formed.
+
+The actual experimental value is 4.26 eV.
+Comment on the sign of your error.
+
+</blockquote>
+
+## Q2: Covalent bonding in detail
+
+I'll write this up if I find the time, as it's the only optional problem on the set.
+
+## Q3: Interatomic potentials
+
+### Part a
+
+<blockquote>
+
+Just thinking qualitatively, we expect the potential energy of a pair of atoms to look something like this:
+
+TODO: inject a Lennard-Jones plotly plot here
+
+This potential can be expanded about its minimum to give
+
+$$
+V(x) = \frac{\kappa}{2} (x - x_0)^2 + \frac{\kappa_3}{3!} (x - x_0)^3 + \ldots
+$$
+
+The Lennard-Jones potential is one such model with the correct qualitative shape (in fact, it's exactly what I plotted above).
+Its functional form is
+
+$$
+V(x) = 4 \epsilon \left[ \left(\frac{\sigma}{x}\right)^{12} - \left(\frac{\sigma}{x}\right)^6 \right].
+$$
+
+What is the physical meaning of the exponent 6?
+
+</blockquote>
+
+The exponent 6 comes from the fact that the Lennard-Jones potential is used to model Van der Waals interactions.
+There are a few interesting things to note here:
+
+- Lennard-Jones is one guy with a double-barrelled surname!
+- If we wanted to study interactions in a crystal, we might want to use something like the [Morse potential](https://en.wikipedia.org/wiki/Morse_potential).
+- The twelfth power is wrong. It models Pauli repulsion, which has a very different functional form. We keep it because it's extremely easy to square numbers with a computer, and we've already had to calculate the sixth power to get the attractive part of the potential! Really, any power greater than 6 would have worked, and we choose 12 for computational efficiency.
+
+### Part b
+
+<blockquote>
+
+Find $x_0$, $\kappa$, and $\kappa_3$ for the Lennard-Jones potential.
+
+</blockquote>
+
+This is trivial algebra - just Taylor expand the potential and compare coefficients.
+
+TODO: insert answers here
+
+## Q4: Classical model of thermal expansion
+
+<blockquote>
+
+In classical statistical mechanics, the expectation of $x$ is
+
+$$
+\langle x \rangle _{\beta} = \frac{\int  x e^{-\beta V(x)} dx}{\int  e^{-\beta V(x)} dx}.
+$$
+
+We can't do those integrals with arbitrary $V(x)$, but we could expand the exponentials as
+
+$$
+e^{-\beta V(x)} = e^{\frac{\beta \kappa}{2} (x - x_0)^2} \left[ 1 + \frac{\beta \kappa_3}{3!} (x - x_0)^3 + \ldots \right],
+$$
+
+and let the limits of integration go to $\pm \infty$.
+
+</blockquote>
+
+### Part a
+
+<blockquote>
+
+Why is this expansion of the exponent and extension of the limits of integration valid?
+
+</blockquote>
+
+The _real_ answer is that we do it because it's the only way to make progress.
+You figure out what it means only if your results are interesting!
+
+The answer that the question is probably looking for is that, if $k_B T$ is small, we're going to have a very peaked distribution, and the integrals will be dominated by the region around the minimum of the potential.
+
+I hear you though - sure, that lets us write $V(x) \approx \frac{\kappa}{2} (x - x_0)^2 + \frac{\kappa_3}{3!} (x - x_0)^3 + \ldots$, but then why Taylor expand the exponential on the cubic part, and not the quadratic part?
+
+I'll provide an exact bound on this on the last part of the question, but we're requiring that the cubic term is appreciably smaller than the quadratic term.
