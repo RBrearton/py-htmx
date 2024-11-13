@@ -328,7 +328,17 @@ Derive the dispersion relation for longitudinal oscillations of a one dimensiona
 
 </blockquote>
 
-TODO: put algebra here.
+This is bookwork.
+
+!START_ADMONITION success Answer
+
+!START_LABEL 1D monatomic phonon dispersion
+$$
+\omega = 2 \sqrt{\frac{\kappa}{m}} \left| \, \sin \left( \frac{ka}{2} \right) \right|
+$$
+!END_LABEL
+
+!END_ADMONITION
 
 ### Part c
 
@@ -341,7 +351,49 @@ How many *different* normal modes are there?
 
 </blockquote>
 
-TODO: add algebra
+The first part is just a matter of plugging in $k + 2 \pi / a$ into the dispersion relation.
+It's a trig function...
+
+The second part only requires a small amount of algebra.
+
+!START_ADMONITION info Show working
+
+From periodic boundary conditions, we have
+
+$$
+e^{i(\omega t + kna)} = e^{i(\omega t + k(n+N)a)} \, ,
+$$
+
+which immediately requires that
+
+$$
+e^{i k N a} = 1 \, .
+$$
+
+This means that $kNa = 2\pi p$, where $p$ is an integer.
+Or, equivalently,
+
+$$
+k = \frac{2\pi p}{Na} \, .
+$$
+
+This means that the spacing between adjacent $k$ states is
+
+$$
+\Delta k = \frac{2\pi}{Na} \, .
+$$
+
+Noting that $L = Na$, that means $\Delta k = 2\pi / L$.
+
+We get the number of modes by diving the range of $k$ by the spacing between adjacent $k$ states, so
+
+$$
+N = \frac{\mathrm{range}}{\mathrm{spacing}} = \frac{2\pi/a}{2\pi/L} = L/a = N \, .
+$$
+
+So... Debye's fudge was correct!
+
+!END_ADMONITION
 
 ### Part d
 
@@ -349,11 +401,73 @@ TODO: add algebra
 
 - Derive the phase and group velocities and sketch them as a function of $k$.
 - What is the sound velocity?
-- Show that the sound velocity is given by $v_s = \sqrt(\beta^{-1}/\rho)$, where $\rho$ is the mass density and $\beta$ is the compressibility.
+- Show that the sound velocity is given by $v_s = \sqrt{\beta^{-1}/\rho}$, where $\rho$ is the mass density and $\beta$ is the compressibility.
 
 </blockquote>
 
-TODO: add algebra and plotly plots.
+Okay, there are a few small things to show here, so let's get to it.
+
+!START_ADMONITION info Show working
+
+We get the group velocity by differentiating the
+!DROPDOWN_REF "1D monatomic phonon dispersion" "dispersion relation"
+with respect to $k$:
+
+$$
+v_g = \frac{d\omega}{dk} = a \sqrt{\frac{\kappa}{m}} \cos \left( \frac{ka}{2} \right) \mathrm{sgn}(k) \, .
+$$
+
+Be careful about differentiating modulus functions!
+The sgn function is 1 for positive $k$ and -1 for negative $k$.
+
+The phase velocity is simply
+
+$$
+v_p = \frac{\omega}{k} =\frac {2}{k} \sqrt{\frac{\kappa}{m}} \left| \, \sin \left( \frac{ka}{2} \right) \right| \, .
+$$
+
+The sound velocity is just the group velocity at $k=0$, so
+
+$$
+v_s = a \sqrt{\frac{\kappa}{m}} \, .
+$$
+
+To show the final part, we just need an expression for the compressibility.
+The compressibility is defined as
+
+!START_LABEL Compressibility
+$$
+\beta = -\frac{1}{L} \frac{\partial L}{\partial F} \, .
+$$
+!END_LABEL
+
+We can consider the interatomic distances of atoms in the chain as a function of the force applied:
+
+$$
+x(F) = a - \frac{F}{\kappa} \, .
+$$
+
+This gives us $L = N x(F)$, which we can differentiate to get
+
+$$
+\frac{\partial L}{\partial F} = -\frac{N}{\kappa} \, .
+$$
+
+This means that the
+!DROPDOWN_REF "Compressibility" "compressibility"
+is
+
+$$
+\beta = \frac{1}{L} \frac{N}{\kappa} = \frac{1}{\kappa a} \, .
+$$
+
+Using the fact that $\rho = m / a$, we finally get
+
+$$
+v_s = \sqrt{\frac{1}{\beta \rho}} = a \sqrt{\frac{\kappa}{m}} \, .
+$$
+
+!END_ADMONITION
 
 ### Part e
 
@@ -419,7 +533,7 @@ Determine the sound velocity.
 
 Show that the group velocity is zero at the Brillouin zone boundary.
 
-Show that the sound velocity is again given by $v_s = \sqrt(\beta^{-1}/\rho)$.
+Show that the sound velocity is again given by $v_s = \sqrt{\beta^{-1}/\rho}$.
 
 </blockquote>
 
