@@ -306,15 +306,15 @@ We can then think about thermally occupying these modes using Bose statistics, a
 
 <blockquote>
 
-- What is meant by a normal mode?
-- What is meant by a phonon?
-- Explain why phonons obey Bose-Einstein statistics.
+What is meant by a normal mode?
+What is meant by a phonon?
+Explain why phonons obey Bose-Einstein statistics.
 
 </blockquote>
 
 For normal modes, quoting wikipedia:
 
-> A normal mode is a pattern of motion in which all parts of the system move sinusoidally with the same frequency and with a fixed phase relation.
+*"A normal mode is a pattern of motion in which all parts of the system move sinusoidally with the same frequency and with a fixed phase relation."*
 
 Phonons are quanta of vibration.
 
@@ -334,8 +334,8 @@ TODO: put algebra here.
 
 <blockquote>
 
-- Show that the mode with wavevector $k$ has the same pattern of mass displacements as the mode with wavevector $k + 2 \pi / a$.
-- Show that the dispersion relation is periodic in $k$-space (reciprocal space).
+Show that the mode with wavevector $k$ has the same pattern of mass displacements as the mode with wavevector $k + 2 \pi / a$.
+Show that the dispersion relation is periodic in $k$-space (reciprocal space).
 
 How many *different* normal modes are there?
 
