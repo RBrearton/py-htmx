@@ -200,7 +200,7 @@ There will be some dispersion relation ($\omega(k)$) that tells us how the norma
 
 We can then think about thermally occupying these modes using Bose statistics, and calculate the average expansion of the chain as a function of temperature.
 
-## Q5: Phonons on a one-dimensional chain
+## Q5: Phonons on a one-dimensional monatomic chain
 
 ### Part a
 
@@ -285,3 +285,69 @@ Show that, at high temperature, the law of Dulong and Petit is obeyed.
 </blockquote>
 
 TODO: add algebra.
+
+## Q6: Phonons on a one-dimensional diatomic chain
+
+### Part a
+
+<blockquote>
+
+What's the difference between an acoustic and an optical mode?
+
+</blockquote>
+
+Acoustic modes are modes where adjacent atoms move in phase.
+Optical modes are modes where adjacent atoms move out of phase.
+
+### Part b
+
+<blockquote>
+
+Derive the longitudinal dispersion relation $\omega(k)$ for a one-dimensional diatomic chain of atoms of masses $m_1$ and $m_2$, lattice spacing $a$, and spring constant $\kappa$.
+
+</blockquote>
+
+TODO: add algebra.
+
+### Part c
+
+<blockquote>
+
+Determine the frequencies of the acoustic and optical modes at $k=0$, as well as at the Brillouin zone boundary.
+
+Determine the sound velocity.
+
+Show that the group velocity is zero at the Brillouin zone boundary.
+
+Show that the sound velocity is again given by $v_s = \sqrt(\beta^{-1}/\rho)$.
+
+</blockquote>
+
+TODO: add algebra.
+
+### Part d
+
+<blockquote>
+
+Sketch the dispersion in both the reduced and the extended zone scheme.
+
+If there are $N$ unit cells, how many different normal modes are there?
+
+How many branches of excitation are there? In other words, how many excitations are there at each $k$ in the reduced zone scheme?
+
+</blockquote>
+
+TODO: add algebra and plotly plots.
+
+### Part e
+
+<blockquote>
+
+What happens when $m_1 = m_2$?
+
+</blockquote>
+
+The optical modes disappear, as the two atoms are indistinguishable.
+The gap between the acoustic and optical modes at the Brillouin zone boundary closes.
+The new lattice constant is $a/2$.
+We have one mode per $k$, but our Brillouin zone is now twice as big, so the total number of modes is the same (as we haven't gained or lost any degrees of freedom).
