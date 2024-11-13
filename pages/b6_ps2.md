@@ -199,3 +199,89 @@ To properly handle the many-atom chain, we need to account for the fact that the
 There will be some dispersion relation ($\omega(k)$) that tells us how the normal modes of the chain are going to behave as a function of wavevector $k$.
 
 We can then think about thermally occupying these modes using Bose statistics, and calculate the average expansion of the chain as a function of temperature.
+
+## Q5: Phonons on a one-dimensional chain
+
+### Part a
+
+<blockquote>
+
+- What is meant by a normal mode?
+- What is meant by a phonon?
+- Explain why phonons obey Bose-Einstein statistics.
+
+</blockquote>
+
+For normal modes, quoting wikipedia:
+
+> A normal mode is a pattern of motion in which all parts of the system move sinusoidally with the same frequency and with a fixed phase relation.
+
+Phonons are quanta of vibration.
+
+Phonons obey Bose-Einstein statistics because there's no reason to limit the number of phonons in a given mode.
+
+### Part b
+
+<blockquote>
+
+Derive the dispersion relation for longitudinal oscillations of a one dimensional chain of N identical atoms of mass $m$, lattice spacing $a$ and spring constant $\kappa$.
+
+</blockquote>
+
+TODO: put algebra here.
+
+### Part c
+
+<blockquote>
+
+- Show that the mode with wavevector $k$ has the same pattern of mass displacements as the mode with wavevector $k + 2 \pi / a$.
+- Show that the dispersion relation is periodic in $k$-space (reciprocal space).
+
+How many _different_ normal modes are there?
+
+</blockquote>
+
+TODO: add algebra
+
+### Part d
+
+<blockquote>
+
+- Derive the phase and group velocities and sketch them as a function of $k$.
+- What is the sound velocity?
+- Show that the sound velocity is given by $v_s = \sqrt(\beta^{-1}/\rho)$, where $\rho$ is the mass density and $\beta$ is the compressibility.
+
+</blockquote>
+
+TODO: add algebra and plotly plots.
+
+### Part e
+
+<blockquote>
+
+Calculate and sketch the density of states per frequency $g(\omega)$.
+
+</blockquote>
+
+TODO: add algebra and plotly plot.
+
+### Part f
+
+<blockquote>
+
+Write an expression for the heat capacity of this chain.
+You will get an integral that you can't do analytically.
+
+</blockquote>
+
+TODO: add algebra.
+
+### Part g
+
+<blockquote>
+
+Show that, at high temperature, the law of Dulong and Petit is obeyed.
+
+</blockquote>
+
+TODO: add algebra.
