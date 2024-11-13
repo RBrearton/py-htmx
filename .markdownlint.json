@@ -3,5 +3,6 @@
     "heading-style": false,
     "no-duplicate-heading": false,
     "no-inline-html": false,
-    "line-length": false
+    "line-length": false,
+    "no-emphasis-as-heading": false
 }
