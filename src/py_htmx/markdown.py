@@ -101,7 +101,7 @@ def render_dropdown_refs(markdown: str) -> str:
 
     Specifically, the syntax should look like:
 
-    !DROPDOWN_REF <label_name> <hover_text>
+    !DROPDOWN_REF "<label_name>" "<hover_text>"
     """
     # Start by finding all the labels in the markdown.
     label_lines: dict[str, list[str]] = {}
@@ -123,8 +123,15 @@ def render_dropdown_refs(markdown: str) -> str:
     # more of the styling to DaisyUI.
     output_lines = []
     for line in markdown.split("\n"):
-        if line.startswith("!START_DROPDOWN_REF"):
-            _, label_name, hover_text = line.split(" ", 2)
+        if line.startswith("!DROPDOWN_REF"):
+            # Grab the label name and the hover text. Due to some syntax details, we
+            # will end up with a trailing " on each of these strings. There could also
+            # be some leading or trailing whitespace, so strip to be sure.
+            _, label_name, hover_text = line.split(' "', 2)
+            label_name = label_name.rstrip('"').strip()
+            hover_text = hover_text.rstrip('"').strip()
+
+            # Figure out what should go in the card.
             card_content = labels[label_name]
 
             # Start by building the card div.
@@ -138,11 +145,11 @@ def render_dropdown_refs(markdown: str) -> str:
             )
 
             # Now make the dropdown-hover.
-            hover_text = ui.Div(
+            hover_text_div = ui.Div(
                 tab_index=0, role="button", cls="text-secondary", text=hover_text
             )
             dropdown_hover = ui.Div(
-                cls="dropdown dropdown-hover", children=[hover_text, card]
+                cls="dropdown dropdown-hover", children=[hover_text_div, card]
             )
 
             # Render the dropdown hover to html, and put it back in the output.
