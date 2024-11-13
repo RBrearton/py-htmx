@@ -3,6 +3,7 @@
     "accesskey",
     "afterbegin",
     "afterend",
+    "anharmonic",
     "beforebegin",
     "beforeend",
     "Bleh",
@@ -22,6 +23,7 @@
     "mathbb",
     "mathbf",
     "mathrm",
+    "neighbours",
     "nicegui",
     "Pagen't",
     "pmatrix",
@@ -31,7 +33,8 @@
     "tailwindcss",
     "unitarity",
     "uvicorn",
-    "Waals"
+    "Waals",
+    "wavevector"
   ],
   "editor.rulers": [88],
   "liveServer.settings.port": 5501,

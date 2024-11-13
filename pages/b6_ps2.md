@@ -147,8 +147,55 @@ Why is this expansion of the exponent and extension of the limits of integration
 The _real_ answer is that we do it because it's the only way to make progress.
 You figure out what it means only if your results are interesting!
 
-The answer that the question is probably looking for is that, if $k_B T$ is small, we're going to have a very peaked distribution, and the integrals will be dominated by the region around the minimum of the potential.
+The answer that the question is probably looking for is that, if $k_B T$ is small, we're going to have a very peaked Boltzmann distribution, and the integrals will be dominated by the region around the minimum of the potential.
 
-I hear you though - sure, that lets us write $V(x) \approx \frac{\kappa}{2} (x - x_0)^2 + \frac{\kappa_3}{3!} (x - x_0)^3 + \ldots$, but then why Taylor expand the exponential on the cubic part, and not the quadratic part?
+I hear you though - sure, that lets us expand the limits and write $V(x) \approx \frac{\kappa}{2} (x - x_0)^2 + \frac{\kappa_3}{3!} (x - x_0)^3 + \ldots$, but then why Taylor expand the exponential on the cubic part, and not the quadratic part?
 
-I'll provide an exact bound on this on the last part of the question, but we're requiring that the cubic term is appreciably smaller than the quadratic term.
+I'll provide an exact bound on this on the last part of the question, but we're just requiring that the cubic term is appreciably smaller than the quadratic term.
+
+### Part b
+
+<blockquote>
+
+Use this to derive $\langle x \rangle _{\beta}$ and show that the coefficient of thermal expansion is
+
+$$
+\alpha = \frac{1}{L} \frac{\partial L}{\partial T} = \frac{1}{x_0} \frac{k_B \kappa_3}{2 \kappa^2}.
+$$
+
+</blockquote>
+
+The main trick in this problem is to ignore all the odd integrals, as they're all zero by symmetry.
+Then we just have a few Gaussian integrals to keep track of.
+
+TODO: add algebraic details.
+
+### Part c
+
+<blockquote>
+
+In what temperature range is the above expansion valid?
+
+</blockquote>
+
+Ok, now it's time to make the terms and conditions surrounding out approximation a bit more precise.
+
+TODO: add details.
+
+### Part d
+
+<blockquote>
+
+This is valid for a 2-particle system, but not a many atom chain.
+Why?
+How would you modify the calculation to account for this?
+
+</blockquote>
+
+Well... our potential only has a single distance between two atoms in it!
+As a result, we're basically studying the properties of a bunch of non-interacting harmonic oscillators. (okay, anharmonic oscillators because of the cubic term, but you get the idea!)
+
+To properly handle the many-atom chain, we need to account for the fact that the coupled differential equations that show up when we try to solve for the motion of the chain are going to lead to normal modes.
+There will be some dispersion relation ($\omega(k)$) that tells us how the normal modes of the chain are going to behave as a function of wavevector $k$.
+
+We can then think about thermally occupying these modes using Bose statistics, and calculate the average expansion of the chain as a function of temperature.
