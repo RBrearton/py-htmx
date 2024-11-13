@@ -66,6 +66,26 @@ Comment on the sign of your error.
 
 </blockquote>
 
+!START_ADMONITION info Show working
+
+The coloumb energy of the NaCl molecule is
+
+$$
+U_\mathrm{coul} = -\frac{e^2}{4\pi\epsilon_0 R} = -\frac{e^2}{4\pi\epsilon_0 (2.36\, Å)} = 6.09 \, \mathrm{eV}.
+$$
+
+The energy released is then
+
+$$
+E_\mathrm{affinity} - E_\mathrm{ionization} + U_\mathrm{coul} = 3.62 - 5.14 + 6.09 = 4.58 \, \mathrm{eV}.
+$$
+
+This is too big!
+There must be a repulsive force, and this repulsive force must be what's stopping the atoms from collapsing into each other.
+This would be Pauli repulsion, which is not included in our simple model.
+
+!END_ADMONITION
+
 ## Q2: Covalent bonding in detail
 
 I'll write this up if I find the time, as it's the only optional problem on the set.
