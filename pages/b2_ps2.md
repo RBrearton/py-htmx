@@ -1,6 +1,6 @@
 <!--  -->
 
-# Problem set 2
+# B2 problem set 2
 
 ## Q1: The rotation formula
 
