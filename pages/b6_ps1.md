@@ -1,6 +1,6 @@
 <!--  -->
 
-# Problem set 1
+# B6 problem set 1
 
 ## Q1: Einstein solid
 
