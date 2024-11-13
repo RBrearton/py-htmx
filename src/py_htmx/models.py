@@ -648,4 +648,12 @@ class Details(HtmlElement):
         return self
 
 
+class Code(HtmlElement):
+    """The code element."""
+
+    _tag = "code"
+    text: str
+    children: Sequence[HtmlElement] = Field(default_factory=list)
+
+
 # endregion
