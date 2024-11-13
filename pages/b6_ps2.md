@@ -11,7 +11,7 @@ Qualitatively describe the five different types of chemical bonds and why they o
 </blockquote>
 
 Just copy the table out of Steve Simon's "The Oxford Solid State Basics" book.
-To avoid _direct_ plagiarism, I won't copy the table here.
+To avoid *direct* plagiarism, I won't copy the table here.
 
 ### Part b
 
@@ -41,7 +41,7 @@ $$
 E \propto \frac{p_1}{R^3}
 $$
 
-at the location of the second atom (remembering, from electrostatics, the [field of a dipole](https://en.wikipedia.org/wiki/Dipole#Field_from_an_electric_dipole)).
+at the location of the second atom.
 The second atom will then develop a polarization $p_2 = \chi E$.
 Just thinking about dimensions, the potential energy of this interaction has to be proportional to $p_1 p_2 / R^3$, so that
 
@@ -144,7 +144,7 @@ Why is this expansion of the exponent and extension of the limits of integration
 
 </blockquote>
 
-The _real_ answer is that we do it because it's the only way to make progress.
+The *real* answer is that we do it because it's the only way to make progress.
 You figure out what it means only if your results are interesting!
 
 The answer that the question is probably looking for is that, if $k_B T$ is small, we're going to have a very peaked Boltzmann distribution, and the integrals will be dominated by the region around the minimum of the potential.
@@ -237,7 +237,7 @@ TODO: put algebra here.
 - Show that the mode with wavevector $k$ has the same pattern of mass displacements as the mode with wavevector $k + 2 \pi / a$.
 - Show that the dispersion relation is periodic in $k$-space (reciprocal space).
 
-How many _different_ normal modes are there?
+How many *different* normal modes are there?
 
 </blockquote>
 
