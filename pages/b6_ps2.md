@@ -132,9 +132,21 @@ Find $x_0$, $\kappa$, and $\kappa_3$ for the Lennard-Jones potential.
 
 </blockquote>
 
-This is trivial algebra - just Taylor expand the potential and compare coefficients.
+This is just algebra - Taylor expand the potential and compare coefficients.
 
-TODO: insert answers here
+!START_ADMONITION success Answer
+
+You should find that
+
+$$
+x_0 = 2^{\frac{1}{6}}\sigma,
+~~~
+\kappa = 36 \left( 2^{\frac{2}{3}} \frac{\epsilon}{ \sigma^2} \right),
+~~~
+\kappa _3 = - 756\sqrt{2} \frac{\epsilon}{\sigma^3}.
+$$
+
+!END_ADMONITION
 
 ## Q4: Classical model of thermal expansion
 
