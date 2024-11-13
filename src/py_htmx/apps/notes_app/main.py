@@ -150,6 +150,26 @@ async def get_b6_ps1() -> HTMLResponse:
     return HTMLResponse(content=main_page.model_dump_html())
 
 
+@app.get(endpoints.b6_ps2)
+async def get_b6_ps2() -> HTMLResponse:
+    """Return the page for B6 problem set 2."""
+    if config.auto_reload:
+        render_markdown.cache_clear()
+
+    # Get the appropriate markdown file, and the menu.
+    rendered_markdown, right_menu = render_markdown("b6_ps2.md")
+
+    # Create the main page.
+    main_page = make_page(
+        main_content=ui.Article(
+            cls="prose !max-w-[850px]", raw_inner_html=rendered_markdown
+        ),
+        left_drawer_content=physics_left_drawer(),
+        right_drawer_content=right_menu,
+    )
+    return HTMLResponse(content=main_page.model_dump_html())
+
+
 @app.get(endpoints.physics)
 async def get_physics() -> HTMLResponse:
     """Return the physics section."""
