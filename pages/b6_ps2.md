@@ -351,3 +351,47 @@ The optical modes disappear, as the two atoms are indistinguishable.
 The gap between the acoustic and optical modes at the Brillouin zone boundary closes.
 The new lattice constant is $a/2$.
 We have one mode per $k$, but our Brillouin zone is now twice as big, so the total number of modes is the same (as we haven't gained or lost any degrees of freedom).
+
+## Q7: The tight-binding model
+
+### Part a
+
+<blockquote>
+
+Derive and sketch the dispersion relation for a monatomic one-dimensional chain with hopping integral $-t$, and on-site energy $\epsilon$.
+
+How many different eigenstates are there in the system?
+
+What is the effective mass of the electron near the bottom of the band?
+
+What's the density of states?
+
+If each atom is monovalent, what's the density of states at the Fermi surface?
+
+Estimate the heat capacity at low temperature.
+
+What's the heat capacity if the material is divalent?
+
+What's the spin susceptibility if the material is divalent?
+
+</blockquote>
+
+TODO: add algebra and plotly plots.
+
+### Part b
+
+<blockquote>
+
+Now consider a diatomic system with different on-site energies $\epsilon_A$ and $\epsilon_B$. What's the dispersion relation?
+
+Sketch the dispersion relation in the reduced and extended zone schemes.
+
+What happens when $t$ becomes very small?
+
+What's the effective mass of an electron near the bottom of the lower band?
+
+If each atom is monovalent, is the material a metal or an insulator?
+
+What happens if $\epsilon_A = \epsilon_B$?
+
+</blockquote>
