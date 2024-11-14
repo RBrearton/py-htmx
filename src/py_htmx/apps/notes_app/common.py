@@ -48,7 +48,8 @@ def make_page(
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
     }}
-  </script>"""
+  </script>
+  <script src="/js/collapse.js"></script>"""
     html_header = ui.Head(
         title=ui.Title(text=site_title),
         children=[ui.HtmlElement(data_theme=light_theme_name)],
