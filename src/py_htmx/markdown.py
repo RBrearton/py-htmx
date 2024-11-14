@@ -148,7 +148,7 @@ def render_dropdown_refs(markdown: str) -> str:
             )
             card_body = ui.Div(cls="card-body", children=[card_title, card_text])
             card = ui.Div(
-                cls="dropdown-content card card-compact bg-base-300 text-primary-content shadow w-96 z-10",  # noqa: E501
+                cls="dropdown-content card card-compact bg-base-300 text-primary-content shadow min-w-96 z-10",  # noqa: E501
                 children=[card_body],
             )
 
