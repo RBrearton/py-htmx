@@ -521,7 +521,23 @@ You will get an integral that you can't do analytically.
 
 </blockquote>
 
-TODO: add algebra.
+Since the wording of the question is so vague, I'd actually recommend not substituting in the expression for the density of states.
+
+!START_ADMONITION info Show working
+
+!START_LABEL 1D monatomic phonon heat capacity
+
+The internal energy is
+
+$$
+U = \int g(\omega) \hbar \omega \left( \frac{1}{e^{\hbar \omega / k_B T} - 1} \right) d\omega \, .
+$$
+
+The heat capacity is then just $C = \frac{dU}{dT}$, which we may/may not be able to do depending on the form of $g(\omega)$.
+
+!END_LABEL
+
+!END_ADMONITION
 
 ### Part g
 
@@ -531,7 +547,21 @@ Show that, at high temperature, the law of Dulong and Petit is obeyed.
 
 </blockquote>
 
-TODO: add algebra.
+We can do this quite easily because we didn't substitute in the expression for the density of states.
+
+!START_ADMONITION info Show working
+
+Using our
+!DROPDOWN_REF "1D monatomic phonon heat capacity" "expression for the heat capacity"
+we just need to Taylor expand the exponential in the integrand to get
+
+$$
+C = \partial _T \int d\omega\, g(\omega) k_B T = N k_B \, .
+$$
+
+where we used the fact that $g(\omega) = dN/d\omega$ and we cancelled the $d\omega$ terms ;).
+
+!END_ADMONITION
 
 ## Q6: Phonons on a one-dimensional diatomic chain
 
