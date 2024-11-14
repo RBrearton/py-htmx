@@ -75,15 +75,8 @@ def render_admonitions(markdown: str) -> str:
         if line.startswith("!START_ADMONITION"):
             # Get the admonition type and title.
             _, admonition_type, title = line.split(" ", 2)
-
-            # Note on !overflow-visible: this is needed to permit dropdown content to
-            # work inside a collapse. If we don't use this, then any dropdown that might
-            # overflow ever-so-slightly won't be rendered at all.
-            # This then leads to the horrendous issue that the collapse-content's
-            # background overflows the border, which is why we specify rounded-box on
-            # the collapse-content (to match the rounded-box on the collapse itself).
             output_lines.append(
-                f'<div class="overflow-visible collapse collapse-arrow bg-{admonition_type} bg-opacity-20 my-4 border-2 border-{admonition_type} transition-none"><input type="checkbox" /><div class="collapse-title font-semibold text-primary-content">{title}</div><div class="collapse-content bg-base-200 rounded-box">'  # noqa: E501
+                f'<div class="collapse collapse-arrow bg-{admonition_type} bg-opacity-20 my-4 border-2 border-{admonition_type} transition-none"><input type="checkbox" /><div class="collapse-title font-semibold text-primary-content">{title}</div><div class="collapse-content bg-base-200 rounded-box">'  # noqa: E501
             )
         elif line == "!END_ADMONITION":
             output_lines.append("</div></div>")
@@ -148,7 +141,7 @@ def render_dropdown_refs(markdown: str) -> str:
             )
             card_body = ui.Div(cls="card-body", children=[card_title, card_text])
             card = ui.Div(
-                cls="dropdown-content card card-compact bg-base-300 text-primary-content shadow min-w-96 z-10",  # noqa: E501
+                cls="dropdown-content card bg-base-300 text-primary-content shadow z-10",  # noqa: E501
                 children=[card_body],
             )
 
