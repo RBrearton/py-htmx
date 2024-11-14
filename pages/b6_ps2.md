@@ -477,7 +477,40 @@ Calculate and sketch the density of states per frequency $g(\omega)$.
 
 </blockquote>
 
-TODO: add algebra and plotly plot.
+The density of states is
+
+!START_LABEL Density of states
+$$
+g(\omega) = \frac{dN}{d\omega} = \frac{dN}{dk} \frac{dk}{d\omega}
+$$
+!END_LABEL
+
+The rest of the problem is just being careful with the algebra, spin degeneracy etc.
+
+!START_ADMONITION info Show working
+
+Subbing in the expression for the
+!DROPDOWN_REF "1D monatomic phonon dispersion" "dispersion relation"
+into the
+!DROPDOWN_REF "Density of states" "density of states"
+gives
+
+$$
+\frac{dN}{dk} \frac{dk}{d\omega}
+=
+\frac{2 Na}{2\pi a \sqrt{\kappa / m} \cos({ka/2})} = \frac{Na}{2\pi v_g}
+$$
+
+This is as a function of $k$, so we just need to use our
+!DROPDOWN_REF "1D monatomic phonon dispersion" "dispersion relation"
+to swap out $k$ for $\omega$.
+Doing this gives
+
+$$
+g(\omega) = \frac{N}{\pi\sqrt{\kappa/m - (\omega/2)^2}} \, .
+$$
+
+!END_ADMONITION
 
 ### Part f
 
