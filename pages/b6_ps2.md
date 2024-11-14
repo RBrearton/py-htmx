@@ -584,7 +584,17 @@ Derive the longitudinal dispersion relation $\omega(k)$ for a one-dimensional di
 
 </blockquote>
 
-TODO: add algebra.
+Not quite bookwork, but not far off, as a very similar problem is solved in the book.
+
+!START_ADMONITION success Answer
+
+!START_LABEL 1D diatomic phonon dispersion
+$$
+\omega^2 = \frac{\kappa}{m_1 m_2}\left[(m_1 + m_2) \pm \sqrt{(m_1 + m_2)^2 - 4 m_1 m_2 \sin^2 \left( \frac{ka}{2} \right)}\right]
+$$
+!END_LABEL
+
+!END_ADMONITION
 
 ### Part c
 
