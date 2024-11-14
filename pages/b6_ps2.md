@@ -485,7 +485,7 @@ g(\omega) = \frac{dN}{d\omega} = \frac{dN}{dk} \frac{dk}{d\omega}
 $$
 !END_LABEL
 
-The rest of the problem is just being careful with the algebra, spin degeneracy etc.
+The rest of the problem is just being careful with the algebra, wavevector degeneracy etc. ($+k$ and $-k$ have the same $\omega$, which gives an extra factor of 2).
 
 !START_ADMONITION info Show working
 
