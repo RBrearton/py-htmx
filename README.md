@@ -96,3 +96,7 @@ The `--watch` flag will watch for changes to your styles.css file and automatica
 If you aren't going to make any style changes, you can just ctrl-c out of this command.
 It's configurable, but py_htmx will look for a file called `dist.css` in the root of your project.
 If you followed this exactly, then you should be good to go.
+
+## Notes website
+
+Markdown is linted using the markdownlint VSCode extension.

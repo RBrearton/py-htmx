@@ -27,6 +27,7 @@ line-length = 88
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = ["PLR0913", "SIM117", "COM812", "T201", "D413"]
+unfixable = ["F401"]                                     # Ignore unused imports
 
 [dependency-groups]
 dev = ["fastapi>=0.115.3", "ipykernel>=6.29.5", "uvicorn>=0.32.0"]

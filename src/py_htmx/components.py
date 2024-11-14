@@ -8,6 +8,7 @@ the box.
 from . import models as ui
 
 RecursiveList = list["tuple[str, str | RecursiveList]"]
+menu_class = "menu rounded-box w-80 px-5"
 
 # region Nav
 
@@ -100,7 +101,7 @@ def contents_menu(list_elements: RecursiveList, title: str | None = None) -> ui.
     """
     children = [] if title is None else [list_title(title)]
 
-    root_list = ui.List(cls="menu rounded-box w-80 px-5", children=children)
+    root_list = ui.List(cls=menu_class, children=children)
     return _build_contents_menu(list_elements, root_list)
 
 

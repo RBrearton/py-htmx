@@ -65,6 +65,7 @@ class HtmlElement(PydanticBaseModel):
     aria_label: str | None = None
     data_theme: str | None = None
     raw_inner_html: str | None = None
+    role: str | None = None
 
     # htmx attributes.
     hx_get: str | None = None
@@ -163,6 +164,7 @@ class HtmlElement(PydanticBaseModel):
             "translate": self.translate,
             "aria-label": self.aria_label,
             "data-theme": self.data_theme,
+            "role": self.role,
         }
         return " ".join(
             _format_attribute(key, value) for key, value in attributes.items() if value
@@ -425,6 +427,14 @@ class List(HtmlElement):
     ordered: bool = False
     children: Sequence[HtmlElement] = Field(default_factory=list)
 
+    def vstack(self, other: Self) -> None:
+        """Build a new list with the children of both lists.
+
+        This method keeps all the attributes of the list on which you're calling it,
+        ignoring the attributes of the other list.
+        """
+        self.children = [*self.children, *other.children]
+
     @model_validator(mode="after")
     def _update_tag(self) -> Self:
         """Update the tag of the element."""
@@ -636,6 +646,14 @@ class Details(HtmlElement):
         if self.summary:
             self.children = [*self.children, self.summary]
         return self
+
+
+class Code(HtmlElement):
+    """The code element."""
+
+    _tag = "code"
+    text: str
+    children: Sequence[HtmlElement] = Field(default_factory=list)
 
 
 # endregion

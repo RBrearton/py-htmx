@@ -1,6 +1,6 @@
 <!--  -->
 
-# Problem set 1
+# B6 problem set 1
 
 ## Q1: Einstein solid
 
@@ -10,7 +10,7 @@ We're asked to consider a single simple harmonic oscillator, given by $H = \frac
 
 We're asked to calculate the classical partition function $Z=\int \frac{d^3p}{(2\pi\hbar)^3} \int d^3x e^{-\beta H(\vec{p}, \vec{x})}$.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 It's easy however you tackle it, but I decided to solve the 1D partition function, then cube it.
 It's instructive to note that, since we're just looking at heat capacities, we can ignore the prefactor of $\frac{1}{2\pi\hbar}$ in the momentum integral.
@@ -40,9 +40,9 @@ $$
 
 We can then cube this to get the 3D partition function.
 
-END_ADMONITION
+!END_ADMONITION
 
-START_ADMONITION success Answer
+!START_ADMONITION success Answer
 
 $$Z_\mathrm{3D} = \left(\frac{2\pi}{\beta\omega}\right)^3$$
 
@@ -50,13 +50,13 @@ Or, if we would've kept the prefactor in the momentum integral:
 
 $$Z_\mathrm{3D} = \left(\frac{1}{\beta\hbar\omega}\right)^{3}$$
 
-END_ADMONITION
+!END_ADMONITION
 
 ### Heat capacity from the classical partition function
 
 Now we're asked to calculate the heat capacity from the classical partition function that we just calculated.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 Another easy calculation. Start by calculating the internal energy $U$:
 
@@ -70,25 +70,25 @@ $$
 C = \frac{\partial U}{\partial T} = 3k_B
 $$
 
-END_ADMONITION
+!END_ADMONITION
 
-START_ADMONITION success Answer
+!START_ADMONITION success Answer
 
 $C = 3k_B$
 
-END_ADMONITION
+!END_ADMONITION
 
-START_ADMONITION note Note
+!START_ADMONITION note Note
 
     This means that, for a 3D system containing N oscillators, we have $C = 3R$, which is the Dulong-Petit law.
 
-END_ADMONITION
+!END_ADMONITION
 
 ### Quantum partition function
 
 We're asked to now calculate the quantum partition function $Z = \sum_n e^{-\beta E_n}$
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
 We can use the fact that the energy levels are $E_n = \hbar \omega (n + 1/2)$, so we have:
 
@@ -108,15 +108,15 @@ $$
 Z = \frac{e^{-\beta \hbar \omega / 2}}{1 - e^{-\beta \hbar \omega}} = \left(2\sinh(\beta \hbar \omega / 2)\right)^{-1}
 $$
 
-END_ADMONITION
+!END_ADMONITION
 
-START_ADMONITION success Answer
+!START_ADMONITION success Answer
 
     $Z = \left(2\sinh(\beta \hbar \omega / 2)\right)^{-1}$
 
-END_ADMONITION
+!END_ADMONITION
 
-START_ADMONITION note Note
+!START_ADMONITION note Note
 
     The internal energy, once we calculate it, looks reminiscent of Bose-Einstein statistics.
 
@@ -131,11 +131,11 @@ START_ADMONITION note Note
 
     1. If there's a deeper physical connection, please let me know!
 
-END_ADMONITION
+!END_ADMONITION
 
 Next we're asked to find an expression for the heat capacity of the quantum harmonic oscillator.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
     We can start by calculating the internal energy, as we did above:
 
@@ -159,20 +159,20 @@ START_ADMONITION info Show working
     To get the 3D case, we would need to cube the partition function, which would give us an extra factor of 3 in the heat capacity.
     Similarly, to generalize for $N$ oscillators, we'd end up raising the partition function to the power of $N$, which would give us an extra factor of $N$ in the heat capacity.
 
-END_ADMONITION
-START_ADMONITION success Answer
+!END_ADMONITION
+!START_ADMONITION success Answer
 
     $$
     C = 3 N k_B (\beta \hbar \omega)^2 \frac{e^{\beta \hbar \omega}}{(e^{\beta \hbar \omega} - 1)^2}
     $$
 
-END_ADMONITION
+!END_ADMONITION
 
 ## Q2: Debye model
 
 We're asked to state the assumptions of the Debye model.
 
-START_ADMONITION success Answer
+!START_ADMONITION success Answer
 
     Linear dispersion relation: $\omega = v_s k$
 
@@ -186,11 +186,11 @@ START_ADMONITION success Answer
 
     1. We'll learn more about band structure shortly. The idea is that the dispersion relation isn't really linear except for small $k$. The Debye model is a good approximation for small $k$, but as it breaks down for large $k$, we need this fudge to make the theory agree with the law of Dulong and Petit.
 
-END_ADMONITION
+!END_ADMONITION
 
 Next we're asked to calculate the heat capacity of the Debye model.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
     We can start by writing down the total internal energy of the system:(1)
     { .annotate }
@@ -220,17 +220,17 @@ START_ADMONITION info Show working
 
     1. Absolute energies don't matter, only energy differences, so don't worry about the zero-point energy term!
 
-END_ADMONITION
-START_ADMONITION success Answer
+!END_ADMONITION
+!START_ADMONITION success Answer
 
     $$
     C = \frac{\partial E}{\partial T} = 3 \frac{1}{k_B T^2} \left(\frac{L}{2\pi}\right)^3 \int_0^{\omega_D} 4\pi \left(\frac{\omega}{v_s}\right)^2 (\hbar \omega)^2 \frac{e^{\beta \hbar \omega}}{(e^{\beta \hbar \omega} - 1)^2} d\omega
     $$
 
-END_ADMONITION
+!END_ADMONITION
 Then we're asked to think about the high and low temperature limits of the heat capacity.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
     In the low temperature limit, our integrand falls off rapidly as a function of $\omega$.
     This is because our temperature is too low to excite the higher energy modes.
@@ -245,8 +245,8 @@ START_ADMONITION info Show working
 
     In the high temperature limit, we can Taylor expand some exponentials to get the law of Dulong-Petit.
 
-END_ADMONITION
-START_ADMONITION success Answer
+!END_ADMONITION
+!START_ADMONITION success Answer
 
     The low temperature heat capacity is:
     $C = \frac{12}{5} N k_B \pi^4 \left(\frac{T}{\Theta_D}\right)^3$
@@ -254,10 +254,10 @@ START_ADMONITION success Answer
     The high temperature heat capacity is:
     $C = 3 R$
 
-END_ADMONITION
+!END_ADMONITION
 Finally, we're asked to interpret some data.
 
-START_ADMONITION success Answer
+!START_ADMONITION success Answer
 
     | T(K) | $C_V$ (J/K/mol) | $\Theta_D$ (K) |
     | ---- | --------------- | -------------- |
@@ -286,7 +286,7 @@ We're first asked to derive the conductivity in the presence of an electric fiel
 
     As you might expect, it is correct about as often as it's incorrect.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
     Start by Taylor expanding the momentum at a time $t + dt$, assuming that there's a probability of scattering $1/\tau$.
 
@@ -321,13 +321,13 @@ START_ADMONITION info Show working
 
     This is the Drude model's conductivity, as the conductivity is defined as $\vec{J} = \sigma \vec{E}$.
 
-START_ADMONITION success Answer
+!START_ADMONITION success Answer
 
     $\sigma = \frac{ne^2\tau}{m}$
 
 Then we're asked to find the resistivity matrix in the presence of electric and magnetic fields.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
     We can start by writing down the equation of motion for the electron in the presence of both fields:
 
@@ -350,7 +350,7 @@ START_ADMONITION info Show working
 
     Now using the definition of the resistivity as $\vec{E} = \rho \vec{J}$, we find that it's a matrix.
 
-START_ADMONITION success Answer
+!START_ADMONITION success Answer
 
     $$
     \rho_{xx} = \rho_{yy} = \rho_{zz} = \frac{m}{ne^2\tau}
@@ -367,7 +367,7 @@ START_ADMONITION success Answer
 Now we're tasked to find the conductivity matrix, which we can do by just inverting the resistivity matrix.
 It's block diagonal, so it's easy, if algebraic.
 
-START_ADMONITION success Answer
+!START_ADMONITION success Answer
 
     TODO: type this.
 
@@ -375,7 +375,7 @@ Now we're asked to define the Hall resistivity, which is the positive off-diagon
 
 Then we're asked to plug in the numbers for Na. We're told the density is $1 \mathrm{g}/\mathrm{cm}^3$, atomic mass $M = 23u$.
 
-START_ADMONITION info Show working
+!START_ADMONITION info Show working
 
     Start by getting the density of atoms in SI, which is.
 
@@ -400,7 +400,7 @@ START_ADMONITION info Show working
 
     Then we have enough numbers to get to the answer!
 
-START_ADMONITION success Answer
+!START_ADMONITION success Answer
 
     $V_H = 4.8 \times 10^{-8} \mathrm{V}$
 
@@ -422,7 +422,7 @@ START_ADMONITION success Answer
 
 We're also asked to comment on the properties of metals that Drude theory doesn't explain well.
 
-START_ADMONITION success Answer
+!START_ADMONITION success Answer
 
     The answer to this is pretty much everything.
     It's a qualitative theory.

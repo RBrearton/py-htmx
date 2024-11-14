@@ -41,7 +41,9 @@ class _RightMenuModel(ui.PydanticBaseModel):
 
 
 @lru_cache
-def render_markdown(file_name: str) -> tuple[str, ui.List]:
+def render_markdown(
+    file_name: str, contents_menu_title: str | None = "Contents"
+) -> tuple[str, ui.List]:
     """Read the markdown file with the given name, and render it to an html string.
 
     This function returns a tuple of the rendered markdown string and the right menu.
@@ -51,7 +53,11 @@ def render_markdown(file_name: str) -> tuple[str, ui.List]:
     # Render the markdown file as an html string.
     markdown_string = md.render_markdown(
         markdown_txt,
-        pre_processors=[md.render_admonitions],
+        pre_processors=[
+            md.render_admonitions,
+            md.render_dropdown_refs,
+            md.pre_process_remove_labels,
+        ],
         post_processors=[md.post_process_math],
     )
 
@@ -63,6 +69,12 @@ def render_markdown(file_name: str) -> tuple[str, ui.List]:
     # Create a list of (heading_txt, heading_id) tuples that we can turn into a menu.
     right_menu = _RightMenuModel(h1="Contents", h2=[])
     for heading in headings:
+        # If this heading doesn't have an id, skip it. It mustn't be a proper heading.
+        # This happens when, for example, headings are put into cards that are revealed
+        # by clicking a button. They'll be headings, sure, but they won't have ids.
+        if "id" not in heading.attrs:
+            continue
+
         heading: Tag
         if heading.name == "h2":
             # Build a new h2 object.
@@ -85,7 +97,7 @@ def render_markdown(file_name: str) -> tuple[str, ui.List]:
         else:
             links.append((h2.text, h2.link))
 
-    right_menu = c.contents_menu(links, "Contents")
+    right_menu = c.contents_menu(links, contents_menu_title)
 
     return markdown_string, right_menu
 
@@ -145,6 +157,27 @@ async def get_b6_ps1() -> HTMLResponse:
         left_drawer_content=physics_left_drawer(),
         right_drawer_content=right_menu,
     )
+    return HTMLResponse(content=main_page.model_dump_html())
+
+
+@app.get(endpoints.b6_ps2)
+async def get_b6_ps2() -> HTMLResponse:
+    """Return the page for B6 problem set 2."""
+    if config.auto_reload:
+        render_markdown.cache_clear()
+
+    # Get the appropriate markdown file, and the menu.
+    rendered_markdown, right_menu = render_markdown("b6_ps2.md")
+
+    # Create the main page.
+    main_page = make_page(
+        main_content=ui.Article(
+            cls="prose !max-w-[850px]", raw_inner_html=rendered_markdown
+        ),
+        left_drawer_content=physics_left_drawer(),
+        right_drawer_content=right_menu,
+    )
+    print(main_page.model_dump_html())
     return HTMLResponse(content=main_page.model_dump_html())
 
 

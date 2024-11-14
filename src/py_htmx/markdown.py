@@ -4,6 +4,8 @@ from collections.abc import Callable
 
 import markdown2 as md
 
+from . import models as ui
+
 # These are all of the extras that we opt into by default. To see all the available
 # options, read the wiki: https://github.com/trentm/python-markdown2/wiki
 default_extras = [
@@ -65,21 +67,122 @@ def render_admonitions(markdown: str) -> str:
 
     This is a pre-processor.
     """
-    # Admonitions start with a "START_ADMONITION <admonition_type> <optional_title>"
-    # line and end with an "END_ADMONITION" line.
+    # Admonitions start with a "!START_ADMONITION <admonition_type> <optional_title>"
+    # line and end with an "!END_ADMONITION" line.
     # We'll replace these with the appropriate html.
     output_lines = []
     for line in markdown.split("\n"):
-        if line.startswith("START_ADMONITION"):
+        if line.startswith("!START_ADMONITION"):
             # Get the admonition type and title.
             _, admonition_type, title = line.split(" ", 2)
+
+            # Note on !overflow-visible: this is needed to permit dropdown content to
+            # work inside a collapse. If we don't use this, then any dropdown that might
+            # overflow ever-so-slightly won't be rendered at all.
+            # This then leads to the horrendous issue that the collapse-content's
+            # background overflows the border, which is why we specify rounded-box on
+            # the collapse-content (to match the rounded-box on the collapse itself).
             output_lines.append(
-                f'<div class="collapse collapse-arrow bg-{admonition_type} bg-opacity-20 my-4 border-2 border-{admonition_type} transition-none"><input type="checkbox" /><div class="collapse-title font-semibold text-primary-content">{title}</div><div class="collapse-content bg-base-200"><p>'  # noqa: E501
+                f'<div class="overflow-visible collapse collapse-arrow bg-{admonition_type} bg-opacity-20 my-4 border-2 border-{admonition_type} transition-none"><input type="checkbox" /><div class="collapse-title font-semibold text-primary-content">{title}</div><div class="collapse-content bg-base-200 rounded-box">'  # noqa: E501
             )
-        elif line == "END_ADMONITION":
-            output_lines.append("</p></div></div>")
+        elif line == "!END_ADMONITION":
+            output_lines.append("</div></div>")
         else:
             output_lines.append(line)
+
+    return "\n".join(output_lines)
+
+
+def render_dropdown_refs(markdown: str) -> str:
+    """Inject html to add dropdown references wherever indicated in the markdown.
+
+    We allow users to define references using latex-inspired syntax, like so:
+
+    !START_LABEL <label_name>
+    This is the content that the label refers to...
+    !END_LABEL
+
+    Then, we want to make it possible for a py-htmx user to refer to this label in a
+    bunch of different ways. One way is to make it so that, when you hover over an
+    element, a dropdown appears showing the content of the label.
+
+    Specifically, the syntax should look like:
+
+    !DROPDOWN_REF "<label_name>" "<hover_text>"
+    """
+    # Start by finding all the labels in the markdown.
+    label_lines: dict[str, list[str]] = {}
+    current_label_name: str | None = None
+    for line in markdown.split("\n"):
+        if line.startswith("!START_LABEL"):
+            _, label_name = line.split(" ", 1)
+            label_lines[label_name] = []
+            current_label_name = label_name
+        elif line.startswith("!END_LABEL"):
+            current_label_name = None
+        elif current_label_name is not None:
+            label_lines[current_label_name].append(line)
+
+    # Join the lines of each label together.
+    labels = {label_name: "\n".join(lines) for label_name, lines in label_lines.items()}
+
+    # We want the dropdown-hover content to be a card, which basically lets us hand over
+    # more of the styling to DaisyUI.
+    output_lines = []
+    for line in markdown.split("\n"):
+        if line.startswith("!DROPDOWN_REF"):
+            # Grab the label name and the hover text. Due to some syntax details, we
+            # will end up with a trailing " on each of these strings. There could also
+            # be some leading or trailing whitespace, so strip to be sure.
+            _, label_name, hover_text = line.split(' "', 2)
+            label_name = label_name.rstrip('"').strip()
+            hover_text = hover_text.rstrip('"').strip()
+
+            # Figure out what should go in the card.
+            card_content = labels[label_name]
+
+            # Start by building the card div.
+            card_text = ui.Paragraph(text=card_content)
+            card_title = ui.Heading(
+                level=4, cls="card-title justify-center", text=label_name
+            )
+            card_body = ui.Div(cls="card-body", children=[card_title, card_text])
+            card = ui.Div(
+                cls="dropdown-content card card-compact bg-base-300 text-primary-content shadow w-96 z-10",  # noqa: E501
+                children=[card_body],
+            )
+
+            # Now make the dropdown-hover.
+            hover_text_div = ui.Div(
+                tab_index=1,
+                role="button",
+                children=[ui.Code(text=hover_text)],
+            )
+            dropdown_hover = ui.Div(
+                cls="dropdown dropdown-hover",
+                children=[hover_text_div, card],
+            )
+
+            # Render the dropdown hover to html, and put it back in the output.
+            output_lines.append(dropdown_hover.model_dump_html())
+        else:
+            output_lines.append(line)
+
+    # Rebuild the document and return it.
+    return "\n".join(output_lines)
+
+
+def pre_process_remove_labels(markdown: str) -> str:
+    """Remove all !START_LABEL and !END_LABEL lines from the markdown.
+
+    This pre-processor should be applied last, as other pre-processors may depend on
+    these labels.
+    """
+    output_lines = []
+    for line in markdown.split("\n"):
+        if line.startswith(("!START_LABEL", "!END_LABEL")):
+            continue
+        output_lines.append(line)
 
     return "\n".join(output_lines)
 
