@@ -136,8 +136,6 @@ This is just algebra - Taylor expand the potential and compare coefficients.
 
 !START_ADMONITION success Answer
 
-You should find that
-
 $$
 x_0 = 2^{\frac{1}{6}}\sigma,
 ~~~
@@ -610,7 +608,15 @@ Show that the sound velocity is again given by $v_s = \sqrt{\beta^{-1}/\rho}$.
 
 </blockquote>
 
-TODO: add algebra.
+There are a few things to get on with here, but it's all just plugging in numbers to the
+!DROPDOWN_REF "1D diatomic phonon dispersion" "dispersion relation"
+that we derived in the last part.
+
+!START_ADMONITION info Show working
+
+...
+
+!END_ADMONITION
 
 ### Part d
 
