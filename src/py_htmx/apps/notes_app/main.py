@@ -102,6 +102,12 @@ def render_markdown(
     return markdown_string, right_menu
 
 
+@app.get("/js/collapse.js")
+async def get_collapse() -> FileResponse:
+    """Return the collapse.js file."""
+    return FileResponse("js/collapse.js")
+
+
 @app.get(endpoints.css_file)
 async def get_css() -> FileResponse:
     """Return the CSS file."""
