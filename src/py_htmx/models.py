@@ -410,6 +410,7 @@ class Form(HtmlElement):
     """The form element."""
 
     _tag = "form"
+    children: Sequence[HtmlElement] = Field(default_factory=list)
 
 
 class Label(HtmlElement):
