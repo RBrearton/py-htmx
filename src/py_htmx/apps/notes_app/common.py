@@ -1,16 +1,92 @@
 """Define the html component instances used in the notes app."""
 
+from typing import TYPE_CHECKING
+
+from bs4 import BeautifulSoup
+
 import py_htmx.components as c
 import py_htmx.models as ui
 
 from . import element_ids as ids
 from . import endpoint_names as endpoints
 
+if TYPE_CHECKING:
+    from bs4.element import Tag
+
+
+class _H3(ui.PydanticBaseModel):
+    text: str
+    link: str
+    parent: "_H2"
+
+
+class _H2(ui.PydanticBaseModel):
+    text: str
+    link: str
+    children: list["_H3"]
+
+
+class _RightMenuModel(ui.PydanticBaseModel):
+    h1: str
+    h2: list["_H2"]
+
+
+def make_contents_menu(
+    rendered_main_content: str,
+    contents_menu_title: str | None,
+) -> ui.List:
+    """Create a contents menu from the rendered main content.
+
+    This function takes the rendered main content and extracts the headings from it to
+    create a contents menu. The contents menu is a list of links to the headings in the
+    main content.
+    """
+    # Now figure out the contents menu.
+    # Find all of the headings in the rendered markdown.
+    soup = BeautifulSoup(rendered_main_content, "html.parser")
+    headings = soup.find_all(["h2", "h3"])
+
+    # Create a list of (heading_txt, heading_id) tuples that we can turn into a menu.
+    right_menu = _RightMenuModel(h1="Contents", h2=[])
+    for heading in headings:
+        # If this heading doesn't have an id, skip it. It mustn't be a proper heading.
+        # This happens when, for example, headings are put into cards that are revealed
+        # by clicking a button. They'll be headings, sure, but they won't have ids.
+        if "id" not in heading.attrs:
+            continue
+
+        heading: Tag
+        if heading.name == "h2":
+            # Build a new h2 object.
+            right_menu.h2.append(
+                _H2(text=heading.text, link=f"#{heading['id']}", children=[])
+            )
+        elif heading.name == "h3":
+            # Find the parent h2 object.
+            parent_h2 = right_menu.h2[-1]
+            parent_h2.children.append(
+                _H3(text=heading.text, link=f"#{heading['id']}", parent=parent_h2)
+            )
+
+    # Create the right menu.
+    links = []
+    for h2 in right_menu.h2:
+        h3s = [(h3.text, h3.link) for h3 in h2.children]
+        if h3s:
+            links.append((h2.text, h3s))
+        else:
+            links.append((h2.text, h2.link))
+
+    return c.contents_menu(links, contents_menu_title)
+
 
 def make_page(
     main_content: ui.HtmlElement,
     left_drawer_content: ui.HtmlElement,
-    right_drawer_content: ui.HtmlElement,
+    right_drawer_content: ui.HtmlElement | None = None,
+    *,
+    contents_menu_title: str | None = "Contents",
+    auto_right_menu: bool = True,
 ) -> ui.HtmlDocument:
     """Generate a page template.
 
@@ -22,7 +98,24 @@ def make_page(
     main_page = make_page(...)
     main_page.get("main_content_div").children = [ui.Label(text="Hello, world!")]
     ```
+
+    The auto_right_menu parameter, when set to True (the default), will automatically
+    make a contents menu for your page and place it in the right drawer. If you want to
+    set it manually, set this parameter to False and pass the right_drawer_content
+    parameter as an argument.
     """
+    # region Right menu generation
+    if auto_right_menu:
+        right_drawer_content = make_contents_menu(
+            main_content.model_dump_html(), contents_menu_title
+        )
+
+    # Make sure that we can at least put an empty div in the right drawer.
+    if right_drawer_content is None:
+        right_drawer_content = ui.Div()
+
+    # endregion
+    # region Header
     site_title = "Notes"
     light_theme_name = "notes_light"
     dark_theme_name = "notes_dark"
@@ -55,7 +148,7 @@ def make_page(
         children=[ui.HtmlElement(data_theme=light_theme_name)],
         raw_inner_html=header_html,
     )
-
+    # endregion
     # region Icons
 
     _main_icon_path = ui.Path(
