@@ -428,7 +428,7 @@ class List(HtmlElement):
     children: Sequence[HtmlElement] = Field(default_factory=list)
 
     def vstack(self, other: Self) -> None:
-        """Build a new list with the children of both lists.
+        """Add the children of another list to this list.
 
         This method keeps all the attributes of the list on which you're calling it,
         ignoring the attributes of the other list.
