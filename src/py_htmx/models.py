@@ -406,6 +406,12 @@ class Input(HtmlElement):
         )
 
 
+class Form(HtmlElement):
+    """The form element."""
+
+    _tag = "form"
+
+
 class Label(HtmlElement):
     """The label element."""
 
