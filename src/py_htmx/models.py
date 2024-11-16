@@ -384,6 +384,7 @@ class Input(HtmlElement):
     value: str | float | int | None = None
     min: float | int | None = None
     max: float | int | None = None
+    step: float | None = None
     on_click: str | None = None
     placeholder: str | None = None
     required: bool | None = None
@@ -396,6 +397,7 @@ class Input(HtmlElement):
             "value": str(self.value),
             "min": str(self.min),
             "max": str(self.max),
+            "step": str(self.step),
             "placeholder": self.placeholder,
             "required": self.required,
             "onclick": self.on_click,
