@@ -381,7 +381,9 @@ class Input(HtmlElement):
         "range",
         "search",
     ]
-    value: str | None = None
+    value: str | float | int | None = None
+    min: float | int | None = None
+    max: float | int | None = None
     on_click: str | None = None
     placeholder: str | None = None
     required: bool | None = None
@@ -391,7 +393,9 @@ class Input(HtmlElement):
         parent_str = super()._attributes_str()
         attributes = {
             "type": self.type,
-            "value": self.value,
+            "value": str(self.value),
+            "min": str(self.min),
+            "max": str(self.max),
             "placeholder": self.placeholder,
             "required": self.required,
             "onclick": self.on_click,
