@@ -58,7 +58,7 @@ def render_markdown(
             md.render_dropdown_refs,
             md.pre_process_remove_labels,
         ],
-        post_processors=[md.post_process_math],
+        post_processors=[md.post_process_math, md.post_process_dropdowns],
     )
 
     # Now figure out the contents menu.
@@ -183,7 +183,6 @@ async def get_b6_ps2() -> HTMLResponse:
         left_drawer_content=physics_left_drawer(),
         right_drawer_content=right_menu,
     )
-    print(main_page.model_dump_html())
     return HTMLResponse(content=main_page.model_dump_html())
 
 
