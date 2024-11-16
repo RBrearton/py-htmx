@@ -189,8 +189,9 @@ def post_process_dropdowns(html: str) -> str:
     in the middle of a paragraph, we often end up with a line break in the middle of a
     sentence.
 
-    The way to get around this is to find all the <p> elements that contain a dropdown,
-    and
+    The way to get around this is to find all the <p> elements that surround one of our
+    dropdown-hover elements, and change them to <span> elements, which are the same as
+    <p> elements, but without the line break.
     """
     soup = BeautifulSoup(html, "html.parser")
 
@@ -198,15 +199,18 @@ def post_process_dropdowns(html: str) -> str:
     for div in soup.find_all("div", class_="dropdown dropdown-hover"):
         # Help with the type hinting.
         div: BeautifulSoup
-        style = div.get("style", "")
 
-        # This shouldn't return a list, but it's type hinted that it might, so I'm
-        # checking just in case.
-        if isinstance(style, list):
-            style = style[0]
+        # If the previous sibling is a <p> tag, we should change it to a <span> tag to
+        # avoid the line break.
+        previous_sibling = div.find_previous_sibling()
+        if previous_sibling is not None and previous_sibling.name == "p":
+            previous_sibling.name = "span"
 
-        # Add the display: inline-block; style to the dropdown div.
-        div["style"] = style + " display: inline-block;"
+        # If the next sibling is a <p> tag, we should change it to a <span> tag to avoid
+        # the line break.
+        next_sibling = div.find_next_sibling()
+        if next_sibling is not None and next_sibling.name == "p":
+            next_sibling.name = "span"
 
     return str(soup)
 
