@@ -1,11 +1,14 @@
 """Define the html component instances used in the notes app."""
 
+from functools import lru_cache
 from typing import TYPE_CHECKING
 
 from bs4 import BeautifulSoup
 
 import py_htmx.components as c
+import py_htmx.markdown as md
 import py_htmx.models as ui
+from py_htmx.apps.notes_app.config import config
 
 from . import element_ids as ids
 from . import endpoint_names as endpoints
@@ -29,6 +32,26 @@ class _H2(ui.PydanticBaseModel):
 class _RightMenuModel(ui.PydanticBaseModel):
     h1: str
     h2: list["_H2"]
+
+
+@lru_cache
+def render_markdown(file_name: str) -> str:
+    """Read the markdown file with the given name, and render it to an html string.
+
+    This function returns a tuple of the rendered markdown string and the right menu.
+    """
+    markdown_txt = (config.markdown_files_dir / file_name).read_text()
+
+    # Render the markdown file as an html string.
+    return md.render_markdown(
+        markdown_txt,
+        pre_processors=[
+            md.render_admonitions,
+            md.render_dropdown_refs,
+            md.pre_process_remove_labels,
+        ],
+        post_processors=[md.post_process_math, md.post_process_dropdowns],
+    )
 
 
 def make_contents_menu(
@@ -81,7 +104,7 @@ def make_contents_menu(
 
 
 def make_page(
-    main_content: ui.HtmlElement,
+    main_content: ui.HtmlElement | str,
     left_drawer_content: ui.HtmlElement,
     right_drawer_content: ui.HtmlElement | None = None,
     *,
@@ -104,6 +127,12 @@ def make_page(
     set it manually, set this parameter to False and pass the right_drawer_content
     parameter as an argument.
     """
+    # If we're given our main content as a string, wrap it up as an article.
+    if isinstance(main_content, str):
+        main_content = ui.Article(
+            cls="prose !max-w-[850px]", raw_inner_html=render_markdown("index.md")
+        )
+
     # region Right menu generation
     if auto_right_menu:
         right_drawer_content = make_contents_menu(
