@@ -130,7 +130,7 @@ def make_page(
     # If we're given our main content as a string, wrap it up as an article.
     if isinstance(main_content, str):
         main_content = ui.Article(
-            cls="prose !max-w-[850px]", raw_inner_html=render_markdown("index.md")
+            cls="prose !max-w-[850px]", raw_inner_html=main_content
         )
 
     # region Right menu generation
