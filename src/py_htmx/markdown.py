@@ -3,6 +3,7 @@
 from collections.abc import Callable
 
 import markdown2 as md
+from bs4 import BeautifulSoup
 
 from . import models as ui
 
@@ -178,6 +179,36 @@ def pre_process_remove_labels(markdown: str) -> str:
         output_lines.append(line)
 
     return "\n".join(output_lines)
+
+
+def post_process_dropdowns(html: str) -> str:
+    """Improve the formatting of dropdowns in paragraphs.
+
+    When we render our markdown, a lot of hover dropdowns will appear in the middle of
+    paragraphs. Because the </p> normally leads to a line break, when we insert a <div>
+    in the middle of a paragraph, we often end up with a line break in the middle of a
+    sentence.
+
+    The way to get around this is to find all the <p> elements that contain a dropdown,
+    and
+    """
+    soup = BeautifulSoup(html, "html.parser")
+
+    # Find all the divs that are our dropdown hover references.
+    for div in soup.find_all("div", class_="dropdown dropdown-hover"):
+        # Help with the type hinting.
+        div: BeautifulSoup
+        style = div.get("style", "")
+
+        # This shouldn't return a list, but it's type hinted that it might, so I'm
+        # checking just in case.
+        if isinstance(style, list):
+            style = style[0]
+
+        # Add the display: inline-block; style to the dropdown div.
+        div["style"] = style + " display: inline-block;"
+
+    return str(soup)
 
 
 def post_process_math(html: str) -> str:
