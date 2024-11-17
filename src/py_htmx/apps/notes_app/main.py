@@ -115,14 +115,6 @@ async def get_diatomic_dispersion_plot(mass_1: float, mass_2: float) -> HTMLResp
         interatomic_distance,
         is_optical=False,
     )
-    dispersion_optical = fn.diatomic_dispersion(
-        wavevectors,
-        spring_const,
-        mass_1,
-        mass_2,
-        interatomic_distance,
-        is_optical=True,
-    )
 
     # Also calculate the optical branch for the extended zone scheme.
     extended_wavevectors_1 = np.linspace(
@@ -158,30 +150,41 @@ async def get_diatomic_dispersion_plot(mass_1: float, mass_2: float) -> HTMLResp
             y=dispersion_acoustic,
             mode="lines",
             name="acoustic",
-            line={"color": "#1f77b4"},  # Use a consistent color scheme
+            line={"color": "lightblue"},
         )
     )
 
-    # Add optical-reduced branch
-    fig.add_trace(
-        go.Scatter(
-            x=wavevectors,
-            y=dispersion_optical,
-            mode="lines",
-            name="optical",
-            line={"color": "#ff7f0e"},  # Use a consistent color scheme
+    # Add the optical branch, if the masses are different.
+    if mass_1 != mass_2:
+        dispersion_optical = fn.diatomic_dispersion(
+            wavevectors,
+            spring_const,
+            mass_1,
+            mass_2,
+            interatomic_distance,
+            is_optical=True,
         )
-    )
+        fig.add_trace(
+            go.Scatter(
+                x=wavevectors,
+                y=dispersion_optical,
+                mode="lines",
+                name="optical",
+                line={"color": "orange"},  # Use a consistent color scheme
+            )
+        )
 
-    # Add optical-extended-1 branch
+    # Add optical-extended-1 branch. Note that this is actually acoustic if the masses
+    # are the same.
+    legend_name = "optical-extended" if mass_1 != mass_2 else "also-acoustic"
     fig.add_trace(
         go.Scatter(
             x=extended_wavevectors_1,
             y=dispersion_optical_extended_1,
             mode="lines",
-            name="optical-extended",
-            legendgroup="optical-extended",
-            line={"color": "#2ca02c", "dash": "dot"},  # Use a consistent color scheme
+            name=legend_name,
+            legendgroup=legend_name,
+            line={"color": "powderblue", "dash": "dot"},
         )
     )
 
@@ -191,10 +194,10 @@ async def get_diatomic_dispersion_plot(mass_1: float, mass_2: float) -> HTMLResp
             x=extended_wavevectors_2,
             y=dispersion_optical_extended_2,
             mode="lines",
-            name="optical-extended",
-            legendgroup="optical-extended",
+            name=legend_name,
+            legendgroup=legend_name,
             showlegend=False,  # Hide the second legend entry
-            line={"color": "#2ca02c", "dash": "dot"},  # Use a consistent color scheme
+            line={"color": "powderblue", "dash": "dot"},
         )
     )
 
