@@ -171,7 +171,9 @@ def make_page(
       localStorage.setItem('theme', theme);
     }}
   </script>
-  <script src="/js/collapse.js"></script>"""
+  <script src="/js/collapse.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://unpkg.com/htmx.org@1.6.1"></script>"""
     html_header = ui.Head(
         title=ui.Title(text=site_title),
         children=[ui.HtmlElement(data_theme=light_theme_name)],
