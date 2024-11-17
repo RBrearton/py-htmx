@@ -696,12 +696,15 @@ How many branches of excitation are there? In other words, how many excitations 
 
 </blockquote>
 
-Well, I already plotted the dispersion relation in part c, so... see above!
+Well, I already plotted the dispersion relation, so... see above!
 If there are $N$ unit cells, there are $2N$ different normal modes, because there are two atoms per unit cell and so $2N$ degrees of freedom.
 
 As for the branches, there are two branches of excitation at each $k$ in the reduced zone scheme (see the plot).
 This is because there's two atoms in the unit cell.
-If we
+
+If we had 3 atoms in the unit cell, we'd have 3 branches of excitation at each $k$ in the reduced zone scheme.
+One of these branches would be acoustic, and the other two would be optical.
+We could never have more than 1 acoustic mode, because there's only one way to make all the atoms move in phase.
 
 ### Part e
 
@@ -715,6 +718,8 @@ The optical modes disappear, as the two atoms are indistinguishable.
 The gap between the acoustic and optical modes at the Brillouin zone boundary closes.
 The new lattice constant is $a/2$.
 We have one mode per $k$, but our Brillouin zone is now twice as big, so the total number of modes is the same (as we haven't gained or lost any degrees of freedom).
+
+You can play around with the plot to see this in action.
 
 ## Q7: The tight-binding model
 
