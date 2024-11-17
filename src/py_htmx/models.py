@@ -389,6 +389,7 @@ class Input(HtmlElement):
     placeholder: str | None = None
     required: bool | None = None
     checked: bool | None = None
+    on_input: str | None = None
 
     def _attributes_str(self) -> str:
         parent_str = super()._attributes_str()
@@ -402,6 +403,7 @@ class Input(HtmlElement):
             "required": self.required,
             "onclick": self.on_click,
             "checked": self.checked,
+            "oninput": self.on_input,
         }
         return parent_str + " ".join(
             _format_attribute(key, value) for key, value in attributes.items() if value
