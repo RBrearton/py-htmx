@@ -669,4 +669,12 @@ class Code(HtmlElement):
     children: Sequence[HtmlElement] = Field(default_factory=list)
 
 
+class Output(HtmlElement):
+    """The output element."""
+
+    _tag = "output"
+    text: str | None = None
+    children: Sequence[HtmlElement] = Field(default_factory=list)
+
+
 # endregion
