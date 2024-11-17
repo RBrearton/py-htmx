@@ -356,6 +356,7 @@ The second part only requires a small amount of algebra.
 
 !START_ADMONITION info Show working
 
+!START_LABEL State spacing
 From periodic boundary conditions, we have
 
 $$
@@ -380,6 +381,7 @@ This means that the spacing between adjacent $k$ states is
 $$
 \Delta k = \frac{2\pi}{Na} \, .
 $$
+!END_LABEL
 
 Noting that $L = Na$, that means $\Delta k = 2\pi / L$.
 
@@ -745,6 +747,83 @@ What's the spin susceptibility if the material is divalent?
 
 </blockquote>
 
-TODO: add algebra and plotly plots.
+The derivation of the dispersion relation is covered nicely in Steve Simon's book - I'd recommend following that.
+I'm not going to include the plot, because it's just a cosine function.
+The dispersion relation that we should derive is
+
+!START_ADMONITION success Answer
+
+!START_LABEL Monatomic tight-binding dispersion
+$$
+E = \epsilon - 2t \cos(ka)
+$$
+!END_LABEL
+
+!END_ADMONITION
+
+There are $N$ wavevector eigenstates, so, including spin, there are $2N$ eigenstates in the system.
+
+Let's calculate the density of states.
+
+!START_ADMONITION info Show working
+
+Let's search for $g(E)$, the density of states per energy.
+Using the
+!DROPDOWN_REF "State spacing" "spacing between adjacent $k$-states"
+gives us
+
+$$
+g(E) = \frac{dN}{dk} \frac{dk}{dE} = 4\, \frac{Na}{2\pi} \frac{dk}{dE} \, ,
+$$
+
+where the factor of 4 comes from the spin degeneracy, and the fact that both $k$ and $-k$ give the same energy.
+We can then differentiate the
+!DROPDOWN_REF "Monatomic tight-binding dispersion" "dispersion relation"
+to get
+
+!START_LABEL Monatomic density of states
+$$
+g(E) = \frac{N}{\pi t} \frac{1}{\sqrt{1 - \left(\frac{E - \epsilon}{2t}\right)^2}} \, .
+$$
+!END_LABEL
+!END_ADMONITION
+
+To figure out the density of states at the Fermi energy, we need to understand that a monovalent atom would exactly half-fill the band, as there are a total of $2N$ states that can be occupied by electrons.
+
+That means that the highest occupied state is at $k =\pm \frac{\pi}{2a}$.
+Subbing this into the
+!DROPDOWN_REF "Monatomic tight-binding dispersion" "dispersion relation"
+gives
+
+!START_ADMONITION success Answer
+!START_LABEL Fermi surface density of states
+$$
+g(E_F) = \frac{N}{\pi t} \, .
+$$
+!END_LABEL
+!END_ADMONITION
+
+To estimate the heat capacity at low temperature, we should remember from last week that, for an electron gas, the heat capacity per particle is
+
+$$
+C = \gamma k_B^2 g(E_F) T \, ,
+$$
+
+where $\gamma$ is a constant of order unity.
+
+!START_ADMONITION success Answer
+
+To solve the problem, all we need to do is sub in our expression for
+!DROPDOWN_REF "Fermi surface density of states" "$g(E_F)$"
+to get
+
+$$
+C = \gamma k_B^2 \frac{N}{\pi t} T \, .
+$$
+
+!END_ADMONITION
+
+Finally, if the material is divalent, the band will be completely filled.
+This means that the heat capacity will be very large at low temperatures, and the spin susceptibility will be very small, because there are no states available for electrons to move into.
 
 ### Part b
