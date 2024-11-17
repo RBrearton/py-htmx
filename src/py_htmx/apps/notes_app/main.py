@@ -271,7 +271,7 @@ async def get_b6_ps2() -> HTMLResponse:
         min=min_value,
         max=max_value,
         value=mass_2_start,
-        cls="range",
+        cls="range range-secondary",
         id="mass_2_input",
         step=input_step,
         on_input="mass_2_output.value = mass_2_input.value",
