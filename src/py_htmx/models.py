@@ -165,6 +165,47 @@ class HtmlElement(PydanticBaseModel):
             "aria-label": self.aria_label,
             "data-theme": self.data_theme,
             "role": self.role,
+            "hx-get": self.hx_get,
+            "hx-post": self.hx_post,
+            "hx-put": self.hx_put,
+            "hx-patch": self.hx_patch,
+            "hx-delete": self.hx_delete,
+            "hx-swap": self.hx_swap,
+            "hx-trigger": self.hx_trigger,
+            "hx-boost": self.hx_boost,
+            "hx-select": self.hx_select,
+            "hx-target": self.hx_target,
+            "hx-history-push": self.hx_history_push,
+            "hx-history-replace": self.hx_history_replace,
+            "hx-swap-oob": self.hx_swap_oob,
+            "hx-include": self.hx_include,
+            "hx-exclude": self.hx_exclude,
+            "hx-verb": self.hx_verb,
+            "hx-confirm": self.hx_confirm,
+            "hx-confirm-class": self.hx_confirm_class,
+            "hx-confirm-id": self.hx_confirm_id,
+            "hx-confirm-prompt": self.hx_confirm_prompt,
+            "hx-confirm-unload": self.hx_confirm_unload,
+            "hx-encoding": self.hx_encoding,
+            "hx-target-attr": self.hx_target_attr,
+            "hx-indicate": self.hx_indicate,
+            "hx-loading": self.hx_loading,
+            "hx-sse": self.hx_sse,
+            "hx-push-url": self.hx_push_url,
+            "hx-swap-history": self.hx_swap_history,
+            "hx-disable": self.hx_disable,
+            "hx-heartbeat": self.hx_heartbeat,
+            "hx-poll": self.hx_poll,
+            "hx-fallback": self.hx_fallback,
+            "hx-fallback-duration": self.hx_fallback_duration,
+            "hx-fallback-reconnect": self.hx_fallback_reconnect,
+            "hx-auto-refresh": self.hx_auto_refresh,
+            "hx-auto-refresh-offline": self.hx_auto_refresh_offline,
+            "hx-target-duration": self.hx_target_duration,
+            "hx-cleanup": self.hx_cleanup,
+            "hx-validation": self.hx_validation,
+            "hx-ignore": self.hx_ignore,
+            "hx-immediate": self.hx_immediate,
         }
         return " ".join(
             _format_attribute(key, value) for key, value in attributes.items() if value
@@ -389,6 +430,7 @@ class Input(HtmlElement):
     placeholder: str | None = None
     required: bool | None = None
     checked: bool | None = None
+    name: str | None = None
     on_input: str | None = None
 
     def _attributes_str(self) -> str:
@@ -403,6 +445,7 @@ class Input(HtmlElement):
             "required": self.required,
             "onclick": self.on_click,
             "checked": self.checked,
+            "name": self.name,
             "oninput": self.on_input,
         }
         return parent_str + " ".join(
