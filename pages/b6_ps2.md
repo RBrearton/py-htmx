@@ -825,5 +825,3 @@ $$
 
 Finally, if the material is divalent, the band will be completely filled.
 This means that the heat capacity will be very large at low temperatures, and the spin susceptibility will be very small, because there are no states available for electrons to move into.
-
-### Part b
