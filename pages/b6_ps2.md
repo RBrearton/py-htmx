@@ -609,12 +609,78 @@ Show that the sound velocity is again given by $v_s = \sqrt{\beta^{-1}/\rho}$.
 </blockquote>
 
 There are a few things to get on with here, but it's all just plugging in numbers to the
-!DROPDOWN_REF "1D diatomic phonon dispersion" "dispersion relation"
+!DROPDOWN_REF "1D diatomic phonon dispersion" "dispersion"
 that we derived in the last part.
+
+Let's start by plotting the dispersion relation, to get a feel for what's going on.
+
+!DIATOMIC_DISPERSION_PLOT
 
 !START_ADMONITION info Show working
 
-...
+As we can see from the plot, for the acoustic mode $\omega(k=0) = 0$.
+Subbing in $k=0$ into the
+!DROPDOWN_REF "1D diatomic phonon dispersion" "dispersion"
+gives
+
+$$
+\omega(k=0) = \sqrt{\frac{2\kappa(m_1 + m_2)}{m_1 m_2}}
+$$
+
+Now, evaluating the dispersion relation at the Brillouin zone boundary gives
+
+$$
+\omega^2(k=\frac{\pi}{a}) = \frac{\kappa}{m_1 m_2} \left(m_1 + m_2 \pm (m_1 - m_2)\right) \, ,
+$$
+
+which gives us two distinct modes at the Brillouin zone boundary
+
+$$
+\omega_1 = \sqrt{\frac{2\kappa }{m_1}} \, , ~~~ \omega_2 = \sqrt{\frac{2\kappa }{ m_2}} \, .
+$$
+
+Now let's look at the sound velocity.
+This is just the group velocity at $k=0$.
+The trick here is to make $k$ small *before* taking the derivative, so replace $\sin^2\left(\frac{ka}{2}\right)$ with $\left(\frac{ka}{2}\right)^2$ in the
+!DROPDOWN_REF "1D diatomic phonon dispersion" "dispersion relation"
+, and you end up with
+
+$$
+\omega = ka\sqrt{\frac{\kappa}{2(m_1 + m_2)}} \, ,
+$$
+
+where we've of course taken the acoustic branch.
+This means that the sound velocity is
+
+$$
+v_s = a\sqrt{\frac{\kappa}{2(m_1 + m_2)}} \, .
+$$
+
+Now we need to show that the group velocity is zero at the Brillouin zone boundary.
+This is obvious from the plot - however we change the values of $m_1$ and $m_2$, so long as they're different, the dispersion relation flattens out at the Brillouin zone boundary.
+
+Doing this mathematically is as simple as expanding the dispersion relation around $k=\pi/a$, and showing that it's quadratic in $k$.
+This is pretty clear from the fact that we're basically expanding $\sin{x}$ around $\pi/2$, where it's stationary.
+
+Finally, we need to show that the sound velocity is given by $v_s = \sqrt{\beta^{-1}/\rho}$ again.
+This time, we have
+
+$$
+\rho = \frac{m_1 + m_2}{a} \, ,
+$$
+
+and
+
+$$
+\beta = -\frac{1}{L} \frac{\partial L}{\partial F} = \frac{2}{\kappa a}
+$$
+
+as the compressibility of 2 sprigs in series is half the compressibility of a single spring.
+This gives us once again
+
+$$
+\sqrt{\frac{1}{\beta \rho}} = a\sqrt{\frac{\kappa}{2(m_1 + m_2)}} = v_s \, .
+$$
 
 !END_ADMONITION
 
@@ -630,7 +696,12 @@ How many branches of excitation are there? In other words, how many excitations 
 
 </blockquote>
 
-TODO: add algebra and plotly plots.
+Well, I already plotted the dispersion relation in part c, so... see above!
+If there are $N$ unit cells, there are $2N$ different normal modes, because there are two atoms per unit cell and so $2N$ degrees of freedom.
+
+As for the branches, there are two branches of excitation at each $k$ in the reduced zone scheme (see the plot).
+This is because there's two atoms in the unit cell.
+If we
 
 ### Part e
 
@@ -672,19 +743,3 @@ What's the spin susceptibility if the material is divalent?
 TODO: add algebra and plotly plots.
 
 ### Part b
-
-<blockquote>
-
-Now consider a diatomic system with different on-site energies $\epsilon_A$ and $\epsilon_B$. What's the dispersion relation?
-
-Sketch the dispersion relation in the reduced and extended zone schemes.
-
-What happens when $t$ becomes very small?
-
-What's the effective mass of an electron near the bottom of the lower band?
-
-If each atom is monovalent, is the material a metal or an insulator?
-
-What happens if $\epsilon_A = \epsilon_B$?
-
-</blockquote>
