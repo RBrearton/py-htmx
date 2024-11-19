@@ -22,6 +22,10 @@
     {/each}
   </nav>
   {#each routes as route}
-    <Route path={route.path} component={NotesPage} props={{ pageTitle: route.name }} />
+    <Route
+      path={route.path}
+      component={NotesPage}
+      props={{ pageTitle: route.name, path: route.path }}
+    />
   {/each}
 </Router>
