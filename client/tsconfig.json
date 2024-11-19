@@ -16,6 +16,10 @@
     "isolatedModules": true,
     "moduleDetection": "force"
   },
-  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
+  "include": [
+    "../client/src/**/*.ts",
+    "../client/src/**/*.js",
+    "../client/src/**/*.svelte"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
