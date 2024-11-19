@@ -8,9 +8,9 @@
 <div class="navbar-start">
   <div class="flex flex-row">
     <!-- The main site icon.  We use google material icons for this. -->
-    <i class="material-icons text-primary-content">school</i>
+    <i class="material-icons text-primary-content px-5">school</i>
 
     <!-- The main site title. -->
-    <NavBarHeading {title} />
+    <NavBarHeading {title} isPadded={false} />
   </div>
 </div>
