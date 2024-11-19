@@ -1,11 +1,35 @@
 <!-- This is the highest level component in the app. One of these is a full page. -->
-<script>
+<script lang="ts">
+  import { onMount } from "svelte";
   import Drawer from "./Drawer.svelte";
   import Footer from "./Footer.svelte";
   import NavBar from "./NavBar.svelte";
 
   const siteTitle = "Notes";
   export let pageTitle;
+  export let path;
+
+  // Make some interfaces for the contents of the drawers.
+  interface MenuItem {
+    text: string;
+    route: string;
+    children?: MenuItem[];
+  }
+  interface RightMenu {
+    route: string;
+    children: MenuItem[];
+  }
+
+  // let leftDrawerContent: RightMenu = { route: "", children: [] };
+  let rightDrawerContent: RightMenu = { route: "", children: [] };
+
+  // Fetch the left drawer content from the server.
+  onMount(async () => {
+    // The path to the endpoints are:
+    // /api/path/left_drawer and /api/path/right_drawer
+    const rightDrawerResponse = await fetch(`/api${path}/right_drawer`);
+    rightDrawerContent = await rightDrawerResponse.json();
+  });
 </script>
 
 <NavBar lightThemeName="notes_light" darkThemeName="notes_dark" {siteTitle} />
