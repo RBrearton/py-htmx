@@ -1,7 +1,7 @@
 *.pyc
-package.json
 package-lock.json
 node_modules
 styles.css
 response.html
 *.ipynb
+dist/

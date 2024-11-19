@@ -35,4 +35,4 @@ unfixable = ["F401"]                                              # Ignore unuse
 dev = ["fastapi>=0.115.3", "ipykernel>=6.29.5", "uvicorn>=0.32.0"]
 
 [project.scripts]
-notes = "py_htmx.apps.notes_app.main:main"
+notes = "py_htmx.main:main"
