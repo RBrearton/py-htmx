@@ -8,7 +8,7 @@
 <div class="navbar-start">
   <div class="flex flex-row">
     <!-- The main site icon.  We use google material icons for this. -->
-    <i class="material-icons text-primary-content">notes</i>
+    <i class="material-icons text-primary-content">school</i>
 
     <!-- The main site title. -->
     <NavBarHeading {title} />
