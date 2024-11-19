@@ -18,8 +18,10 @@ class Config(BaseSettings):
     port: int = 10_000  # 10,000 is the default port for Render.
     hostname: str = "0.0.0.0"  # noqa: S104, because I don't understand the warning...
     auto_reload: bool = False
+    pages_path: DirectoryPath = Path("./pages/")
+    client_path: DirectoryPath = Path("./client/dist/")
 
     model_config = SettingsConfigDict(env_prefix="notes_")
 
 
-config = Config()
+parsed_config = Config()
