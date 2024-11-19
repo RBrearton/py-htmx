@@ -1,4 +1,5 @@
 <script>
+  import { Link } from "svelte-routing";
   import NavBarHeading from "./NavBarHeading.svelte";
 
   // Take one prop for the text, another for the route.
@@ -6,6 +7,6 @@
   export let route;
 </script>
 
-<a class="btn btn-ghost" href={route}>
+<Link class="btn btn-ghost" to={route}>
   <NavBarHeading title={text} isPadded={false} />
-</a>
+</Link>
