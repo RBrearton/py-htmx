@@ -6,7 +6,7 @@ from functools import lru_cache
 import uvicorn
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, HTMLResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from py_htmx.config import parsed_config as config
 
@@ -68,6 +68,33 @@ class Topic(BaseModel):
     name: str
 
 
+class MenuItem(BaseModel):
+    """Contains information about a particular menu item."""
+
+    text: str = Field(..., description="The text to display in the menu.")
+    route: str | None = Field(
+        ...,
+        description=(
+            "The route that the menu item links to. If None, this doesn't link to "
+            "anything."
+        ),
+    )
+    children: list["MenuItem"] = Field(
+        default=[], description="Any children of this menu item."
+    )
+
+
+class RightMenu(BaseModel):
+    """Contains information relating to the right menu of a page."""
+
+    route: str = Field(
+        ..., description="The route of the page that the right menu is for."
+    )
+    heading: str = Field(
+        default="Contents", description="The main heading for the menu."
+    )
+
+
 # endregion
 # region API
 
@@ -108,6 +135,12 @@ async def get_routes() -> list[str]:
         routes.append(route)
 
     return routes
+
+
+@app.get("/api/{route:path}/right_menu", tags=["api"])
+async def get_right_menu(route: str) -> dict[str, str]:
+    """Return the right menu for the given route."""
+    return {"route": route}
 
 
 # endregion
