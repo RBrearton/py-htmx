@@ -4,7 +4,7 @@
   import Footer from "./Footer.svelte";
   import NavBar from "./NavBar.svelte";
 
-  export let siteTitle;
+  const siteTitle = "Notes";
   export let pageTitle;
 </script>
 

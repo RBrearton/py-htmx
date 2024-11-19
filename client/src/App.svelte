@@ -1,5 +1,7 @@
 <script lang="ts">
   import NotesPage from "./components/NotesPage.svelte";
+  import Router from "./components/Router.svelte";
 </script>
 
-<NotesPage siteTitle="Notes" pageTitle="Home" />
+<Router />
+<NotesPage pageTitle="Home" />
