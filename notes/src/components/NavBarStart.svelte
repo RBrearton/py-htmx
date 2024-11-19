@@ -1,4 +1,6 @@
 <script>
+  import NavBarHeading from "./NavBarHeading.svelte";
+
   // Make a prop called 'title' for our site title.
   export let title;
 </script>
@@ -9,8 +11,6 @@
     <i class="material-icons text-primary-content">notes</i>
 
     <!-- The main site title. -->
-    <h4 class="text-primary-content">
-      {title}
-    </h4>
+    <NavBarHeading {title} />
   </div>
 </div>
