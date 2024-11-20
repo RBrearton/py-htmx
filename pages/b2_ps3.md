@@ -4,7 +4,7 @@
 
 ## Q1: Evaluation of derivatives for a four-vector field
 
-This question is all about practicing taKing derivatives of a four-vector.
+This question is all about practicing taking derivatives of a four-vector.
 We're told that $F^\mu$ is given by
 
 !START_LABEL Q1 field
@@ -65,7 +65,7 @@ X^\lambda \partial^\mu X_\lambda =  X^\lambda \delta^\mu_\lambda = X^\mu \, ,
 $$
 
 which is easy enough.
-We can reuse this tricK by inserting the metric tensor into the other term and using the product rule, as follows:
+We can reuse this trick by inserting the metric tensor into the other term and using the product rule, as follows:
 
 $$
 X_\lambda \partial^\mu X^\lambda
@@ -97,7 +97,7 @@ $$
 
 We can use the
 !DROPDOWN_REF "Gradient of the dot product" "dot product gradient rule"
-that we just derived to maKe this quite trivial.
+that we just derived to make this quite trivial.
 
 !START_ADMONITION success Answer
 
@@ -171,7 +171,7 @@ $$
 $$
 </blockquote>
 
-This one is a bit more tricKy, but we've built up the tools we need to tacKle it.
+This one is a bit more tricky, but we've built up the tools we need to tackle it.
 
 !START_ADMONITION info Show working
 
