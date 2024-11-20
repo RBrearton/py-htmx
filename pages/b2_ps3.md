@@ -24,11 +24,11 @@ Evaluate the following:
 
 ### Part a
 
-<blocKquote>
+<blockquote>
 $$
 \partial_\lambda X^\lambda
 $$
-</blocKquote>
+</blockquote>
 
 This is the divergence of the position four-vector.
 
@@ -42,11 +42,11 @@ $$
 
 ### Part b
 
-<blocKquote>
+<blockquote>
 $$
 \partial^\mu (X_\lambda X^\lambda)
 $$
-</blocKquote>
+</blockquote>
 
 This one requires a bit more working.
 
@@ -89,11 +89,11 @@ $$
 
 ### Part c
 
-<blocKquote>
+<blockquote>
 $$
 \partial^\mu \partial_\mu X^\nu X_\nu
 $$
-</blocKquote>
+</blockquote>
 
 We can use the
 !DROPDOWN_REF "Gradient of the dot product" "dot product gradient rule"
@@ -121,11 +121,11 @@ $$
 
 ### Part d
 
-<blocKquote>
+<blockquote>
 $$
 \partial^\mu X^\nu
 $$
-</blocKquote>
+</blockquote>
 
 Once again, we're going to insert the metric tensor to get this one quite easily.
 
@@ -139,11 +139,11 @@ $$
 
 ### Part e
 
-<blocKquote>
+<blockquote>
 $$
 \partial_\lambda F^\lambda
 $$
-</blocKquote>
+</blockquote>
 
 Subbing in the expression for the
 !DROPDOWN_REF "Q1 field" "four-vector field"
@@ -165,11 +165,11 @@ $$
 
 ### Part f
 
-<blocKquote>
+<blockquote>
 $$
 \partial^\mu \partial_\mu \sin \left( K_\lambda X^\lambda \right)
 $$
-</blocKquote>
+</blockquote>
 
 This one is a bit more tricKy, but we've built up the tools we need to tacKle it.
 
