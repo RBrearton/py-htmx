@@ -68,7 +68,7 @@ We can reuse this trick by inserting the metric tensor into the other term and u
 $$
 X_\lambda \partial^\mu X^\lambda
 =
-X_\lambda \left( \partial^\mu g^{\lambda \nu} x_\nu \right)
+X_\lambda \left( \partial^\mu g^{\lambda \nu} X_\nu \right)
 =
 X_\lambda g^{\lambda \mu}
 =
@@ -77,8 +77,42 @@ $$
 
 This means that, overall, we have
 
+!START_LABEL Gradient of the dot product
 $$
 \partial^\mu (X_\lambda X^\lambda) = 2X^\mu \, .
+$$
+!END_LABEL
+
+!END_ADMONITION
+
+### Part c
+
+<blockquote>
+$$
+\partial^\mu \partial_\mu X^\nu X_\nu
+$$
+</blockquote>
+
+We can use the
+!DROPDOWN_REF "Gradient of the dot product" "dot product gradient rule"
+that we just derived to make this quite trivial.
+
+!START_ADMONITION success Answer
+
+$$
+\partial^\mu \partial_\mu X^\nu X_\nu
+=
+\partial_\mu \left[
+    \partial^\mu \left(
+        X^\nu X_\nu
+    \right)
+\right]
+=
+\partial_\mu \left(
+    2X^\mu
+\right)
+=
+8
 $$
 
 !END_ADMONITION
