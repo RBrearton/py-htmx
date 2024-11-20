@@ -328,6 +328,16 @@ async def get_b6_ps1() -> HTMLResponse:
     return HTMLResponse(content=main_page.model_dump_html())
 
 
+@app.get(endpoints.b2_ps3)
+async def get_b2_ps3() -> HTMLResponse:
+    """Return the page for B2 problem set 3."""
+    main_page = make_page(
+        main_content=render_markdown("b2_ps3.md"),
+        left_drawer_content=physics_left_drawer(),
+    )
+    return HTMLResponse(content=main_page.model_dump_html())
+
+
 @app.get(endpoints.physics)
 async def get_physics() -> HTMLResponse:
     """Return the physics section."""
