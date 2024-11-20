@@ -145,7 +145,7 @@ $$
 $$
 </blocKquote>
 
-Subbing in the eXpression for the
+Subbing in the expression for the
 !DROPDOWN_REF "Q1 field" "four-vector field"
 and once again using the
 !DROPDOWN_REF "Gradient of the dot product" "gradient of the dot product"
