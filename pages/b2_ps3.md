@@ -40,9 +40,11 @@ $$
 
 ### Part b
 
+<blockquote>
 $$
 \partial^\mu (X_\lambda X^\lambda)
 $$
+</blockquote>
 
 This one requires a bit more working.
 
