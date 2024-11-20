@@ -417,3 +417,297 @@ For a displacement 4-vector $\Delta X^\mu$ to be orthogonal to this, it must not
 This means that the events are simultaneous in the observer's rest frame.
 
 !END_ADMONITION
+
+## Q3: Motion under a constant force
+
+Consider a particle of mass $m$ and charge $q$ moving in a constant electric field $\vec{E}$ in an intertial frame $S$.
+
+### Part a
+
+<blockquote>
+
+Align the $x$-axis with the direction of $\vec{E}$.
+Assume that the particle starts from rest.
+Show that
+
+!START_LABEL Position velocity relation
+$$
+\left(x + \frac{c^2}{\alpha}\right)^2 - c^2 t^2 = \frac{c^4}{\alpha^2},
+$$
+!END_LABEL
+
+where $\alpha = qE_x /m$.
+</blockquote>
+
+Right, so this is all about using a relativistic equivalent of Newton's second law.
+
+!START_ADMONITION info Show working
+
+The momentum of the particle is
+
+$$
+\vec{p} = \gamma(v) m \vec{v}.
+$$
+
+Newton's second law gives
+
+$$
+\frac{d\vec{p}}{dt} = \frac{d}{dt} \left( \gamma m \vec{v} \right) = q\vec{E},
+$$
+
+so we just need to integrate this a couple of times to get the result.
+Integrating the first time gives
+
+$$
+\frac{v}{\sqrt{1 - \frac{v^2}{c^2}}} = \alpha t \, ,
+$$
+
+where we've stopped paying attention to whether anything is a vector because it's a one-dimensional problem.
+Rearranging to make $v$ the subject,
+
+!START_LABEL Velocity
+$$
+v = \frac{\alpha t}{\sqrt{1 + \left( \frac{\alpha t}{c} \right)^2}} \, .
+$$
+!END_LABEL
+
+Rather sensibly, this also tells us that
+
+$$
+\lim_{t \to \infty} v = c \, .
+$$
+
+Integrating gives
+
+$$
+x = \int^t_0 \frac{\alpha t'}{\sqrt{1 + \left( \frac{\alpha t'}{c} \right)^2}} dt'
+=
+\frac{c^2}{\alpha} \sqrt{1 + \left( \frac{\alpha t}{c} \right)^2} - \frac{c^2}{\alpha} \, ,
+$$
+
+by inspection (and then plugging in the numbers for the definite integral).
+
+This is the equation of a hyperbola, which is what we were after:
+
+$$
+\left(x + \frac{c^2}{\alpha}\right)^2 - c^2 t^2 = \frac{c^4}{\alpha^2} \, .
+$$
+
+!END_ADMONITION
+
+### Part b
+
+<blockquote>
+Calculate the acceleration of the particle in $S$;
+show that $\alpha$ is the proper acceleration.
+</blockquote>
+
+Note that, to avoid complications relating to magnetic fields, we only think about the frame $S$ in which there's no magnetic field, and the frame $S_t$ in which the particle is at rest.
+
+!START_ADMONITION info Show working
+
+In $S$, the acceleration is $dv/dt$.
+Using the
+!DROPDOWN_REF "Velocity" "velocity"
+we derived earlier, we can differentiate to get
+
+$$
+\frac{dv}{dt} = \frac{\alpha}{\left(
+    1 + \left( \frac{\alpha t}{c} \right)^2
+\right)^{3/2}} \, .
+$$
+
+Denote $\vec{f} = m\vec{a}$.
+Let $F^\mu$ be the four-force acting on the particle, as measured in $S$.
+Boosting into the instantaneous rest frame $S_t$ of the particle, we have
+
+$$
+F^\mu = \left(
+    \gamma(v) \frac{1}{c} \frac{dE}{dt}, \, \gamma(v) \vec{f}
+\right)
+\, , ~~~
+F^\mu_0 = \left(
+    \frac{1}{c} \frac{dE}{dt}, \, \vec{f}_0
+\right) \, .
+$$
+
+where $E$ is the energy of the particle, and $f_0$ is the proper force.
+Since $m$ is constant, we can write
+
+$$
+\frac{dE}{dt} = \vec{f}\cdot \vec{v} = fv
+$$
+
+and, in frame $S_t$, we have
+
+$$
+\frac{dE}{d\tau} = c^2 \frac{dm}{d\tau} = 0 \, .
+$$
+
+Subbing these back in, we find
+
+$$
+F^\mu = \left(
+    \gamma(v) \frac{fv}{c} , \, \gamma(v) \vec{f}
+\right)
+\, , ~~~
+F^\mu_0 = \left(
+    0, \, \vec{f}_0
+\right) \, .
+$$
+
+Using $F^\mu_0 = \Gamma_v F^\mu$, where $\Gamma_v$ is the Lorentz transformation matrix from $S$ to $S_t$, we find
+
+$$
+f_{0x} = - \gamma_v^2 \frac{v^2}{c^2}f + \gamma_v^2 f = f\, , ~~~ f_{0y} = f_{0z} = 0 \, .
+$$
+
+As the force is nothing but $q E_x$, that means $a = qE_x/m = \alpha$, as required.
+
+!END_ADMONITION
+
+### Part c
+
+<blockquote>
+
+The diagram shows the worldline of the particle in $S$.
+Let $A(-c^2/\alpha, 0)$ be the intersection of the $x$-axis and the asymptote of the hyperbola $ct = x + c^2/\alpha$.
+
+Let $S_t$  denote the instantaneous rest frame of the particle when it is at a point $P(x, ct)$ along its trajectory. Calculate the coordinates $ct_A′$ and $ct′_P$ of events $A$ and $P$ in frame $S_t$.
+
+Verify that the result is consistent with the slope of the line $AP$ being $v(t)/c$, indicating that $AP$ is a line of simultaneity in the instantaneous rest frame.
+
+</blockquote>
+
+!START_ADMONITION info Show working
+
+The velocity of $S_t$ relative to $S$ is the equation for the
+!DROPDOWN_REF "Velocity" "velocity"
+we derived earlier, with a Lorentz factor
+
+!START_LABEL Lorentz factor
+$$
+\gamma_t = \sqrt{1 + \alpha^2 t^2/c^2} \, .
+$$
+!END_LABEL
+
+Then we can compute directly the coordinates in frame $S_t$:
+
+$$
+ct'_A = \gamma_t \left( ct_A - \frac{v}{c} x_A \right) \, ,
+$$
+
+$$
+ct'_P = \gamma_t \left( ct_P - \frac{v}{c} x_P \right) \, .
+$$
+
+where we used the fact that point $P$ is on the hyperbola, so $ct' = ct'_P$ etc.
+Now we just need to use the fact that, in frame $S$, the coordinate of $A$ is
+
+$$
+A = \left( 0, -\frac{c^2}{\alpha} \right) \, ,
+$$
+
+so that
+
+$$
+ct'_A = \gamma_t \frac{v(t) c}{\alpha} \, .
+$$
+
+Then we can use our expression for the
+!DROPDOWN_REF "Velocity" "velocity"
+to find
+
+$$
+ct'_A = ct \, .
+$$
+
+Similarly, albeit with a bit more algebra, we can find
+
+$$
+ct'_P = ct \, ,
+$$
+
+although to do this we need to use
+
+$$
+P = \left( ct, x \right) \, ,
+$$
+
+as $P$ is the position of the accelerating particle at time $t$, as well as the
+!DROPDOWN_REF "Position velocity relation" "position velocity relation"
+we derived in part a.
+
+As the times of $A$ and $P$ are the same, the line $AP$ is a line of simultaneity in the instantaneous rest frame.
+
+Next, to calculate the slope of the line $AP$, we first find the differences between positions
+
+!START_LABEL Position difference
+$$
+x - x_A = x + \frac{c^2}{\alpha}
+=
+\sqrt{
+    c^2 t^2 + \frac{c^4}{\alpha^2}
+}\, ,
+$$
+!END_LABEL
+
+so that the slope is
+
+!START_LABEL Slope of AP
+$$
+\frac{ct - ct_A}{x - x_A} = \frac{ct}{\sqrt{c^2 t^2 + \frac{c^4}{\alpha^2}}}
+=
+\frac{\alpha t}{c\sqrt{1 + \frac{\alpha^2 t^2}{c^2}}}
+=
+\frac{v(t)}{c} \, ,
+$$
+!END_LABEL
+
+as required.
+
+!END_ADMONITION
+
+### Part d
+
+<blockquote>
+Calculate the distance between $P$ and $A$ in frame $S_t$.
+</blockquote>
+
+!START_ADMONITION info Show working
+
+The distance between them is given by
+
+$$
+x' - x'_A = \gamma\left[
+    x - x_A - \frac{v}{c} \left( ct - ct_A \right)
+\right] \, ,
+$$
+
+but now we can replace the $ct - ct_A$ part with $v(t)/c$ using the
+!DROPDOWN_REF "Slope of AP" "slope of $AP$"
+we just calculated, giving
+
+$$
+x' - x'_A = \gamma \left( 1 - \frac{v^2}{c^2} \right)(x - x_A)
+=
+\frac{x - x_A}{\gamma_t}
+$$
+
+Now if we use the expression for the
+!DROPDOWN_REF "Lorentz factor" "lorentz factor"
+we derived earlier, and also use the
+!DROPDOWN_REF "Position difference" "position difference"
+we used in the previous problem, we find
+
+$$
+x' - x'_A = \frac{c^2}{\alpha} \, .
+$$
+
+This is actually a really cool and bizarre result.
+Even though the particle is accelerating away from $A$ in frame $S$, according to the particle, its distance to $A$ is constant!
+
+This is because lengths are contracting in the direction of motion in the instantaneous rest frame of the particle.
+As it gets further away from $A$ in $S$, lengths contract in $S_t$ by exactly the right amount to keep the distance constant.
+
+!END_ADMONITION
