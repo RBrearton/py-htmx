@@ -373,6 +373,7 @@ def physics_left_drawer() -> ui.List:
                 [
                     ("PS1", f"{endpoints.b2_ps1}"),
                     ("PS2", f"{endpoints.b2_ps2}"),
+                    ("PS3", f"{endpoints.b2_ps3}"),
                 ],
             ),
             (
