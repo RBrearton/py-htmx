@@ -1009,7 +1009,7 @@ Assume $v(t=0)=0$ and $M(t=0) = M_0$.
 
 To get the first relationship, use conservation of momentum in $S$.
 Between times $t$ and $t + dt$, the rocket's mass decreases by $dM = M(t + dt) - M(t)$.
-Defined $dm = -dM$ as the positive mass converted into photons in this time period.
+Define $dm = -dM$ as the positive mass converted into photons in this time period.
 In the instantaneous rest frame of the rocket, the energy of the rocket decreases by $dm c^2$.
 The total momentum of the photons emitted during $dt$ in $S_t$ must be
 
