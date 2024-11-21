@@ -814,7 +814,7 @@ $$
 <blockquote>
 In $S$, the speed of the particle is constant.
 Show that $v'$ as seen by an observer moving with speed $u$ along the $x$-axis is not constant.
-How can the energy of the particle change in the observer's change.
+How can the energy of the particle change in the observer's frame.
 </blockquote>
 
 !START_ADMONITION info Show working
