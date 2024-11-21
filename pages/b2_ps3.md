@@ -16,7 +16,7 @@ $$
 where $K^\mu$ is a constant four-vector, and
 
 $$
-X^\mu = \left( ct,\, X,\, y,\, z\right)
+X^\mu = \left( ct,\, x,\, y,\, z\right)
 $$
 
 is the spacetime position four-vector.
