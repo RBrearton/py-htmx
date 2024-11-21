@@ -711,3 +711,155 @@ This is because lengths are contracting in the direction of motion in the instan
 As it gets further away from $A$ in $S$, lengths contract in $S_t$ by exactly the right amount to keep the distance constant.
 
 !END_ADMONITION
+
+## Q4: Circular motion in a magnetic field
+
+We're asked to consider a particle of mass $m$ and charge $q$ moving in a constant magnetic field $\vec{B}$ in an inertial frame $S$, and to neglect radiation effects.
+
+### Part a
+
+<blockquote>
+Show that the energy $E$ of the particle, its Lorentz factor $\gamma_v$, and the magnitude of its momentum $p$ are conserved.
+</blockquote>
+
+!START_ADMONITION info Show working
+
+For the Lorentz force, $\vec{f} = q\vec{v} \times \vec{B}$, the orthogonality of $\vec{v}$ and $\vec{F}$ gives
+
+$$
+\frac{dE}{dt} = \vec{f} \cdot \vec{v} = 0 \, .
+$$
+
+This means that
+
+$$
+E = \gamma_v m c^2 = \mathrm{constant} \, ,
+$$
+
+which is possible only if $\gamma_v$ is also constant.
+This means then that the momentum must be constant, as
+
+$$
+E^2 = p^2 c^2 + m^2 c^4 \, .
+$$
+
+!END_ADMONITION
+
+### Part b
+
+<blockquote>
+Show that, in a plane perpendicular to $\vec{B}$, the particle moves in a circle and calculate its angular frequency $\omega$.
+Find its radius $r$ in terms of the momentum of the particle.
+</blockquote>
+
+!START_ADMONITION info Show working
+
+The equation of motion is
+
+$$
+\frac{d\vec{p}}{dt} = \gamma_v m \frac{d\vec{v}}{dt} = q\vec{v} \times \vec{B} \, .
+$$
+
+From here it's basically just classical mechanics, because $\gamma_v$ is constant.
+Using the usual trick of aligning the field $\vec{B}$ with the $z$-axis without loss of generality, we can write
+
+$$
+\frac{dv_x}{dt} = \frac{qB}{\gamma_v m} v_y \, , ~~~ \frac{dv_y}{dt} = -\frac{qB}{\gamma_v m} v_x \, .
+$$
+
+Guessing that $v_x = A \sin \omega t$ and $v_y = A \cos \omega t$, we can find
+
+!START_LABEL Cyclotron frequency
+$$
+\omega = \frac{qB}{\gamma_v m} \, .
+$$
+!END_LABEL
+
+The momentum is $p = \sqrt{p_\perp^2 + p_z^2}$, where $\vec{p}_\perp$ is the component of $\vec{p}$ in the plane perpendicular to $\vec{B}$.
+We have $p_perp = \gamma_v m v_\perp = \gamma_v m r \omega$.
+Substituting in the
+!DROPDOWN_REF "Cyclotron frequency" "cyclotron frequency"
+gives
+
+$$
+r = \frac{p_\perp}{qB}
+$$
+
+!END_ADMONITION
+
+### Part c
+
+<blockquote>
+In $S$, the speed of the particle is constant.
+Show that $v'$ as seen by an observer moving with speed $u$ along the $x$-axis is not constant.
+How can the energy of the particle change in the observer's change.
+</blockquote>
+
+!START_ADMONITION info Show working
+
+The 4-velocity of the particle in $S$ is
+
+$$
+U^\mu = \left( \gamma_v c, \gamma_v \vec{v} \right) \, .
+$$
+
+In $S'$, it transforms to
+
+$$
+U'^\mu = \left( \gamma_v' c, \gamma_v' \vec{v}' \right) \, ,
+$$
+
+where
+
+$$
+\gamma_v' c = \gamma_u \left( \gamma_v c - \frac{u}{c} \gamma_v v_x \right)
+=
+\gamma_v \gamma_u \left( c - \frac{u}{c} A \sin\omega t \right)
+$$
+
+This isn't actually enough by itself to prove that the speed isn't constant, because the time $t$ could be a constant.
+To make this rigorous, we should swap out $t$ for the proper time $\tau$, which can never be constant.
+As $dt/d\tau = \gamma_v$ which *is* constant, we can write
+
+$$
+\gamma_v' c = \gamma_v \gamma_u \left( c - \frac{u}{c} A \sin\omega \gamma_v \tau \right) \, .
+$$
+
+Now we can see clearly that $v'$ isn't constant.
+If it was, then $\gamma_v'$ would be constant, which is only possible if the proper time is constant, which isn't possible.
+This means that the energy of the particle is fluctuating in the observer's frame.
+This is fine!
+In the frame $S'$ moving along the $x$-axis, there is an electric field field acting on the particle, which can change its energy.
+So fundamentally, this is all related to the transformation between magnetic and electric fields in different frames.
+
+!END_ADMONITION
+
+### Part d
+
+<blockquote>
+We're shown a figure depicting a cyclotron.
+We're asked to comment on the magnetic field in the cyclotron, how many turns the particles undergo, and the total time required to accelerate them.
+</blockquote>
+
+!START_ADMONITION info Show working
+
+For the particles to be accelerated by the electric field each time they cross the gaps, the field's oscillation period must be half the orbital period of the particles, meaning $2\pi/\omega = 2/23 \, \mu\mathrm{s}$.
+For $\omega$ to remain constant, $B$ must increase proportionally with $\gamma_v$.
+
+The kinetic energy of the particles as they leave the cyclotron is
+
+$$
+(\gamma_\mathrm{max} - 1)mc^2 = 520 \, \mathrm{MeV} \, .
+$$
+
+The rest mass energy of $H^-$ is $938 \, \mathrm{MeV}$, so $\gamma_\mathrm{max} = 1 + 520/938 = 1.55$, corresponding to a velocity of $0.77c$.
+At the outer edge of the cyclotron, the field is given by
+
+$$
+B = \frac{\gamma_\mathrm{max} mv}{qB} = 0.44\, \mathrm{T} \, .
+$$
+
+Since the particle gains 380 KeV per turn, it must undergo 1368 turns to reach its final energy.
+This gives a total time of $1368 \times 2/23 \, \mu\mathrm{s} = 119 \, \mu\mathrm{s}$.
+
+!END_ADMONITION
