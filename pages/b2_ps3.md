@@ -981,7 +981,8 @@ x_2 = \frac{\alpha}{2} \left( 1 - \sqrt{1 + \frac{4}{\alpha}} \right)
 x_3 = \frac{\alpha}{2} \left( 1 - \sqrt{1 - \frac{4}{\alpha}} \right)
 $$
 
-where $x_1$ is the maximum radius and $x_2$ is the minimum radius. $x_3$ is a saddle point.
+where $x_1$ is the maximum radius and $x_2$ is the minimum radius.
+$x_3$ is an intermediate radius that could represent something like a saddle point of the Hamiltonian.
 
 !END_ADMONITION
 
