@@ -878,7 +878,7 @@ The rest mass energy of $H^-$ is $938 \, \mathrm{MeV}$, so $\gamma_\mathrm{max} 
 At the outer edge of the cyclotron, the field is given by
 
 $$
-B = \frac{\gamma_\mathrm{max} mv}{qB} = 0.44\, \mathrm{T} \, .
+B = \frac{\gamma_\mathrm{max} mv}{q} = 0.44\, \mathrm{T} \, .
 $$
 
 Since the particle gains 380 KeV per turn, it must undergo 1368 turns to reach its final energy.
