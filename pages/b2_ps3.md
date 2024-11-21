@@ -260,7 +260,7 @@ This gets you thinking about the physical interpretation of spacetime intervals.
 
 !START_ADMONITION info Show working
 
-Let $A^\mu A_\mu = -(A^0)^2 + \left(\vec{A}\right)^2 > 0$.
+Let $A^\mu A_\mu = -(A^0)^2 + \left(\vec{A}\right)^2 <> 0$.
 
 In some frame, define two events $B$ and $C$ such that
 
