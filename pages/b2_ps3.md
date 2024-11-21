@@ -167,6 +167,28 @@ $$
 
 <blockquote>
 $$
+\partial^\mu \partial_\lambda F^\lambda
+$$
+</blockquote>
+
+This is quite easy, because we did most of the work in the previous problem.
+
+!START_ADMONITION success Answer
+
+$$
+\partial^\mu \partial_\lambda F^\lambda
+=
+2 k^\lambda \partial^\mu X_\lambda
+=
+2 K^\mu
+$$
+
+!END_ADMONITION
+
+### Part g
+
+<blockquote>
+$$
 \partial^\mu \partial_\mu \sin \left( K_\lambda X^\lambda \right)
 $$
 </blockquote>
