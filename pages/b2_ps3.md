@@ -863,3 +863,102 @@ Since the particle gains 380 KeV per turn, it must undergo 1368 turns to reach i
 This gives a total time of $1368 \times 2/23 \, \mu\mathrm{s} = 119 \, \mu\mathrm{s}$.
 
 !END_ADMONITION
+
+## Q5: Motion in a magnetic dipole
+
+We're asked to consider a particle in a dipole field with moment $\vec{M} = M \hat{z}$, and to neglect radiation effects.
+
+<blockquote>
+Show that the motion of the particle remains in the $x$-$y$ plane.
+Show that its motion is confined within
+
+$$
+r_\mathrm{min} = \frac{\alpha r_0}{2} \left(
+    -1 + \sqrt{1 + \frac{4}{\alpha}}
+\right) \, , ~~~
+r_\mathrm{max} = \frac{\alpha r_0}{2} \left(
+    1 + \sqrt{1 - \frac{4}{\alpha}}
+\right) \, ,
+$$
+
+Use the Lagrangian
+
+!START_LABEL Lagrangian in a dipole
+$$
+L = \frac{-mc^2}{\gamma} + q\vec{v} \cdot \vec{A}
+\, , ~~~
+\vec{A} = \frac{\mu_0}{4\pi} \frac{\vec{M} \times \vec{r}}{r^3}
+$$
+!END_LABEL
+and identify a conserved quantity.
+
+</blockquote>
+
+!START_ADMONITION info Show working
+
+Let's start by evaluating the Lagrangian in spherical coordinates.
+Note that $\vec{M} \times \vec{r} = Mr\sin\theta \hat{\phi}$ in spherical polars, and $\vec{v} = \dot{r} \hat{r} + r\dot{\theta} \hat{\theta} + r\sin\theta \dot{\phi} \hat{\phi}$.
+Using these gives
+
+$$
+L(r, \theta, \phi) = \frac{-mc^2}{\gamma} + q \vec{v} \cdot \frac{\mu_0}{4\pi} \frac{M \sin\theta}{r^2} \hat{\phi}
+=
+\frac{-mc^2}{\gamma} + \frac{q\mu_0 M \sin^2\theta}{4\pi r} \dot{\phi} \, .
+$$
+
+Here the question isn't quite precise.
+It states that the particle is in the $x-y$ plane at $t = 0$; I'm going to assume that the velocity is also in the $x-y$ plane at $t = 0$, as well as the position.
+We're told that the initial velocity is $v_0 \hat{r}$, so we're guessing that this radial velocity is in the $x-y$ plane.
+This means that $\theta = \pi/2$ and $\dot{\theta} = 0$ forever, which simplifies the Lagrangian to
+
+$$
+L = \frac{-mc^2}{\gamma} + \frac{q\mu_0 M}{4\pi r} \dot{\phi} \, .
+$$
+
+Note that we have a conserved quantity
+
+$$
+p_\phi = \frac{\partial L}{\partial \dot{\phi}} = m \gamma r^2 \dot{\phi}  + \frac{q\mu_0 M}{4\pi} = C \, ,
+$$
+
+where $C$ is a constant determined by the initial conditions.
+Initially, $\vec{v}$ is aligned with $\hat{r}$, so that $\dot{\phi} = 0$.
+Defining $r(t=0) = r_0$ gives
+
+$$
+m\gamma r^2 \dot{\phi} + q\frac{\mu_0 M}{4\pi r} = q \frac{\mu_0}{4\pi} \frac{M}{r_0}
+$$
+
+At an extremal point $r_e$, we must have $\dot{r} = 0$ so that $v = r_e \dot{\phi}$.
+Also, $\gamma$ and $v$ are constants (as shown in question 4), so $r_e \dot{\phi} = \pm v_0$.
+Subbing this into our conservation law gives
+
+$$
+q \frac{\mu_0}{4\pi} \frac{M}{r_e} \pm m \gamma r_e v_0 = q \frac{\mu_0}{4\pi} \frac{M}{r_0} \, .
+$$
+
+This can be rewritten as
+
+$$
+\pm x^2 - \alpha x + \alpha = 0
+$$
+
+and solved to give
+
+$$
+x = \frac{r_e}{r_0} = \pm \frac{\alpha}{2}\left(1 \pm \sqrt{1 - \frac{4\epsilon}{\alpha}} \right) \, .
+$$
+
+Keeping only positive values of $r_e$ gives
+
+$$
+x_1 = \frac{\alpha}{2} \left( 1 + \sqrt{1 - \frac{4}{\alpha}} \right)
+\, , ~~~
+x_2 = \frac{\alpha}{2} \left( 1 - \sqrt{1 + \frac{4}{\alpha}} \right)
+\, , ~~~
+x_3 = \frac{\alpha}{2} \left( 1 - \sqrt{1 - \frac{4}{\alpha}} \right)
+$$
+
+where $x_1$ is the maximum radius and $x_2$ is the minimum radius. $x_3$ is a saddle point.
+
+!END_ADMONITION
