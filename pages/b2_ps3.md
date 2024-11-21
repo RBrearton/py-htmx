@@ -962,3 +962,125 @@ $$
 where $x_1$ is the maximum radius and $x_2$ is the minimum radius. $x_3$ is a saddle point.
 
 !END_ADMONITION
+
+## Q6: Relativistic rocket
+
+<blockquote>
+Consider a rocket that converts mass into photons and spits them out the back.
+Let $S$ be attached to earth and be considered inertial.
+The rocket has mass $M(t)$ and velocity $v(t)$ in $S$ along the $x$-axis.
+</blockquote>
+
+### Part a
+
+<blockquote>
+Show that
+
+$$
+\frac{dM}{M} = -\frac{dv/c}{1 - v^2/c^2} \, .
+$$
+Integrate this equation to derive the relationship between $v$ and $M$.
+Assume $v(t=0)=0$ and $M(t=0) = M_0$.
+</blockquote>
+
+!START_ADMONITION info Show working
+
+To get the first relationship, use conservation of momentum in $S$.
+Between times $t$ and $t + dt$, the rocket's mass decreases by $dM = M(t + dt) - M(t)$.
+Defined $dm = -dM$ as the positive mass converted into photons in this time period.
+In the instantaneous rest frame of the rocket, the energy of the rocket decreases by $dm c^2$.
+The total momentum of the photons emitted during $dt$ in $S_t$ must be
+
+$$
+dp'_\gamma = - cdm
+$$
+
+This corresponds to a momentum in $S$ of
+
+$$
+dp_\gamma = \gamma_t\left(
+    dp'_\gamma + \frac{v}{c} \frac{dE'_\gamma}{c}
+\right)
+=
+\gamma_t \left(
+    -1 + \frac{v}{c}
+\right)cdm
+$$
+
+Conservation of momentum gives $p(t) = p(t + dt) + dp_\gamma$, so
+
+!START_LABEL Momentum conservation
+$$
+p(t + dt) - p(t) = -dp_\gamma = \gamma_t \left(
+    1 - \frac{v}{c}
+\right)c \, dm
+$$
+!END_LABEL
+
+The left hand side can also be written as
+
+$$
+d[\gamma_t M(t) v(t)] = \gamma_t^3 \frac{v dv}{c^2} M(t) v(t) + \gamma_t v(t) dM + \gamma_t M(t) dv
+$$
+
+where we used $d\gamma_t = \gamma_t^3 v dv/c^2$.
+Subbing this back into the
+!DROPDOWN_REF "Momentum conservation" "momentum conservation"
+equation gives
+
+$$
+\gamma_t^3 \frac{v dv}{c^2} M(t) v(t) + \gamma_t v(t) dM + \gamma_t M(t) dv = \gamma_t \left(
+    1 - \frac{v}{c}
+\right)c \, dm
+$$
+
+This simplifies to
+
+$$
+\gamma_t^2 \frac{dv}{c} = - \frac{dM}{M}
+$$
+
+Now integrating up until time $t$ gives
+
+$$
+\int^M_{M_0} \frac{dM}{M} = \frac{1}{2}\int^v_0 \left(
+    \frac{-1}{1 + v/c} + \frac{-1}{1 - v/c}
+\right)dv
+$$
+
+which leads to
+
+$$
+\frac{M}{M_0} = \sqrt{\frac{1 - v/c}{1 + v/c}}
+$$
+
+!END_ADMONITION
+
+### Part b
+
+<blockquote>
+Derive the energy of the rocket in frame $S$ as a function of its velocity.
+If all the mass is converted into photons, what's the final energy of the rocket in frame $S$?
+</blockquote>
+
+!START_ADMONITION info Show working
+
+The energy of the rocket in $S$ is
+
+$$
+E(t) = \gamma_t M(t) c^2 =
+\frac{M_0 c^2}{\sqrt{1 - v^2/c^2}} \sqrt{
+    \frac{1 - v/c}{1 + v/c}
+}
+$$
+
+which simplifies to
+
+$$
+E(t) = \frac{M_0 c^2}{ 1 + v/c} \, .
+$$
+
+If all the mass is converted into photons, the final mass $M = 0$, which gives exactly $v = c$.
+This would give $E = M_0 c^2 / 2$.
+
+!END_ADMONITION
