@@ -275,7 +275,7 @@ $$
 $$
 
 has a magnitude that is less than $c$ by construction of the fact that the interval is timelike.
-This means that the worldline is straight and represents a constant velocity of a particle traveling between $B$ and $C$.
+This means that the worldline is straight and represents a constant velocity particle traveling between $B$ and $C$.
 
 To make the spatial component zero, just boost to the frame where the velocity is zero.
 
